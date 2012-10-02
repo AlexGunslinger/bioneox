@@ -4,13 +4,11 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 development:
-  adapter: pg
+  adapter: mysql2
   database: samples_development
-  username:postgres
-  password:postgres012
-  host: 127.0.0.1:8080
-  pool: 5
-  timeout: 5000
+  username:
+  password:
+  host: 127.0.0.1
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -18,8 +16,8 @@ development:
 test:
   adapter: pg
   database: samples_test
-  username:postgres
-  password:postgres012
+  username: postgres
+  password: postgres012
   host: 127.0.0.1:8080
   pool: 5
   timeout: 5000
@@ -27,8 +25,8 @@ test:
 production:
   adapter: pg
   database: samples_production
-  username:postgres
-  password:postgres012
+  username: postgres
+  password: postgres012
   host: 127.0.0.1:8080
   pool: 5
   timeout: 5000

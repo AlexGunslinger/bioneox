@@ -4,18 +4,30 @@
     <dict>
         <key>fileTriggers</key>
         <dict>
+            <key>GEM</key>
+            <string>Gemfile</string>
             <key>Gem</key>
             <string>Gemfile</string>
+            <key>_form</key>
+            <string>app\views\users\_form.html.erb</string>
             <key>adminicaloa</key>
             <string>..\..\Users\Alex\Desktop\adminica\scripts\adminica\adminica_load-min.js</string>
             <key>adminicaload</key>
             <string>..\..\Users\Alex\Desktop\adminica\scripts\adminica\adminica_load.js</string>
             <key>all.css</key>
             <string>..\..\Users\Alex\Desktop\adminica\styles\adminica\all.css</string>
+            <key>application</key>
+            <string>app\assets\stylesheets\application.css</string>
+            <key>application.</key>
+            <string>config\application.rb</string>
+            <key>application.rb</key>
+            <string>config\application.rb</string>
             <key>autogro</key>
             <string>..\..\Users\Alex\Desktop\adminica\scripts\autogrow\autogrow.js</string>
             <key>bgnoise</key>
             <string>..\..\Users\Alex\Desktop\adminica\styles\themes\bg_noise.css</string>
+            <key>boot</key>
+            <string>config\boot.rb</string>
             <key>colorpicke</key>
             <string>..\..\Users\Alex\Desktop\adminica\scripts\colorpicker\colorpicker.js</string>
             <key>colours</key>
@@ -24,10 +36,18 @@
             <string>..\..\Users\Alex\Desktop\adminica\scripts\cookie\cookie.js</string>
             <key>databa</key>
             <string>config\database.yml</string>
+            <key>edit</key>
+            <string>app\views\users\edit.html.erb</string>
+            <key>fixed</key>
+            <string>app\assets\stylesheets\themes\layout_fixed.css</string>
             <key>formfiel</key>
             <string>..\..\Users\Alex\Desktop\adminica\form_fields.html</string>
             <key>forms</key>
             <string>..\..\Users\Alex\Desktop\adminica\form_fields.html</string>
+            <key>gemfile</key>
+            <string>Gemfile</string>
+            <key>index</key>
+            <string>app\views\users\index.html.erb</string>
             <key>index.htm</key>
             <string>..\..\Users\Alex\Desktop\adminica\index.html</string>
             <key>isotope</key>
@@ -40,22 +60,46 @@
             <string>..\..\Users\Alex\Desktop\adminica\scripts\modernizr\modernizr.js</string>
             <key>moderni</key>
             <string>..\..\Users\Alex\Desktop\adminica\scripts\modernizr\modernizr-min.js</string>
+            <key>nav_top</key>
+            <string>app\assets\stylesheets\themes\nav_top.css</string>
+            <key>new</key>
+            <string>app\views\users\new.html.erb</string>
             <key>pjax</key>
             <string>..\..\Users\Alex\Desktop\adminica\scripts\pjax\pjax.js</string>
             <key>plugin</key>
             <string>..\..\Users\Alex\Desktop\adminica\scripts\plugins-min.js</string>
+            <key>plugins.css</key>
+            <string>app\assets\stylesheets\plugins\all\plugins.css</string>
             <key>prefx</key>
             <string>..\..\Users\Alex\Desktop\adminica\scripts\prefixfree\prefixfree.js</string>
             <key>reset.css</key>
             <string>..\..\Users\Alex\Desktop\adminica\styles\adminica\reset.css</string>
+            <key>route</key>
+            <string>config\routes.rb</string>
+            <key>skin</key>
+            <string>app\assets\stylesheets\themes\skin_light.css</string>
+            <key>skin_lig</key>
+            <string>app\assets\stylesheets\themes\skin_light.css</string>
             <key>skinswitch</key>
             <string>..\..\Users\Alex\Desktop\adminica\styles\themes\skin_switcher.php</string>
             <key>slidernav</key>
             <string>..\..\Users\Alex\Desktop\adminica\styles\plugins\slidernav\slidernav.css</string>
             <key>switcher</key>
-            <string>..\..\Users\Alex\Desktop\adminica\styles\themes\switcher.css</string>
+            <string>app\assets\stylesheets\themes\switcher.css</string>
+            <key>theme_sa</key>
+            <string>app\assets\stylesheets\themes\theme_samples.css</string>
             <key>themegree</key>
             <string>..\..\Users\Alex\Desktop\adminica\styles\themes\theme_green.css</string>
+            <key>use.rb</key>
+            <string>app\models\user.rb</string>
+            <key>user</key>
+            <string>app\models\user.rb</string>
+            <key>user.rb</key>
+            <string>app\models\user.rb</string>
+            <key>user_controll</key>
+            <string>app\controllers\users_controller.rb</string>
+            <key>usercontro</key>
+            <string>app\controllers\users_controller.rb</string>
         </dict>
     </dict>
 </plist>
