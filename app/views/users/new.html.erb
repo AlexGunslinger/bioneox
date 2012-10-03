@@ -1,1 +1,93 @@
-<%= render 'form' %>
+<div class="box grid_16">
+	<div class="block">
+		<%= form_for(@user, :html => { :class => "validate_form"}) do |f| %>
+			<h2 class="section">User Form</h2>
+  			<% if @user.errors.any? %>
+    			<div id="error_explanation">
+      				<h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+					<ul>
+      					<% @user.errors.full_messages.each do |msg| %>
+        					<li><%= msg %></li>
+      					<% end %>
+      				</ul>
+    			</div>
+  			<% end %>
+
+			<div class="columns clearfix">
+				<div class="col_50">
+					<fieldset class="label_side label_small top">
+						<label for="text_field_inline">Name</label>
+						<div>
+							<%= f.text_field :name, :class => "required" %>
+							<div class="required_tag"></div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="col_50">
+					<fieldset class="label_side label_small top right">
+						<label for="text_field_inline">Username</label>
+						<div>
+							<%= f.text_field :username, :class => "required" %>
+							<div class="required_tag"></div>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+
+			<div class="columns clearfix">
+				<div class="col_50">
+					<fieldset class="label_side label_small">
+						<label for="text_field_inline">Email</label>
+						<div>
+							<%= f.text_field :email, :class => "required" %>
+							<div class="required_tag"></div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="col_50">
+					<fieldset class="label_side label_small right">
+						<label for="text_field_inline">Role</label>
+						<div>
+							<%= f.collection_select(:role, User::ROLES, :to_s, :titleize, {}, {:class => "uniform full_width"}) %>
+							<div class="required_tag"></div>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+
+
+			<div class="columns clearfix">
+				<div class="col_50">
+					<fieldset class="label_side label_small">
+						<label for="text_field_inline">Password</label>
+						<div>
+							<%= f.password_field :password, :class => "required" %>
+							<div class="required_tag"></div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="col_50">
+					<fieldset class="label_side label_small right">
+						<label for="text_field_inline">Password Confirmation</label>
+						<div>
+							<%= f.password_field :password_confirmation, :class => "required" %>
+							<div class="required_tag"></div>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+			
+
+			<div class="button_bar clearfix">
+				<button class="dark" type="submit">
+					<img src="images/icons/small/white/mail.png">
+					<span>Send</span>
+				</button>
+				<button class="light send_right" type="reset">
+					<span>Reset</span>
+				</button>
+			</div>
+			
+	<% end %>
+	</div>
+</div>

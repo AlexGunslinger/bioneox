@@ -1,0 +1,46 @@
+<%= form_for(@user_session, :html => { :class => "validate_form"}) do |f| %>
+
+	<% if @user_session.errors.any? %>
+
+		<div class="section">
+			<% @user_session.errors.full_messages.each do |msg| %>
+				<div class="alert dismissible alert_red">
+					<img width="24" height="24" src="/assets/icons/small/white/alarm_bell.png">
+					<%= msg %>
+				</div>
+			<% end %>
+		</div>
+	
+	<% else %>
+			
+		<div class="section">
+			<div class="alert dismissible alert_light">
+				<img width="24" height="24" src="/assets/icons/small/grey/locked.png">
+				<strong>Welcome to Lab Samples.</strong> Enter your details to login.
+			</div>
+		</div>
+		
+	<% end %>
+
+	<fieldset class="label_side top">
+		<label for="username_field">Username<span>or email address</span></label>
+		<div>
+			<div class="field_with_errors"><%= f.text_field :username, :class => "field_with_errors required" %></div>
+		</div>
+	</fieldset>
+	
+	<fieldset class="label_side bottom">
+		<label for="password_field">Password<span>Do you remember?</span></label>
+		<div>
+			<%= f.password_field :password, :class => "required" %>
+		</div>
+	</fieldset>
+	
+	<div class="button_bar clearfix">
+		<button class="wide" type="submit">
+			<img src="/assets/icons/small/white/key_2.png">
+			<span>Login</span>
+		</button>
+	</div>
+  
+<% end %>

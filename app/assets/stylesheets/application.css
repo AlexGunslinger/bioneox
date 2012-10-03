@@ -13,8 +13,54 @@
  *= require plugins/all/plugins
  *= require adminica/all
  *= require themes/theme_samples
- * require themes/layout_fixed
+ *= require themes/layout_fixed
  *= require themes/nav_top
  *= require themes/skin_light
  *= require themes/bg_noise
+ *= require adminica/colours
 */
+
+div.field_with_errors input.text,
+div.field_with_errors .textarea,
+div.field_with_errors .ui-multiselect,
+div.field_with_errors table input.text,
+div.field_with_errors .chzn-container-multi .chzn-choices {
+  width: 100%!important;
+  box-sizing: border-box;
+  border: 0;
+  background: rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 0 2px 0 #ddd;
+  border-radius: 1px;
+}
+input.text {
+  line-height: 32px;
+  height: 32px;
+  padding: 0 0 0 5px;
+}
+input.text.width_50 {
+  width: 50%;
+}
+input.text.width_25 {
+  width: 25%;
+}
+input.text.width_75 {
+  width: 25%;
+}
+.textarea_holder,
+.textarea {
+  padding: 5px 0 0 5px;
+  min-height: 50px;
+}
+.textarea_holder > textarea {
+  height: 100px;
+  width: 100%;
+  display: block;
+}
+input.text:hover,
+.textarea:hover {
+  box-shadow: inset 0 0 2px 0 #aaa;
+}
+input.text:focus,
+.textarea:focus {
+  box-shadow: inset 0 0 2px 0 #555;
+}

@@ -1,4 +1,11 @@
 Samples::Application.routes.draw do
+  root :to => 'user_sessions#new', :as => :home
+
+  match '/login' => 'user_sessions#new', :as => :login
+  match '/logout' => 'user_sessions#destroy', :as => :logout
+
+  resources :user_sessions
+
   resources :users
   resources :sites
 
