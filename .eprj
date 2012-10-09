@@ -1940,6 +1940,8 @@
             <string>..\..\schema.rb</string>
             <key>schemar</key>
             <string>..\..\schema.rb</string>
+            <key>seed</key>
+            <string>db\seeds.rb</string>
             <key>segme</key>
             <string>..\..\segmento.rb</string>
             <key>segment</key>

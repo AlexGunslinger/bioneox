@@ -8,4 +8,4 @@
 
 states = State.create([{name: 'Texas', short_name: 'TX'}])
 cities = City.create([{name: 'Austin', state_id: states.first.id}, {name: 'San Antonio', state_id: states.first.id}])
-orders = Order.create([{name: 'Sample'}, {name: 'Test'}, {name: 'Special Request'}])
+orders = OrderType.create([{name: 'Sample'}, {name: 'Test'}, {name: 'Special Request'}])
