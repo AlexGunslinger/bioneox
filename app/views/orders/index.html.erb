@@ -9,6 +9,7 @@
 						<th>Name</th>
 						<th>Type</th>
 						<th>Delivery Site</th>
+						<th>Tracking</th>
 						<th>Status</th>
 						<th></th>
 						<th></th>
@@ -26,6 +27,7 @@
     							<%= order.address_name %>
     						<% end %>
 						</td>
+						<td><%= order.tracking_number %></td>
     					<td>Waiting for Carrier</td>
     					<td>Print Form</td>
     					<td><%= link_to 'Destroy', order, confirm: 'Are you sure?', method: :delete %></td>

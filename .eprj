@@ -1227,7 +1227,7 @@
             <key>inde</key>
             <string>..\..\index.html.erb</string>
             <key>index</key>
-            <string>app\views\users\index.html.erb</string>
+            <string>app\views\orders\index.html.erb</string>
             <key>index.</key>
             <string>..\Sia-CRM\app\views\fis\index.html.erb</string>
             <key>index.cs</key>
