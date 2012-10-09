@@ -13,3 +13,81 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+
+$(document).ready(function() {   
+	$("#contacto_estado").change(function() {
+		var estado = $(this).val();
+    	if(estado == "") estado="0";
+		$.get('/contacto/cambio_estado/' + estado, function(data) {
+			$("#ciu-dad").html(data);
+        });
+    });
+});
+
+$(document).ready(function() {   
+	$("#site_state_id").change(function() {
+		var state = $(this).val();
+    	if(state == "") state="0";
+    	$.get('/sites/update_city_select/' + state, function(data){
+        	$("#change_state_city").html(data);
+    	});
+  	});
+});
+
+$(document).ready(function() {   
+	$("#order_order_type_id").change(function() {
+		var order_type = $(this).val();
+    	if(order_type == "") order_type="0";
+    	if(order_type == "0") {
+    		$("#form_title").html("");
+    		$("#description_title").html("");
+    		$("#order_form").hide(200);
+    		$("#form_quantity").hide();
+    		$("#form_description").hide();
+    		$("#form_temperature").hide();
+    		$("#form_urgent").hide();
+			
+    	};
+    	if(order_type == "1") {
+    		$("#form_title").html("Sample");
+    		$("#description_title").html("");
+    		$("#order_form").show(200);
+    		$("#form_quantity").show();
+    		$("#form_description").hide();
+    		$("#form_temperature").show();
+    		$("#form_urgent").show();
+			
+    	};
+    	if(order_type == "2") {
+			$("#form_title").html("Test");
+    		$("#description_title").html("Requirements");
+    		$("#order_form").show(200);
+    		$("#form_quantity").hide();
+    		$("#form_description").show();
+    		$("#form_temperature").show();
+    		$("#form_urgent").show();    	
+		};
+    	if(order_type == "3") {
+			$("#form_title").html("Special Request");
+    		$("#description_title").html("Special Request");
+    		$("#order_form").show(200);
+    		$("#form_quantity").hide();
+    		$("#form_description").show();
+    		$("#form_temperature").hide();
+    		$("#form_urgent").hide();    	
+		};
+   	});
+});
+
+$(document).ready(function() {   
+	$("#order_delivery_site_id").change(function() {
+		var delivery_site = $(this).val();
+    	if(delivery_site == "0") {
+    		$("#alternate_address").show();			
+    	}
+    	else {
+    		$("#alternate_address").hide();
+    	};
+   	});
+});

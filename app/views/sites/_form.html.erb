@@ -1,0 +1,94 @@
+<div class="box grid_16">
+	<h2 class="box_head"><%= @title %></h2>
+	<div class="block">
+		<%= form_for(@site, :html => { :class => "validate_form"}) do |f| %>
+  			<% if @site.errors.any? %>
+    			<div id="error_explanation">
+      				<h2><%= pluralize(@site.errors.count, "error") %> prohibited this site from being saved:</h2>
+					<ul>
+      					<% @site.errors.full_messages.each do |msg| %>
+        					<li><%= msg %></li>
+      					<% end %>
+      				</ul>
+    			</div>
+  			<% end %>
+
+			<div class="columns clearfix">
+				<div class="col_50">
+					<fieldset class="label_side label_small">
+						<label for="text_field_inline">Name</label>
+						<div>
+							<%= f.text_field :name, :class => "required" %>
+						</div>
+					</fieldset>
+				</div>
+				<div class="col_50">
+					<fieldset class="label_side label_small">
+						<label for="text_field_inline">Code</label>
+						<div>
+							<%= f.text_field :code, :class => "required" %>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+
+
+			<fieldset class="label_side label_small">
+			<label for="text_field_inline">Address</label>
+				<div>
+					<%= f.text_field :address, :class => "required" %>
+				</div>
+			</fieldset>
+			
+			<div class="columns clearfix">
+				<div class="col_50">
+					<fieldset class="label_side label_small top">
+						<label for="text_field_inline">State</label>
+						<div>
+         					<%= f.select(:state_id, State.order("name").collect{ |s| [s.name.titleize, s.id]}, {}, {:class => "uniform full_width"}) %>
+						</div>
+					</fieldset>
+				</div>
+				<div class="col_50">
+					<fieldset class="label_side label_small top right">
+						<label for="text_field_inline">City</label>
+						<div>
+						<div id="change_state_city">
+							<%= select(:site, :city_id, State.order("name").first.cities.collect{ |c| [c.name.titleize, c.id]}, {}, {:class => "uniform full_width"}) %>
+						</div>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+
+			<div class="columns clearfix">
+				<div class="col_50">
+					<fieldset class="label_side label_small">
+						<label for="text_field_inline">Zip</label>
+						<div>
+							<%= f.text_field :zip_code %>
+						</div>
+					</fieldset>
+				</div>
+				<div class="col_50">
+					<fieldset class="label_side label_small right">
+						<label for="text_field_inline">Phone</label>
+						<div>
+							<%= f.text_field :phone %>
+						</div>
+					</fieldset>
+				</div>
+			</div>			
+
+			<div class="button_bar clearfix">
+				<button class="blue" type="submit">
+					<span>Submit</span>
+				</button>
+				<button class="light send_right" type="reset">
+					<span>Reset</span>
+				</button>
+			</div>
+			
+	<% end %>
+	</div>
+</div>

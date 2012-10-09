@@ -1,0 +1,2 @@
+<%= select(:site, :city_id, @cities.collect{ |c| [c.name.titleize, c.id]}, {}, {:class => "uniform full_width"}) %>
+<div class="required_tag"></div>

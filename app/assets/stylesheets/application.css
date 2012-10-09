@@ -20,11 +20,12 @@
  *= require adminica/colours
 */
 
-div.field_with_errors input.text,
-div.field_with_errors .textarea,
-div.field_with_errors .ui-multiselect,
-div.field_with_errors table input.text,
-div.field_with_errors .chzn-container-multi .chzn-choices {
+.field_with_errors input,
+.field_with_errors input.text,
+.field_with_errors .textarea,
+.field_with_errors .ui-multiselect,
+.field_with_errors table input.text,
+.field_with_errors .chzn-container-multi .chzn-choices {
   width: 100%!important;
   box-sizing: border-box;
   border: 0;
@@ -32,35 +33,52 @@ div.field_with_errors .chzn-container-multi .chzn-choices {
   box-shadow: inset 0 0 2px 0 #ddd;
   border-radius: 1px;
 }
-input.text {
+.field_with_errors input.text,
+.field_with_errors input {
   line-height: 32px;
   height: 32px;
   padding: 0 0 0 5px;
 }
-input.text.width_50 {
+.field_with_errors input.text.width_50 {
   width: 50%;
 }
-input.text.width_25 {
+.field_with_errors input.text.width_25 {
   width: 25%;
 }
-input.text.width_75 {
+.field_with_errors input.text.width_75 {
   width: 25%;
 }
-.textarea_holder,
-.textarea {
+.field_with_errors .textarea_holder,
+.field_with_errors .textarea {
   padding: 5px 0 0 5px;
   min-height: 50px;
 }
-.textarea_holder > textarea {
+.field_with_errors .textarea_holder > textarea {
   height: 100px;
   width: 100%;
   display: block;
 }
-input.text:hover,
-.textarea:hover {
-  box-shadow: inset 0 0 2px 0 #aaa;
+.field_with_errors input,
+.field_with_errors input.text,
+.field_with_errors .textarea {
+  box-shadow: inset 0 0 3px 0 #ff0000;
 }
-input.text:focus,
-.textarea:focus {
-  box-shadow: inset 0 0 2px 0 #555;
+.field_with_errors input:hover,
+.field_with_errors input.text:hover,
+.field_with_errors .textarea:hover {
+  box-shadow: inset 0 0 2px 0 #ff6969;
+}
+.field_with_errors input:focus,
+.field_with_errors input.text:focus,
+.field_with_errors .textarea:focus {
+  box-shadow: inset 0 0 2px 0 #a80707;
+}
+
+.align_right {
+	float: right;
+    margin: -5px -5px 0 0;
+}
+
+select.half_width {
+  width: 50%!important;
 }

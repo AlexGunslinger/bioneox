@@ -1,0 +1,36 @@
+<div class="flat_area grid_16">
+	<h2><%= @title %></h2>
+
+	<div class="box grid_16 single_datatable">
+		<div id="dt1" class="no_margin">
+			<table class=" datatable">
+				<thead>
+					<tr>
+						<th>Code</th>
+						<th>Name</th>
+						<th>City</th>
+						<th>Phone</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @sites.each do |site| %>
+					<tr>
+    					<td><%= site.code %></td>
+    					<td><%= site.name %></td>
+    					<td><%= site.city.name %></td>
+    					<td><%= site.phone %></td>
+    					<td><%= link_to 'Edit', edit_site_path(site) %></td>
+    					<td><%= link_to 'Destroy', site, confirm: 'Are you sure?', method: :delete %></td>
+  					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="flat_area grid_16">
+	<div class="align_right"><p><h2><%= link_to 'New Site', new_site_path %></h2></p></div>
+</div>

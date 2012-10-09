@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @order.user_id %>
+</p>
+
+<p>
+  <b>Order type:</b>
+  <%= @order.order_type_id %>
+</p>
+
+<p>
+  <b>Quantity:</b>
+  <%= @order.quantity %>
+</p>
+
+<p>
+  <b>Temperature:</b>
+  <%= @order.temperature %>
+</p>
+
+<p>
+  <b>Origin site:</b>
+  <%= @order.origin_site_id %>
+</p>
+
+<p>
+  <b>Delivery site:</b>
+  <%= @order.delivery_site_id %>
+</p>
+
+<p>
+  <b>Picked up at:</b>
+  <%= @order.picked_up_at %>
+</p>
+
+<p>
+  <b>Delivered at:</b>
+  <%= @order.delivered_at %>
+</p>
+
+<p>
+  <b>Tracking number:</b>
+  <%= @order.tracking_number %>
+</p>
+
+<p>
+  <b>Carrier:</b>
+  <%= @order.carrier_id %>
+</p>
+
+<p>
+  <b>Submitted by:</b>
+  <%= @order.submitted_by_id %>
+</p>
+
+<p>
+  <b>Picked up by:</b>
+  <%= @order.picked_up_by %>
+</p>
+
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>

@@ -143,7 +143,7 @@
             <key>_forg</key>
             <string>..\..\_forgot.html.erb</string>
             <key>_form</key>
-            <string>app\views\users\_form.html.erb</string>
+            <string>app\views\orders\_form.html.erb</string>
             <key>_form.html</key>
             <string>..\..\_form.html.erb</string>
             <key>_form.html.erb</key>
@@ -388,6 +388,8 @@
             <string>..\..\application_helper.rb</string>
             <key>appcon</key>
             <string>..\..\app_config.yml</string>
+            <key>appjs</key>
+            <string>app\assets\javascripts\application.js</string>
             <key>appl</key>
             <string>..\..\application.rb</string>
             <key>appli</key>
@@ -407,7 +409,7 @@
             <key>applicatiocon</key>
             <string>..\..\application_controller.rb</string>
             <key>application</key>
-            <string>app\assets\stylesheets\application.css</string>
+            <string>app\controllers\application_controller.rb</string>
             <key>application.</key>
             <string>config\application.rb</string>
             <key>application.css</key>
@@ -418,6 +420,10 @@
             <string>..\Sia-CRM\app\views\layouts\application.html.erb</string>
             <key>application.html</key>
             <string>..\..\application.html.erb</string>
+            <key>application.j</key>
+            <string>app\assets\javascripts\application.js</string>
+            <key>application.js</key>
+            <string>app\assets\javascripts\application.js</string>
             <key>application.rb</key>
             <string>config\application.rb</string>
             <key>application_controll</key>
@@ -689,7 +695,7 @@
             <key>citiesnav</key>
             <string>..\..\_cities_nav.rhtml</string>
             <key>city</key>
-            <string>..\..\city.rb</string>
+            <string>app\models\city.rb</string>
             <key>ciudad</key>
             <string>..\..\ciudad.rb</string>
             <key>ciudad.r</key>
@@ -953,7 +959,7 @@
             <key>edi</key>
             <string>..\..\edit.html.erb</string>
             <key>edit</key>
-            <string>app\views\users\edit.html.erb</string>
+            <string>app\views\sites\edit.html.erb</string>
             <key>edit.</key>
             <string>..\..\edit.html.erb</string>
             <key>edit.h</key>
@@ -1171,7 +1177,7 @@
             <key>forms</key>
             <string>..\..\Users\Alex\Desktop\adminica\form_fields.html</string>
             <key>gem</key>
-            <string>..\Sia-CRM\Gemfile</string>
+            <string>Gemfile</string>
             <key>gemdep</key>
             <string>..\Sia-CRM\vendor\rails\railties\lib\rails\gem_dependency.rb</string>
             <key>gemf</key>
@@ -1360,6 +1366,8 @@
             <string>..\..\login.rhtml</string>
             <key>login.h</key>
             <string>..\..\login.html.erb</string>
+            <key>login.ht</key>
+            <string>app\views\layouts\login.html.erb</string>
             <key>login_butto</key>
             <string>..\..\Users\Alex\Desktop\adminica\login_button.html</string>
             <key>logo</key>
@@ -1459,7 +1467,7 @@
             <key>ne</key>
             <string>..\..\new.html.erb</string>
             <key>new</key>
-            <string>app\views\users\new.html.erb</string>
+            <string>app\views\sites\new.html.erb</string>
             <key>new.</key>
             <string>..\sia_crm\trunk\crm\app\views\contactos\new.html.erb</string>
             <key>new.html</key>
@@ -1506,6 +1514,22 @@
             <string>..\..\opina.html.erb</string>
             <key>opina.iph</key>
             <string>..\..\opina.iphone.erb</string>
+            <key>order</key>
+            <string>app\models\order.rb</string>
+            <key>order.rb</key>
+            <string>app\models\order.rb</string>
+            <key>ordercontroll</key>
+            <string>app\controllers\orders_controller.rb</string>
+            <key>orders_contro</key>
+            <string>app\controllers\orders_controller.rb</string>
+            <key>orders_controllers</key>
+            <string>test\functional\orders_controller_test.rb</string>
+            <key>orderscontoller</key>
+            <string>app\controllers\orders_controller.rb</string>
+            <key>orderscontrol</key>
+            <string>app\controllers\orders_controller.rb</string>
+            <key>orderty</key>
+            <string>app\models\order_type.rb</string>
             <key>pagesa</key>
             <string>..\..\_pages_nav.rhtml</string>
             <key>pagescontro</key>
@@ -1906,6 +1930,10 @@
             <string>..\Sia-CRM\config\routes.rb</string>
             <key>routes.</key>
             <string>..\..\routes.rb</string>
+            <key>samples</key>
+            <string>app\views\layouts\samples.html.erb</string>
+            <key>samples.htm</key>
+            <string>app\views\layouts\samples.html.erb</string>
             <key>sche</key>
             <string>..\..\schema.rb</string>
             <key>schema</key>
@@ -2044,6 +2072,12 @@
             <string>..\Sia-CRM\app\views\reportes\contactos_sin_seguimiento.pdf.prawn</string>
             <key>sinseguimin</key>
             <string>..\Sia-CRM\app\views\reportes\contactos_sin_seguimiento.pdf.prawn</string>
+            <key>site</key>
+            <string>app\models\site.rb</string>
+            <key>site.rb</key>
+            <string>app\models\site.rb</string>
+            <key>sitescontroller</key>
+            <string>app\controllers\sites_controller.rb</string>
             <key>skin</key>
             <string>app\assets\stylesheets\themes\skin_light.css</string>
             <key>skin_lig</key>
@@ -2058,6 +2092,8 @@
             <string>..\..\soporte.html</string>
             <key>state</key>
             <string>..\..\state.rb</string>
+            <key>state.rb</key>
+            <string>app\models\state.rb</string>
             <key>styles</key>
             <string>..\Sia-CRM\public\javascripts\styles.js</string>
             <key>subdom</key>
@@ -2195,12 +2231,16 @@
             <key>users_contr</key>
             <string>..\..\users_controller.rb</string>
             <key>userscontro</key>
-            <string>..\..\users_controller.rb</string>
+            <string>app\controllers\users_controller.rb</string>
             <key>userscontrolle</key>
             <string>..\..\users_controller.rb</string>
+            <key>userscontroller</key>
+            <string>app\controllers\users_controller.rb</string>
             <key>usersessi</key>
             <string>app\models\user_session.rb</string>
             <key>usersessiocon</key>
+            <string>app\controllers\user_sessions_controller.rb</string>
+            <key>usersession</key>
             <string>app\controllers\user_sessions_controller.rb</string>
             <key>usu</key>
             <string>..\..\usuario.rb</string>

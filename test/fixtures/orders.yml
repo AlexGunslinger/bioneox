@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  order_type_id: 1
+  quantity: 1
+  temperature: MyString
+  origin_site_id: 1
+  delivery_site_id: 1
+  picked_up_at: 2012-10-05 16:42:27
+  delivered_at: 2012-10-05 16:42:27
+  tracking_number: MyString
+  carrier_id: 1
+  submitted_by_id: 1
+  picked_up_by: 1
+
+two:
+  user_id: 1
+  order_type_id: 1
+  quantity: 1
+  temperature: MyString
+  origin_site_id: 1
+  delivery_site_id: 1
+  picked_up_at: 2012-10-05 16:42:27
+  delivered_at: 2012-10-05 16:42:27
+  tracking_number: MyString
+  carrier_id: 1
+  submitted_by_id: 1
+  picked_up_by: 1

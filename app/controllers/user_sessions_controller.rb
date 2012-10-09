@@ -27,7 +27,7 @@ class UserSessionsController < ApplicationController
   def destroy
     current_user_session.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'Successfully logged out.' }
+      format.html { redirect_to new_user_session_url, notice: 'Successfully logged out.' }
       format.json { head :no_content }
     end
   end

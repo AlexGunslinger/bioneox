@@ -1,0 +1,91 @@
+<% if @order_type.id == 1 %>
+<div class="box grid_16 clearfix">
+	<h2 class="box_head">Sample</h2>
+	<div class="block" style="display:block;">
+
+
+		<fieldset class="label_side label_small top right">
+			<label for="text_field_inline">How Many?</label>
+			<div>
+				<%= text_field :order, :quantity %>
+			</div>
+		</fieldset>
+
+		<div class="columns clearfix">
+			<div class="col_50">
+				<fieldset class="label_side label_small">
+					<label for="text_field_inline">Temperature</label>
+					<div>
+						<%= collection_select(:order, :temperature, Order::TEMPERATURES, :to_s, :titleize, {}, {:class => "uniform full_width"}) %>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+		
+		<fieldset class="bottom">
+			<label>Urgent</label>
+			<div>
+				<div class="jqui_radios">
+					<input type="radio" name="urgent" id="yes"/><label for="yes">Yes</label>
+					<input type="radio" name="urgent" id="no" checked="checked"/><label for="no">No</label>													</div>
+			</div>
+		</fieldset>			
+
+	</div>
+</div>
+
+<% elsif @order_type.id == 2 %>
+
+<div class="box grid_16 clearfix">
+	<h2 class="box_head">Test</h2>
+	<div class="block" style="display:block;">
+
+
+		<fieldset class="label_side label_small top right">
+			<label for="text_field_inline">Requirements</label>
+			<div>
+				<%= text_area :order, :description, :class => "autogrow", :rows => "3" %>
+			</div>
+		</fieldset>
+
+		<div class="columns clearfix">
+			<div class="col_50">
+				<fieldset class="label_side label_small">
+					<label for="text_field_inline">Temperature</label>
+					<div>
+						<%= collection_select(:order, :temperature, Order::TEMPERATURES, :to_s, :titleize, {}, {:class => "uniform full_width"}) %>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+		
+		<fieldset class="bottom">
+			<label>Urgent</label>
+			<div>
+				<div class="jqui_radios">
+					<input type="radio" name="urgent2" id="yes5"/><label for="yes5">Yes</label>
+					<input type="radio" name="urgent2" id="no5" checked="checked"/><label for="no5">No</label>														</div>
+			</div>
+		</fieldset>			
+
+	</div>
+</div>
+
+<% else %>
+
+<div class="box grid_16 clearfix">
+	<h2 class="box_head">Special Request</h2>
+	<div class="block" style="display:block;">
+
+
+		<fieldset class="label_side label_small top right">
+			<label for="text_field_inline">Special Request</label>
+			<div>
+				<%= text_area :order, :description, :class => "autogrow", :rows => "3" %>
+			</div>
+		</fieldset>
+
+	</div>
+</div>
+
+<% end %>

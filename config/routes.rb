@@ -1,13 +1,18 @@
 Samples::Application.routes.draw do
+  resources :order_types
+
   root :to => 'user_sessions#new', :as => :home
 
   match '/login' => 'user_sessions#new', :as => :login
   match '/logout' => 'user_sessions#destroy', :as => :logout
-
+  match 'sites/update_city_select/:id', :controller=>'sites', :action => 'update_city_select'
+  match 'orders/update_order_type/:id', :controller=>'orders', :action => 'update_order_type'
   resources :user_sessions
 
   resources :users
   resources :sites
+  resources :orders
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,7 +1,7 @@
 <div class="box grid_16">
+	<h2 class="box_head"><%= @title %></h2>
 	<div class="block">
 		<%= form_for(@user, :html => { :class => "validate_form"}) do |f| %>
-			<h2 class="section">User Form</h2>
   			<% if @user.errors.any? %>
     			<div id="error_explanation">
       				<h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -27,7 +27,7 @@
 					<fieldset class="label_side label_small top right">
 						<label for="text_field_inline">Username</label>
 						<div>
-							<%= f.text_field :username, :class => "required" %>
+							<%= f.text_field :username, :class => "required_email" %>
 							<div class="required_tag"></div>
 						</div>
 					</fieldset>
@@ -77,9 +77,8 @@
 			
 
 			<div class="button_bar clearfix">
-				<button class="dark" type="submit">
-					<img src="images/icons/small/white/mail.png">
-					<span>Send</span>
+				<button class="blue" type="submit">
+					<span>Submit</span>
 				</button>
 				<button class="light send_right" type="reset">
 					<span>Reset</span>

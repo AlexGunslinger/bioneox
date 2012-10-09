@@ -1,0 +1,190 @@
+<%= form_for(@order, :html => { :class => "validate_form"}) do |f| %>
+	
+	
+<% if @order.errors.any? %>
+	<div id="error_explanation">
+    	<h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+		<ul>
+      		<% @order.errors.full_messages.each do |msg| %>
+        		<li><%= msg %></li>
+      		<% end %>
+      	</ul>
+    </div>
+<% end %>
+
+
+<div class="box grid_16">
+	<h2 class="box_head"><%= @title %></h2>
+	<div class="block" style="display:block;">
+		<div class="columns clearfix">
+			<div class="col_50">
+				<fieldset class="label_side label_small">
+					<label for="text_field_inline">Site</label>
+					<div>
+     					<%= f.select(:origin_site_id, Site.order("name").collect{ |s| [s.name.titleize, s.id]}, {}, {:class => "uniform full_width"}) %>
+					</div>
+				</fieldset>
+			</div>
+		</div>		
+
+			<fieldset class="label_side label_small">
+				<label for="text_field_inline">Name</label>
+				<div>
+					<%= f.text_field :name %>
+				</div>
+			</fieldset>
+
+		<div class="columns clearfix">
+			<div class="col_50">
+				<fieldset class="label_side label_small bottom left">
+					<label for="text_field_inline">Type</label>
+					<div>
+     					<%= f.select(:order_type_id, OrderType.order("name").collect{ |s| [s.name.titleize, s.id]}, {:include_blank => true }, {:class => "uniform full_width"} ) %>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+			
+	</div>
+</div>
+
+<div class="box grid_16 clearfix" style="display:none;" id="order_form">
+	<h2 class="box_head" id="form_title"></h2>
+
+	<div class="block" style="display:block;">
+		<fieldset class="label_side label_small top right" id="form_quantity">
+			<label for="text_field_inline">How Many?</label>
+			<div>
+				<%= f.text_field :quantity %>
+			</div>
+		</fieldset>
+
+		<fieldset class="label_side label_small top right" id="form_description">
+			<label for="text_field_inline" id="description_title"></label>
+			<div>
+				<%= f.text_area :description, :class => "autogrow", :rows => "3" %>
+			</div>
+		</fieldset>
+
+		<div class="columns clearfix" id="form_temperature">
+			<div class="col_50">
+				<fieldset class="label_side label_small">
+					<label for="text_field_inline">Temperature</label>
+					<div>
+						<%= f.collection_select(:temperature, Order::TEMPERATURES, :to_s, :titleize, {}, {:class => "uniform full_width"}) %>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+		
+		<fieldset class="bottom" id="form_urgent">
+			<label>Urgent</label>
+			<div>
+				<div class="jqui_radios">	
+					<input type="radio" name="order[urgency]" id="yes"/><label for="yes">Yes</label>
+					<input type="radio" name="order[urgency]" id="no" checked="checked"/><label for="no">No</label>																	</div>
+			</div>
+		</fieldset>			
+
+	</div>
+</div>
+
+<div class="box grid_16 clearfix">
+	<h2 class="box_head" id="form_title">Delivery Site</h2>
+	<div class="block">
+
+			<div class="columns clearfix">
+				<div class="col_50">
+					<fieldset class="label_side label_small">
+						<label for="text_field_inline">Name</label>
+						<div>
+							<select name="order[delivery_site_id]" id="order_delivery_site_id" class="uniform full_width">
+        						<%= options_for_select(Site.order("name").collect{ |s| [s.name.titleize, s.id]}, @order.delivery_site_id) -%>
+        						<option value="0">Other Site</option>
+      						</select>
+ 						</div>
+					</fieldset>
+				</div>
+			</div>
+		
+			<span id="alternate_address" style="display:none;">
+				
+			<div class="columns clearfix">
+				<div class="col_50">
+					<fieldset class="label_side label_small">
+						<label for="text_field_inline">Name</label>
+						<div>
+							<%= f.text_field :address_name %>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+
+
+			<fieldset class="label_side label_small">
+			<label for="text_field_inline">Address</label>
+				<div>
+					<%= f.text_field :alt_address %>
+				</div>
+			</fieldset>
+			
+			<div class="columns clearfix">
+				<div class="col_50">
+					<fieldset class="label_side label_small top">
+						<label for="text_field_inline">State</label>
+						<div>
+         					<%= f.select(:alt_state_id, State.order("name").collect{ |s| [s.name.titleize, s.id]}, {}, {:class => "uniform full_width"}) %>
+						</div>
+					</fieldset>
+				</div>
+				<div class="col_50">
+					<fieldset class="label_side label_small top right">
+						<label for="text_field_inline">City</label>
+						<div>
+						<div id="change_state_city">
+							<%= f.select(:alt_city_id, State.order("name").first.cities.collect{ |c| [c.name.titleize, c.id]}, {}, {:class => "uniform full_width"}) %>
+						</div>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+
+			<div class="columns clearfix">
+				<div class="col_50">
+					<fieldset class="label_side label_small">
+						<label for="text_field_inline">Zip</label>
+						<div>
+							<%= f.text_field :alt_zip_code %>
+						</div>
+					</fieldset>
+				</div>
+				<div class="col_50">
+					<fieldset class="label_side label_small right">
+						<label for="text_field_inline">Phone</label>
+						<div>
+							<%= f.text_field :alt_phone %>
+						</div>
+					</fieldset>
+				</div>
+			</div>			
+			
+			</span>
+			
+	</div>
+</div>
+
+<div class="grid_16 box clearfix">
+	<div class="indented_button_bar clearfix">
+
+		<button class="blue" type="submit">
+			<span>Submit</span>
+		</button>
+
+		<button class="light send_right" type="reset">
+			<span>Reset</span>
+		</button>
+
+	</div>
+</div>
+
+<% end %>

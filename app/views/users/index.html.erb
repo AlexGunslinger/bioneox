@@ -1,5 +1,5 @@
 <div class="flat_area grid_16">
-	<h2>Users</h2>
+	<h2><%= @title %></h2>
 
 	<div class="box grid_16 single_datatable">
 		<div id="dt1" class="no_margin">
@@ -29,7 +29,6 @@
 	</div>
 </div>
 
-
-<br />
-
-<%= link_to 'New User', new_user_path %>
+<div class="flat_area grid_16">
+	<div class="align_right"><p><h2><%= link_to 'New User', new_user_path %></h2></p></div>
+</div>

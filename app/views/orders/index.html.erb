@@ -1,0 +1,42 @@
+<div class="flat_area grid_16">
+	<h2><%= @title %></h2>
+
+	<div class="box grid_16 single_datatable">
+		<div id="dt1" class="no_margin">
+			<table class=" datatable">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Type</th>
+						<th>Delivery Site</th>
+						<th>Status</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @orders.each do |order| %>
+					<tr>
+    					<td><%= order.name %></td>
+    					<td><%= order.order_type.name %></td>
+    					<td>
+    						<% if order.delivery_site %>
+    							<%= order.delivery_site.name %>
+    						<% else %>
+    							<%= order.address_name %>
+    						<% end %>
+						</td>
+    					<td>Waiting for Carrier</td>
+    					<td>Print Form</td>
+    					<td><%= link_to 'Destroy', order, confirm: 'Are you sure?', method: :delete %></td>
+  					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="flat_area grid_16">
+	<div class="align_right"><p><h2><%= link_to 'Add Order', new_order_path %></h2></p></div>
+</div>
