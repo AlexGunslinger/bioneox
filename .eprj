@@ -1932,6 +1932,8 @@
             <string>..\..\routes.rb</string>
             <key>samples</key>
             <string>app\views\layouts\samples.html.erb</string>
+            <key>samples.</key>
+            <string>app\views\layouts\samples.html.erb</string>
             <key>samples.htm</key>
             <string>app\views\layouts\samples.html.erb</string>
             <key>sche</key>
@@ -2238,6 +2240,8 @@
             <string>..\..\users_controller.rb</string>
             <key>userscontroller</key>
             <string>app\controllers\users_controller.rb</string>
+            <key>usersess</key>
+            <string>app\controllers\user_sessions_controller.rb</string>
             <key>usersessi</key>
             <string>app\models\user_session.rb</string>
             <key>usersessiocon</key>
