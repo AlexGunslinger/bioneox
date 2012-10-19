@@ -20,7 +20,11 @@
 							<tr>
 								<td><%= order.tracking_number %></td>
     							<td><%= order.name %></td>
-    							<td><%= order.origin_site.name %></td>
+    							<% if order.origin_site %>
+	    							<td><%= order.origin_site.name %></td>
+	    						<% else %>
+									<td><%= order.alt_address %></td>
+	    						<% end %>
     							<td>
     								<% if order.delivery_site %>
     									<%= order.delivery_site.name %>
