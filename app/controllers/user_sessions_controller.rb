@@ -15,8 +15,16 @@ class UserSessionsController < ApplicationController
 
     respond_to do |format|
       if @user_session.save
-        format.html { redirect_to orders_url, notice: 'Successfully logged in.' }
-        format.json { render json: @user_session, status: :created, location: @user_session }
+        if current_user.is_admin?
+          format.html { redirect_to users_url, notice: 'Successfully logged in.' }
+          format.json { render json: @user_session, status: :created, location: @user_session }
+        elsif current_user.is_onsite?
+          format.html { redirect_to orders_url, notice: 'Successfully logged in.' }
+          format.json { render json: @user_session, status: :created, location: @user_session }
+        elsif current_user.is_carrier?
+          format.html { redirect_to carriers_url, notice: 'Successfully logged in.' }
+          format.json { render json: @user_session, status: :created, location: @user_session }
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @user_session.errors, status: :unprocessable_entity }

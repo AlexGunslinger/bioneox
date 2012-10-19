@@ -1,0 +1,36 @@
+<div class="box grid_16">
+	<h2 class="box_head"><%= @title %></h2>
+	<div class="block">
+		<%= form_for(@tag, :html => { :class => "validate_form"}) do |f| %>
+  			<% if @tag.errors.any? %>
+    			<div id="error_explanation">
+      				<h2><%= pluralize(@tag.errors.count, "error") %> prohibited this site from being tagged:</h2>
+					<ul>
+      					<% @tag.errors.full_messages.each do |msg| %>
+        					<li><%= msg %></li>
+      					<% end %>
+      				</ul>
+    			</div>
+  			<% end %>
+
+			<div class="columns clearfix">
+				<div class="col_50">
+					<fieldset class="label_side label_small">
+						<label for="text_field_inline">Site</label>
+						<div>
+     						<%= f.select(:site_id, Site.order("name").collect{ |s| [s.name.titleize, s.id]}, {}, {:class => "uniform full_width"}) %>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+
+
+			<div class="button_bar clearfix">
+				<button class="blue" type="submit">
+					<span>Tag</span>
+				</button>
+			</div>
+			
+	<% end %>
+	</div>
+</div>

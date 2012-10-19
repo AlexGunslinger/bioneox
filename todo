@@ -3,3 +3,50 @@ Questions:
 Que opciones de Menu.
 Tres tipos de ordenes? Samples, tests y Special request?
 Al momento de entregar la orden, el usuario que la recibe tiene que validar que si llego, como?
+
+Las ordenes las da de alta el site de origen o el destino?
+
+El pedido se asigna a un carrier? manual o automatico? o random, el que lo agarre?
+
+Una orden puede tener sample, test y special request?
+
+Carriers
+
+Sites
+
+Tests
+
+Email
+
+Nombre y Logo
+
+Tracking .... mmddaaaa
+En vez de sample que sea Samples
+
+Special instructions al final de dar de alta una orden.
+
+Ordenes de nuevas a viejas
+
+
+carriers controller. Acciones -- Tag -- (new - create para crear orden) -- index (para ver ordenes)
+
+Crear orden.... De - A - TIPO - SAVE
+
+TAG SITE --- solo selecciona el sitio.
+
+SELECT ORDER ---- RECOGIDO - ENTREGADO (Poner nombre de quien recogio)
+
+
+
+INFINITUM MOVIL
+
+User: tmx8183006580
+Password: infinitum
+
+11 de Sept ,, 
+
+
+
+Viernes, Lunes o Martes... hasta el Miercoles
+Telmex:
+reporte numero: 8214055

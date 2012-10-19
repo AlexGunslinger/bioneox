@@ -13,7 +13,7 @@
  *= require plugins/all/plugins
  *= require adminica/all
  *= require themes/theme_samples
- * require themes/layout_fixed
+ *= require themes/layout_fixed
  *= require themes/nav_top
  *= require themes/skin_light
  *= require themes/bg_noise

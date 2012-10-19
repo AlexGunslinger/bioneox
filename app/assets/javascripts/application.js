@@ -50,7 +50,7 @@ $(document).ready(function() {
 			
     	};
     	if(order_type == "1") {
-    		$("#form_title").html("Sample");
+    		$("#form_title").html("Samples");
     		$("#description_title").html("");
     		$("#order_form").show(200);
     		$("#form_quantity").show();

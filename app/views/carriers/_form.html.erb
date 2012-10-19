@@ -40,7 +40,7 @@
 				<fieldset class="label_side label_small bottom left">
 					<label for="text_field_inline">Type</label>
 					<div>
-     					<%= f.select(:order_type_id, OrderType.order("name").collect{ |s| [s.name.titleize, s.id]}, {:include_blank => true }, {:class => "uniform full_width"} ) %>
+     					<%= f.select(:order_type_id, OrderType.where("id = 1").order("name").collect{ |s| [s.name.titleize, s.id]}, {:include_blank => false }, {:class => "uniform full_width"} ) %>
 					</div>
 				</fieldset>
 			</div>
@@ -49,21 +49,14 @@
 	</div>
 </div>
 
-<div class="box grid_16 clearfix" style="display:none;" id="order_form">
-	<h2 class="box_head" id="form_title"></h2>
+<div class="box grid_16 clearfix" id="order_form">
+	<h2 class="box_head" id="form_title">Samples</h2>
 
 	<div class="block" style="display:block;">
 		<fieldset class="label_side label_small top right" id="form_quantity">
 			<label for="text_field_inline">How Many?</label>
 			<div>
 				<%= f.text_field :quantity %>
-			</div>
-		</fieldset>
-
-		<fieldset class="label_side label_small top right" id="form_description">
-			<label for="text_field_inline" id="description_title"></label>
-			<div>
-				<%= f.text_area :description, :class => "autogrow", :rows => "3" %>
 			</div>
 		</fieldset>
 
@@ -77,16 +70,17 @@
 				</fieldset>
 			</div>
 		</div>
-		
-		<fieldset class="bottom" id="form_urgent">
-			<label>Urgent</label>
-			<div>
-				<div class="jqui_radios">	
-					<input type="radio" name="order[urgency]" id="yes" value="yes"/><label for="yes">Yes</label>
-					<input type="radio" name="order[urgency]" id="no" value="no" checked="checked"/><label for="no">No</label>
-				</div>
+
+		<div class="columns clearfix">
+			<div class="col_50">
+				<fieldset class="label_side label_small bottom left">
+					<label for="text_field_inline">Type</label>
+					<div>
+     					<%= f.select(:sample_type_id, SampleType.all.collect{ |s| [s.name.titleize, s.id]}, {:include_blank => true }, {:class => "uniform full_width"} ) %>
+					</div>
+				</fieldset>
 			</div>
-		</fieldset>			
+		</div>		
 
 	</div>
 </div>

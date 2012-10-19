@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   layout "samples", :except => [:update_order_type]
    
   def index
-  	@title = "Orders Sent"
+  	@title = "Orders"
     @navinner = "2"
     @orders = Order.all
 
@@ -52,8 +52,16 @@ class OrdersController < ApplicationController
 	@order.submitted_by_id = current_user.id
     respond_to do |format|
       if @order.save
-        format.html { redirect_to orders_url, notice: 'Order was successfully created.' }
-        format.json { render json: @order, status: :created, location: @order }
+        if current_user.role == "carrier"
+          @order.picked_up_at = Time.now
+          @order.carrier_id = current_user.id
+          @order.save
+          format.html { redirect_to carriers_url, notice: 'Order was successfully created.' }
+          format.json { render json: @order, status: :created, location: @order }
+        else
+          format.html { redirect_to orders_url, notice: 'Order was successfully created.' }
+          format.json { render json: @order, status: :created, location: @order }
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @order.errors, status: :unprocessable_entity }

@@ -12,7 +12,12 @@ Samples::Application.routes.draw do
   resources :users
   resources :sites
   resources :orders
-
+  resources :tags
+  resources :carriers do
+    member do
+      get :deliver_sample
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

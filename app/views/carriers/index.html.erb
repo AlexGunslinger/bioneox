@@ -1,0 +1,56 @@
+<div class="flat_area grid_16">
+	<h2><%= @title %></h2>
+
+	<div class="box grid_16 single_datatable">
+		<div id="dt1" class="no_margin">
+			<table class=" datatable">
+				<thead>
+					<tr>
+						<th>Tracking</th>
+						<th>Name</th>
+						<th>Origin Site</th>
+						<th>Delivery Site</th>
+						<th>Status</th>
+						<th>Received By</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @orders.each do |order| %>
+							<tr>
+								<td><%= order.tracking_number %></td>
+    							<td><%= order.name %></td>
+    							<td><%= order.origin_site.name %></td>
+    							<td>
+    								<% if order.delivery_site %>
+    									<%= order.delivery_site.name %>
+    								<% else %>
+    									<%= order.address_name %>
+    								<% end %>
+								</td>
+    							<td><%= order.status_for_carrier %></td>
+    							<%= form_tag deliver_sample_carrier_path(order.id), :method => 'get' do %>
+    							<td>
+    								<% if order.status == "In Transit" %>
+    									<%= text_field_tag :delivered_to %>
+    								<% end %>
+    							</td>
+    							<td>
+    								<% if order.status == "In Transit" %>
+    									<button class="blue" type="submit">
+											<span>Deliver</span>
+										</button>
+									<% else %>
+										<button class="blue" type="submit">
+											<span>Pick Up</span>
+										</button>
+									<% end %>
+    							</td>
+    							<% end %>
+  							</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

@@ -8,4 +8,5 @@
 
 states = State.create([{name: 'Texas', short_name: 'TX'}])
 cities = City.create([{name: 'Austin', state_id: states.first.id}, {name: 'San Antonio', state_id: states.first.id}])
-orders = OrderType.create([{name: 'Sample'}, {name: 'Test'}, {name: 'Special Request'}])
+orders = OrderType.create([{name: 'Samples'}, {name: 'Test'}, {name: 'Special Request'}])
+sample_types = SampleType.create([{name: 'TTOP'}, {name: 'RED'}, {name: 'LAV'}, {name: 'GRAY'}, {name: 'BLUE'}, {name: 'DKBLU'}, {name: 'GREEN'}, {name: 'YELLOW'}, {name: 'SERUM'}, {name: 'URINE'}, {name: 'STOOL'}, {name: 'CULTR'}, {name: 'PAP'}, {name: 'TISSU'}])

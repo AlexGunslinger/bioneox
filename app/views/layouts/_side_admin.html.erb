@@ -1,0 +1,29 @@
+<li>
+	<a href="#" class="dialog_button" data-dialog="dialog_welcome"> <img src="/assets/icons/small/grey/laptop.png"/> Home </a>
+</li>
+
+<li>
+	<a href="#"><img src="/assets/icons/small/grey/mail.png"/>Orders<div class="alert badge alert_red"><%= Order.all.size %></div></a>
+	<ul class="drawer">
+		<li><%= link_to new_order_path, :class => "pjax" do %>Make Order<% end %></li>
+		<li><%= link_to orders_path do %>View All<div class="alert badge alert_grey"><%= Order.all.size %></div><% end %></li>
+	</ul>
+</li>
+
+<li>
+	<%= link_to sites_path do %><img src="/assets/icons/small/grey/apartment_building.png"/>Sites<% end %>
+	<ul class="drawer">
+		<li><%= link_to sites_path do %>View All<% end %></li>
+		<li><%= link_to new_site_path, :class => "pjax" do %>Add New<% end %></li>
+	</ul>
+</li>
+
+<li>
+	<%= link_to users_path do %><img src="/assets/icons/small/grey/users.png"/>Users<% end %>
+	<ul class="drawer">
+		<li><%= link_to users_path, :class => "pjax" do %>View All<% end %></li>
+		<li><%= link_to new_user_path, :class => "pjax" do %>Add New<% end %></li>
+		</ul>
+</li>
+
+<li><a href="#"><img src="/assets/icons/small/grey/graph.png"/>Statistics</a></li>
