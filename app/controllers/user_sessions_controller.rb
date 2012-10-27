@@ -22,7 +22,10 @@ class UserSessionsController < ApplicationController
           format.html { redirect_to orders_url, notice: 'Successfully logged in.' }
           format.json { render json: @user_session, status: :created, location: @user_session }
         elsif current_user.is_carrier?
-          format.html { redirect_to carriers_url, notice: 'Successfully logged in.' }
+          format.html { redirect_to orders_url, notice: 'Successfully logged in.' }
+          format.json { render json: @user_session, status: :created, location: @user_session }
+        elsif current_user.is_doctor?
+          format.html { redirect_to orders_url, notice: 'Successfully logged in.' }
           format.json { render json: @user_session, status: :created, location: @user_session }
         end
       else

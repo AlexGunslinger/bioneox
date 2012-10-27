@@ -6,7 +6,15 @@ class OrdersController < ApplicationController
   def index
   	@title = "Orders"
     @navinner = "2"
-    @orders = Order.all
+    if current_user.is_admin?
+      @orders = Order.all
+    elsif current_user.is_onsite?
+      @orders = current_user.delivery_orders
+    elsif current_user.is_carrier?
+      @orders = current_user.carrier_orders
+    elsif current_user.is_doctor?
+      @orders = current_user.origin_orders
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -49,19 +57,11 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(params[:order])
-	@order.submitted_by_id = current_user.id
+    @order.submitted_by_id = current_user.id
     respond_to do |format|
       if @order.save
-        if current_user.role == "carrier"
-          @order.picked_up_at = Time.now
-          @order.carrier_id = current_user.id
-          @order.save
-          format.html { redirect_to carriers_url, notice: 'Order was successfully created.' }
-          format.json { render json: @order, status: :created, location: @order }
-        else
-          format.html { redirect_to orders_url, notice: 'Order was successfully created.' }
-          format.json { render json: @order, status: :created, location: @order }
-        end
+        format.html { redirect_to orders_url, notice: 'Order was successfully created.' }
+        format.json { render json: @order, status: :created, location: @order }
       else
         format.html { render action: "new" }
         format.json { render json: @order.errors, status: :unprocessable_entity }
@@ -80,6 +80,55 @@ class OrdersController < ApplicationController
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
+        format.json { render json: @order.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def add_cc
+    @order = Order.find(params[:id])
+    @order.carrier_id = params[:carrier_id]
+    respond_to do |format|
+      if @order.save
+        format.html { redirect_to orders_url, notice: 'Carrier Company was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "index" }
+        format.json { render json: @order.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def add_area
+    @order = Order.find(params[:id])
+    @order.area = params[:area]
+    @order.carrier_name = params[:carrier_name]
+    respond_to do |format|
+      if @order.save
+        format.html { redirect_to orders_url, notice: 'Order was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "index" }
+        format.json { render json: @order.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def process_carrier
+    @order = Order.find(params[:id])
+    if @order.status == "In Transit"
+      @order.delivered_at = Time.now
+      #@order.picked_up_by = params[:delivered_to]
+    elsif @order.status == "Waiting for Carrier"
+      @order.picked_up_at = Time.now
+      @order.carrier_id = current_user.id
+    end
+    respond_to do |format|
+      if @order.save
+        format.html { redirect_to orders_url, notice: 'Order was successfully processed.' }
+        format.json { render json: @order, status: :created, location: @order }
+      else
+        format.html { render action: "index" }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end

@@ -1,0 +1,44 @@
+<span>
+	<h2 class="box_head" id="form_title"></h2>
+	<div class="block" style="display:block;">
+
+		<fieldset class="label_side top">
+			<label>How Many?</label>
+			<div>
+				<%= f.text_field :quantity %>
+			</div>
+		</fieldset>
+
+		<div class="columns clearfix" id="form_temperature">
+			<div class="col_50">
+				<fieldset class="label_side label_small">
+					<label for="text_field_inline">Temperature</label>
+					<div>
+						<%= f.collection_select(:temperature, Order::TEMPERATURES, :to_s, :titleize, {}, {:class => "uniform full_width"}) %>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+
+		<div class="columns clearfix">
+			<div class="col_50">
+				<fieldset class="label_side label_small">
+					<label for="text_field_inline">Type</label>
+					<div>
+     					<%= f.select(:sample_type_id, SampleType.all.collect{ |s| [s.name.titleize, s.id]}, {:include_blank => true }, {:class => "uniform full_width"} ) %>
+					</div>
+				</fieldset>
+			</div>
+		</div>		
+
+    	<%= f.hidden_field :_destroy %>
+		<%= f.hidden_field :urgency, :value => "no" %>
+
+		<fieldset class="no_label">
+			<div class="uniform inline clearfix">
+			<label for="agree_1"><%= link_to "Remove Samples", '#', class: 'remove_fields' %></labe >
+			</div>
+		</fieldset>
+
+	</div>
+</span>

@@ -19,7 +19,7 @@
 					<% @orders.each do |order| %>
 							<tr>
 								<td><%= order.tracking_number %></td>
-    							<td><%= order.name %></td>
+    							<td><%= order.name != nil ? order.name : "Carrier" %></td>
     							<% if order.origin_site %>
 	    							<td><%= order.origin_site.name %></td>
 	    						<% else %>
@@ -43,6 +43,10 @@
     								<% if order.status == "In Transit" %>
     									<button class="blue" type="submit">
 											<span>Deliver</span>
+										</button>
+									<% elsif order.urgency == "yes" %>
+										<button class="blue" type="submit">
+											<span>Accept</span>
 										</button>
 									<% else %>
 										<button class="blue" type="submit">

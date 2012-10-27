@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  order_id: 1
+  order_type_id: 1
+  quantity: 1
+  temperature: MyString
+  urgency: MyString
+  description: MyString
+
+two:
+  order_id: 1
+  order_type_id: 1
+  quantity: 1
+  temperature: MyString
+  urgency: MyString
+  description: MyString

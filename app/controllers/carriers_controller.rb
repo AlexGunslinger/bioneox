@@ -50,7 +50,6 @@ class CarriersController < ApplicationController
       @order.picked_up_at = Time.now
       @order.carrier_id = current_user.id
     end
-Order.t
     respond_to do |format|
       if @order.save
         format.html { redirect_to carriers_url, notice: 'Order was successfully processed.' }

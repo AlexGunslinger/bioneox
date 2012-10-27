@@ -11,7 +11,15 @@ Samples::Application.routes.draw do
 
   resources :users
   resources :sites
-  resources :orders
+
+  resources :orders do
+    member do
+      post :add_cc
+      post :add_area
+      post :process_carrier
+    end
+  end
+
   resources :tags
   resources :carriers do
     member do

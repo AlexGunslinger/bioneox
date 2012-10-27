@@ -48,7 +48,8 @@
 					<fieldset class="label_side label_small right">
 						<label for="text_field_inline">Role</label>
 						<div>
-							<%= f.collection_select(:role, User::ROLES, :to_s, :titleize, {}, {:class => "uniform full_width"}) %>
+							<%= f.select :role, User::ROLES, {}, {:class => "uniform full_width"} %></p>
+							<%# f.collection_select(:role, User::ROLES, :to_s, :titleize, {}, {:class => "uniform full_width"}) %>
 							<div class="required_tag"></div>
 						</div>
 					</fieldset>

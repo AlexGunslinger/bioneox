@@ -36,17 +36,20 @@ TAG SITE --- solo selecciona el sitio.
 
 SELECT ORDER ---- RECOGIDO - ENTREGADO (Poner nombre de quien recogio)
 
-
-
 INFINITUM MOVIL
 
 User: tmx8183006580
 Password: infinitum
 
-11 de Sept ,, 
+Los cambios.
 
+- A ver si se puede de que yo como admin pueda ver las opciones de los carrier en la misma pagina. (PTE)
+- Cambiar temperature que el primero sea refrigerated porque es el mas comun. (YA)
+- Que sean 4 status en lugar de 3. "waiting for carrier" es cuando alguiien puso la orden y ningun carrier la a marcado como recivida. Que diga "Carrier is on its way" cuando el carrier la resiva y la acepte. Que el carrrier tenga la opcion de seleccional la orden cuando la reciva y el que pueda recojerla la marque como "carrier is on its way". Asi no van dos carrier cuando tengamos un stat. La otra en transist cuando ya la recoja pero todavia no la entregu y la otra en delivered.
+- Que todos los carrier cuando entren puedan ponerse o marcar como stat carrier, asi cuando tengamos una orden stat le llegue al que se marco como stat carrier. Si ese carrier que esta designado como stat carrier no la marca momo "carrier is on its way", que se mande un email al manager y a el carrier otra ves, si nunguno la pone como recivida, que se mande un email, al carrier, al manager y al admin para que la veamos todo,.
+- ya vi que las ordenes ya esta de mmddyy. (YA)
+- cuando el carrier haga una orden no se le necesitamos tener la opcion de nombre ya que se puede usar el nombre de el carrier. (YA)
+- Otra ves pon de default refigerated. (YA)
+- Qure puedan tener la opcion de poner 5 red y le piquen add, luego pongan 6 yellow, add.....etc y al ultimo submit y que se registre como "Ro" y en transist. (YA)
 
-
-Viernes, Lunes o Martes... hasta el Miercoles
-Telmex:
-reporte numero: 8214055
+Es todo lo que veo hasta ahorita wey. me avisas si tienes dudas.

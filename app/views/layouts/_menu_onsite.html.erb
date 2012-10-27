@@ -3,7 +3,7 @@
 </li>
 
 <li>
-	<a href="/sent"><img src="/assets/icons/small/grey/mail.png"/><span>Orders</span><div class="alert badge"><%= Order.all.size %></div></a>
+	<%= link_to orders_path do %><img src="/assets/icons/small/grey/mail.png"/><span>Orders</span><div class="alert badge"><%= Order.all.size %></div><% end %>
 	<ul class="open_multiple">
 		<li><%= link_to new_order_path, :class => "pjax" do %><span>Make Order</span><% end %></li>
 		<li><%= link_to orders_path do %><span>View All</span><div class="alert badge"><%= Order.all.size %></div><% end %></li>

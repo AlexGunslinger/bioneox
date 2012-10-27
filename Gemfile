@@ -32,6 +32,7 @@ gem 'authlogic', '=3.1.3'
 gem 'rqrcode-rails3'
 gem 'mini_magick'
 gem 'rqrcode'
+gem 'cocoon'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

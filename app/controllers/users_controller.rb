@@ -99,7 +99,7 @@ class UsersController < ApplicationController
   private
   
   def set_nav_top
-  	@navtop = "4"
+  	@navtop = "3"
   end
 
 end
