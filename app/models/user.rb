@@ -9,9 +9,9 @@ class User < ActiveRecord::Base
 
 	has_many :orders_submitted, :class_name => Order, :foreign_key => :submitted_by_id
 
-  scope :sites, where("role = 2")
-  scope :carrier_companies, where("role = 3")
-  scope :doctors, where("role = 4")
+  scope :sites, where("role = '2'")
+  scope :carrier_companies, where("role = '3'")
+  scope :doctors, where("role = '4'")
   
 #	ROLES = %w[admin onsite carrier]
 
