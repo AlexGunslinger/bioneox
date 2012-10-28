@@ -12,6 +12,18 @@
 //
 //= require jquery
 //= require jquery_ujs
+// require plugins-min
+// adminica_ui
+// adminica_forms
+// adminica_mobile
+// adminica_datatables
+// adminica_calendar
+// adminica_charts
+// adminica_gallery
+// adminica_various
+// adminica_wizard
+// adminica_load
+// require carriers
 //= require_tree .
 
 
