@@ -1,0 +1,62 @@
+<%= form_tag process_carrier_order_path(1) do %>
+
+<table class=" datatable">
+	<thead>
+		<tr>
+			<th>Date</th>
+			<th>Origin</th>
+			<th>Order</th>
+			<th>Tracking #</th>
+			<th>Area</th>
+			<th>Carrier</th>
+			<th></th>
+			<th>Status</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		<% @orders.each do |order| %>
+			<tr>
+				<td align="center" valign="middle"><%= nice_date(order.created_at) %></td>
+				<td align="center" valign="middle"><%= order.origin_user.name %></td>
+				<td align="center" valign="middle"><%= order.items.first.quantity %> - <%= order.items.first.sample_type.name %></td>
+				<td align="center" valign="middle"><%= order.id %></td>
+				<% if ((order.carrier_name == '' or order.carrier_name == nil) or (order.area == '' or order.carrier_name == nil)) %>
+   						<td><%= text_field_tag "area#{order.id}" %></td>
+   						<td><%= text_field_tag "carrier_name#{order.id}" %></td>
+   						<%= hidden_field_tag "is_assign#{order.id}", "yes" %>
+						<td align="center" valign="middle">
+							<button class="blue" type="submit" name="assign" value="<%= order.id %>">
+								<span>Assign</span>
+							</button>
+						</td>
+				<% elsif order.picked_up_at == nil %>
+						<td align="center" valign="middle"><%= order.area %></td>
+						<td align="center" valign="middle"><%= order.carrier_name %></td>
+						<td align="center" valign="middle">
+							<button class="blue" type="submit" name="assign" value="<%= order.id %>">
+								<span>Picked Up</span>
+							</button>
+						</td>
+				<% elsif order.delivered_at == nil %>
+						<td align="center" valign="middle"><%= order.area %></td>
+						<td align="center" valign="middle"><%= order.carrier_name %></td>
+						<td align="center" valign="middle">
+							<button class="blue" type="submit" name="assign" value="<%= order.id %>">
+								<span>Delivered</span>
+							</button>
+						</td>
+				<% else %>
+					<td align="center" valign="middle"><%= order.area %></td>
+					<td align="center" valign="middle"><%= order.carrier_name %></td>
+					<td></td>
+				<% end %>
+				<td align="center" valign="middle"><%= order.status %></td>
+			</tr>
+		<% end %>
+
+	</tbody>
+</table>
+<% end %>
+
+

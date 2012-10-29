@@ -75,7 +75,12 @@
 					<fieldset class="label_side label_small">
 						<label for="text_field_inline">Delivery Site</label>
 						<div>
-     					<%= f.select(:delivery_user_id, User.sites.order("name").collect{ |s| [s.name.titleize, s.id]}, {}, {:class => "uniform full_width"}) %>
+							<% if current_user.is_onsite? %>
+								<%= f.select(:delivery_user_id, User.sites.where("id = ?",current_user.id).order("name").collect{ |s| [s.name.titleize, s.id]}, {}, {:class => "uniform full_width"}) %>
+							<% else %>
+     							<%= f.select(:delivery_user_id, User.sites.order("name").collect{ |s| [s.name.titleize, s.id]}, {}, {:class => "uniform full_width"}) %>
+     						<% end %>
+     					
  						</div>
 					</fieldset>
 				</div>

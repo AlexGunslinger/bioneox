@@ -86,12 +86,44 @@ class OrdersController < ApplicationController
   end
 
   def add_cc
-    @order = Order.find(params[:id])
-    @order.carrier_id = params[:carrier_id]
+    #@order = Order.find(params[:id])
+    #@order.carrier_id = params[:carrier_id]
+    order_id = params[:assign]
+    @order = Order.find(order_id)
+    carrier = params["carrier#{order_id}".to_sym]
+    @order.carrier_id = carrier
+    @order.save
     respond_to do |format|
-      if @order.save
+     # if @order.save
         format.html { redirect_to orders_url, notice: 'Carrier Company was successfully updated.' }
         format.json { head :no_content }
+     # else
+     #   format.html { render action: "index" }
+     #   format.json { render json: @order.errors, status: :unprocessable_entity }
+     # end
+    end
+  end
+
+  def process_carrier
+    order_id = params[:assign]
+    area = params["area#{order_id}".to_sym]
+    carrier_name = params["carrier_name#{order_id}".to_sym]
+    @order = Order.find(order_id)
+    if @order.status == "In Transit"
+      @order.delivered_at = Time.now
+      #@order.picked_up_by = params[:delivered_to]
+    elsif @order.status == "Waiting for Carrier"
+      if params["is_assign#{order_id}".to_sym] == "yes"
+        @order.area = area
+        @order.carrier_name = carrier_name
+      else
+        @order.picked_up_at = Time.now
+      end
+    end
+    respond_to do |format|
+      if @order.save
+        format.html { redirect_to orders_url, notice: 'Order was successfully processed.' }
+        format.json { render json: @order, status: :created, location: @order }
       else
         format.html { render action: "index" }
         format.json { render json: @order.errors, status: :unprocessable_entity }
@@ -114,25 +146,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  def process_carrier
-    @order = Order.find(params[:id])
-    if @order.status == "In Transit"
-      @order.delivered_at = Time.now
-      #@order.picked_up_by = params[:delivered_to]
-    elsif @order.status == "Waiting for Carrier"
-      @order.picked_up_at = Time.now
-      @order.carrier_id = current_user.id
-    end
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to orders_url, notice: 'Order was successfully processed.' }
-        format.json { render json: @order, status: :created, location: @order }
-      else
-        format.html { render action: "index" }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
   # DELETE /orders/1
   # DELETE /orders/1.json

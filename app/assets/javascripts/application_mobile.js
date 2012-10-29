@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require plugins-min
 //= require adminica/adminica_all-min
-//= require adminica/adminica_datatables 
+//= require adminica/adminica_datatables_mobile
 // adminica_ui
 // adminica_forms
 // adminica_mobile

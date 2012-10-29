@@ -1,0 +1,121 @@
+<div class="flat_area grid_16">
+	<h2><%= @title %></h2>
+
+	<div class="box grid_16 single_datatable">
+		<% if current_user.is_doctor? %>
+			<div id="dtdoctor" class="no_margin">
+		<% elsif current_user.is_onsite? %>
+			<div id="dtonsite" class="no_margin">
+		<% elsif current_user.is_carrier? %>
+			<div id="dtcarrier" class="no_margin">
+		<% else %>
+			<div id="dtadmin" class="no_margin">
+		<% end %>
+			<table class=" datatable">
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Origin</th>
+						<th>Order</th>
+						<th>Tracking #</th>
+						<% if current_user.is_doctor? or current_user.is_admin? %>
+							<th>Destination</th>
+						<% elsif current_user.is_onsite? %>
+							<th>CC</th>
+							<th></th>
+						<% elsif current_user.is_carrier? %>
+							<th>Area</th>
+							<th>Carrier</th>
+							<th></th>
+						<% end -%>
+						<th>Status</th>
+						<% if current_user.is_admin? %>
+							<th></th>	
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<% @orders.each do |order| %>
+					<tr>
+    					<td align="center" valign="middle"><%= nice_date(order.created_at) %></td>
+    					<td align="center" valign="middle"><%= order.origin_user.name %></td>
+    					<td align="center" valign="middle"><%= order.items.first.quantity %> - <%= order.items.first.sample_type.name %></td>
+						<td align="center" valign="middle"><%= order.id %></td>
+						<% if current_user.is_doctor? or current_user.is_admin? %>
+							<td align="center" valign="middle"><%= order.delivery_user.name %></td>
+						<% elsif current_user.is_onsite? %>
+							<% if order.status == 'Order Created' %>
+							    <%= form_tag add_cc_order_path(order.id) do %>
+    								<td>
+    							    	<select name="carrier_id" class="full_width">
+							            	<%= options_for_select(User.carrier_companies.order("name").collect{ |s| [s.name.titleize, s.id]}) -%>
+      									</select>
+    								</td>
+    								<td align="center" valign="middle">
+    									<button class="blue" type="submit">
+											<span>Assign</span>
+										</button>
+									</td>
+    							<% end %>    							
+    						<% else %>
+    							<td align="center" valign="middle"><%= order.carrier.name if order.carrier %></td>
+    							<td></td>
+    						<% end %>
+						<% elsif current_user.is_carrier? %>
+							<% if order.carrier_name == '' or order.carrier_name == nil %>
+								<%= form_tag add_area_order_path(order.id) do %>
+    								<td>
+    									<%= text_field_tag :area %>
+    								</td>
+    						
+    								<td>
+    									<%= text_field_tag :carrier_name %>
+    								</td>
+
+    								<td align="center" valign="middle">
+    									<button class="blue" type="submit">
+											<span>Assign</span>
+										</button>
+    								</td>
+    							<% end %>
+							<% elsif order.picked_up_at == nil %>
+								<%= form_tag process_carrier_order_path(order.id) do %>
+									<td align="center" valign="middle"><%= order.area %></td>
+									<td align="center" valign="middle"><%= order.carrier_name %></td>
+									<td align="center" valign="middle">
+    									<button class="blue" type="submit">
+											<span>Picked Up</span>
+										</button>
+									</td>
+								<% end %>
+							<% elsif order.delivered_at == nil %>
+								<%= form_tag process_carrier_order_path(order.id) do %>
+									<td align="center" valign="middle"><%= order.area %></td>
+									<td align="center" valign="middle"><%= order.carrier_name %></td>
+									<td align="center" valign="middle">
+    									<button class="blue" type="submit">
+											<span>Delivered</span>
+										</button>
+									</td>
+								<% end %>
+							<% else %>
+									<td align="center" valign="middle"><%= order.area %></td>
+									<td align="center" valign="middle"><%= order.carrier_name %></td>
+									<td></td>
+							<% end %>
+						<% end %>
+    					<td align="center" valign="middle"><%= order.status %></td>
+    					<% if current_user.is_admin? %>
+    						<td align="center" valign="middle"><%= link_to 'Destroy', order, confirm: 'Are you sure?', method: :delete %></td>
+    					<% end %>
+  					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="flat_area grid_16">
+	<div class="align_right"><p><h2><%= link_to 'Add Order', new_order_path %></h2></p></div>
+</div>
