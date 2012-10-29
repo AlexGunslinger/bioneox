@@ -2,10 +2,14 @@
 	<h2><%= @title %></h2>
 
 	<div class="box grid_16 single_datatable">
-		<% if current_user.is_doctor? or current_user.is_admin? %>
-			<div id="dt1" class="no_margin">
+		<% if current_user.is_doctor? %>
+			<div id="dtdoctor" class="no_margin">
+		<% elsif current_user.is_onsite? %>
+			<div id="dtonsite" class="no_margin">
+		<% elsif current_user.is_carrier? %>
+			<div id="dtcarrier" class="no_margin">
 		<% else %>
-			<div id="dt2" class="no_margin">
+			<div id="dtadmin" class="no_margin">
 		<% end %>
 			<table class=" datatable">
 				<thead>

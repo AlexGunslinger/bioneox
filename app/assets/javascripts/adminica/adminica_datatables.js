@@ -3,6 +3,7 @@ function adminicaDataTables() {
 if($(".datatable").length>0){
 if($.fn.dataTable){
 	// DataTables Config (more info can be found at http://www.datatables.net/)
+
 	var table1 = $('#dt1 .datatable').dataTable( {
 				"bJQueryUI": true,
 				"sScrollX": "",
@@ -23,7 +24,27 @@ if($.fn.dataTable){
 				}
 	});
 
-	var table2 = $('#dt2 .datatable').dataTable( {
+	var table_admin = $('#dtadmin .datatable').dataTable( {
+				"bJQueryUI": true,
+				"sScrollX": "",
+				"bSortClasses": false,
+				"aaSorting": [[0,'asc']],
+				"bAutoWidth": true,
+				"bInfo": true,
+				"sScrollX": "101%",
+				"bScrollCollapse": true,
+				"sPaginationType": "full_numbers",
+				"bRetrieve": true,
+				"fnInitComplete": function () {
+
+					$("#dt1 .dataTables_length > label > select").uniform();
+					$("#dt1 .dataTables_filter input[type=text]").addClass("text");
+					$(".datatable").css("visibility","visible");
+
+				}
+	});
+
+	var table_carrier = $('#dtcarrier .datatable').dataTable( {
 				"bJQueryUI": true,
 				"sScrollX": "",
 				"bSortClasses": false,
@@ -32,7 +53,7 @@ if($.fn.dataTable){
 				"bInfo": true,
 				"sScrollY": "100%",
 				"sScrollX": "100%",
-				"aoColumnDefs": [{ "bSortable": false, "aTargets": [4, 5, 6] }],
+				"aoColumnDefs": [{ "bSortable": false, "aTargets": [4, 5, 6 ] }],
 				"bScrollCollapse": true,
 				"sPaginationType": "full_numbers",
 				"bRetrieve": true,
@@ -46,7 +67,30 @@ if($.fn.dataTable){
 				"aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
 	});
 
-	var table3 = $('#dt3 .datatable').dataTable( {
+	var table_onsite = $('#dtonsite .datatable').dataTable( {
+				"bJQueryUI": true,
+				"sScrollX": "",
+				"bSortClasses": false,
+				"aaSorting": [[0,'asc']],
+				"bAutoWidth": true,
+				"bInfo": true,
+				"sScrollY": "100%",
+				"sScrollX": "100%",
+				"aoColumnDefs": [{ "bSortable": false, "aTargets": [4, 5, 6 ] }],
+				"bScrollCollapse": true,
+				"sPaginationType": "full_numbers",
+				"bRetrieve": true,
+				"fnInitComplete": function () {
+
+					$("#dt2 .dataTables_length > label > select").uniform();
+					$("#dt2 .dataTables_filter input[type=text]").addClass("text");
+					$(".datatable").css("visibility","visible");
+
+				},
+				"aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+	});
+
+	var table_doctor = $('#dtdoctor .datatable').dataTable( {
 				"bJQueryUI": true,
 				"bPaginate": false,
 				"sScrollX": "",
@@ -102,8 +146,10 @@ if($.fn.dataTable){
 
 	$(window).resize(function(){
         table1.fnAdjustColumnSizing();
-        table2.fnAdjustColumnSizing();
-        table3.fnAdjustColumnSizing();
+        table_admin.fnAdjustColumnSizing();
+        table_carrier.fnAdjustColumnSizing();
+        table_doctor.fnAdjustColumnSizing();
+        table_onsite.fnAdjustColumnSizing();
 	});
 }
 }
