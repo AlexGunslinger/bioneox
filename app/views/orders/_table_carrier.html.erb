@@ -9,6 +9,7 @@
 			<th>Tracking #</th>
 			<th>Area</th>
 			<th>Carrier</th>
+			<th>Received By</th>
 			<th></th>
 			<th>Status</th>
 		</tr>
@@ -24,6 +25,7 @@
 				<% if ((order.carrier_name == '' or order.carrier_name == nil) or (order.area == '' or order.carrier_name == nil)) %>
    						<td><%= text_field_tag "area#{order.id}" %></td>
    						<td><%= text_field_tag "carrier_name#{order.id}" %></td>
+   						<td></td>
    						<%= hidden_field_tag "is_assign#{order.id}", "yes" %>
 						<td align="center" valign="middle">
 							<button class="blue" type="submit" name="assign" value="<%= order.id %>">
@@ -33,6 +35,7 @@
 				<% elsif order.picked_up_at == nil %>
 						<td align="center" valign="middle"><%= order.area %></td>
 						<td align="center" valign="middle"><%= order.carrier_name %></td>
+						<td align="center" valign="middle"></td>
 						<td align="center" valign="middle">
 							<button class="blue" type="submit" name="assign" value="<%= order.id %>">
 								<span>Picked Up</span>
@@ -41,6 +44,7 @@
 				<% elsif order.delivered_at == nil %>
 						<td align="center" valign="middle"><%= order.area %></td>
 						<td align="center" valign="middle"><%= order.carrier_name %></td>
+   						<td><%= text_field_tag "picked_up_by#{order.id}" %></td>
 						<td align="center" valign="middle">
 							<button class="blue" type="submit" name="assign" value="<%= order.id %>">
 								<span>Delivered</span>
@@ -49,6 +53,7 @@
 				<% else %>
 					<td align="center" valign="middle"><%= order.area %></td>
 					<td align="center" valign="middle"><%= order.carrier_name %></td>
+					<td align="center" valign="middle"><%= order.picked_up_by %></td>
 					<td></td>
 				<% end %>
 				<td align="center" valign="middle"><%= order.status %></td>

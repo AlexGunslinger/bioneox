@@ -107,11 +107,15 @@ class OrdersController < ApplicationController
   def process_carrier
     order_id = params[:assign]
     area = params["area#{order_id}".to_sym]
+    picked_up_by = params["picked_up_by#{order_id}".to_sym]
     carrier_name = params["carrier_name#{order_id}".to_sym]
     @order = Order.find(order_id)
     if @order.status == "In Transit"
-      @order.delivered_at = Time.now
-      #@order.picked_up_by = params[:delivered_to]
+      if picked_up_by != "" and picked_up_by != nil
+        @order.delivered_at = Time.now
+        @order.picked_up_by = picked_up_by
+        #@order.picked_up_by = params[:delivered_to]
+      end
     elsif @order.status == "Waiting for Carrier"
       if params["is_assign#{order_id}".to_sym] == "yes"
         @order.area = area
