@@ -94,7 +94,7 @@ class Order < ActiveRecord::Base
 
         @twilio_client.account.sms.messages.create(
           :from => "+1#{twilio_phone_number}",
-          :to => "+521#{number_to_send_to}",
+          :to => "+1#{number_to_send_to}",
           :body => "#{self.created_at.strftime("%H:%M")} New order from #{self.origin_user.name} to #{self.delivery_user.name} with TN #{self.id}."
         )
 	end
@@ -104,12 +104,12 @@ class Order < ActiveRecord::Base
         twilio_sid = "AC5ba76291710e519fe5dfa6d5fb781e6e"
         twilio_token = "025d3928ae3e941bf2539b387caf0945"
         twilio_phone_number = "5125246907"
-        
+
         @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
 
         @twilio_client.account.calls.create(
           :from => "+1#{twilio_phone_number}",
-          :to => "+521#{number_to_send_to}",
+          :to => "+1#{number_to_send_to}",
           :url => "http://obscure-dawn-7074.herokuapp.com/orders/#{self.id}/call.xml"
         )
 	end
