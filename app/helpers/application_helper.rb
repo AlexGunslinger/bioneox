@@ -10,7 +10,7 @@ module ApplicationHelper
 
   def nice_date(date)
     return "" if date.nil?
-    return date.strftime("%B %d %Y")
+    return date.strftime("%B %d %Y %H:%M")
   end 
   
 end
