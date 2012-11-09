@@ -125,11 +125,10 @@ class OrdersController < ApplicationController
     end
   end
 
-  # GET /orders/1
-  # GET /orders/1.json
+  # GET
   def call
     @order = Order.find(params[:id])
-    
+
     respond_to do |format|
       format.xml #{render :xml => verb.response}
     end

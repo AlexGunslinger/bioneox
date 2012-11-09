@@ -110,7 +110,7 @@ class Order < ActiveRecord::Base
         @twilio_client.account.calls.create(
           :from => "+1#{twilio_phone_number}",
           :to => "+521#{number_to_send_to}",
-          :url => ""
+          :url => "http://obscure-dawn-7074.herokuapp.com/orders/#{self.id}/call.xml"
         )
 	end
 
