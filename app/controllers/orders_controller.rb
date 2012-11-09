@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_filter :require_user
+  before_filter :require_user, :except => [:call]
   before_filter :set_nav_top
   layout "samples", :except => [:update_order_type]
    
