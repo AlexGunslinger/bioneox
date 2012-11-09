@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
-  <Say voice="men">There is a new order created at <%= @order.created_at.strftime("%I %l %p") %>. From <%= @order.origin_user.name %> to <%= @order.delivery_user.name %>, the tracking number is <%= @order.id %>. Please check your browser for further information.</Say>
+  <Say voice="women">There is a new order created at <%= @order.created_at.strftime("%I %l %p") %>. From <%= @order.origin_user.name %>. To <%= @order.delivery_user.name %>. The tracking number is <%= @order.id %>. Please check your browser for further information.</Say>
   <Hangup/>
 </Response>
