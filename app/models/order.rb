@@ -84,8 +84,8 @@ class Order < ActiveRecord::Base
 		self.save
 	end
 
-	def send_sms(cell_number)
-		number_to_send_to = cell_number
+	def send_sms
+		number_to_send_to = self.carrier.cell_number
         twilio_sid = "AC80d9cdfce15adb0b9b2f5f816448fa49"
         twilio_token = "115e718f28d67ab6b103ecc92d061238"
         twilio_phone_number = "4846528265"
@@ -95,12 +95,12 @@ class Order < ActiveRecord::Base
         @twilio_client.account.sms.messages.create(
           :from => "+1#{twilio_phone_number}",
           :to => "+521#{number_to_send_to}",
-          :body => "You have a new order."
+          :body => "#{self.created_at.strftime("%H:%M")} New order from #{self.origin_user.name} to #{self.delivery_user.name} with TN #{self.id}."
         )
 	end
 
-	def send_call(cell_number)
-		number_to_send_to = cell_number
+	def send_call
+		number_to_send_to = self.carrier.cell_number
         twilio_sid = "AC80d9cdfce15adb0b9b2f5f816448fa49"
         twilio_token = "115e718f28d67ab6b103ecc92d061238"
         twilio_phone_number = "4846528265"
