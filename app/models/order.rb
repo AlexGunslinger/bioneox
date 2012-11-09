@@ -95,7 +95,7 @@ class Order < ActiveRecord::Base
         @twilio_client.account.sms.messages.create(
           :from => "+1#{twilio_phone_number}",
           :to => "+521#{number_to_send_to}",
-          :body => "Esta es una prueba 2 #{number_to_send_to}"
+          :body => "You have a new order."
         )
 	end
 
