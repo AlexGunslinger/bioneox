@@ -83,5 +83,35 @@ class Order < ActiveRecord::Base
 		end
 		self.save
 	end
-		
+
+	def send_sms(cell_number)
+		number_to_send_to = cell_number
+        twilio_sid = "AC80d9cdfce15adb0b9b2f5f816448fa49"
+        twilio_token = "115e718f28d67ab6b103ecc92d061238"
+        twilio_phone_number = "4846528265"
+
+        @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+
+        @twilio_client.account.sms.messages.create(
+          :from => "+1#{twilio_phone_number}",
+          :to => "+521#{number_to_send_to}",
+          :body => "Esta es una prueba 2 #{number_to_send_to}"
+        )
+	end
+
+	def send_call(cell_number)
+		number_to_send_to = cell_number
+        twilio_sid = "AC80d9cdfce15adb0b9b2f5f816448fa49"
+        twilio_token = "115e718f28d67ab6b103ecc92d061238"
+        twilio_phone_number = "4846528265"
+
+        @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+
+        @twilio_client.account.calls.create(
+          :from => "+1#{twilio_phone_number}",
+          :to => "+521#{number_to_send_to}",
+          :url => ""
+        )
+	end
+
 end

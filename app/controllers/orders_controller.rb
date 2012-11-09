@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
       @orders = Order.all
     elsif current_user.is_onsite?
       @orders = current_user.delivery_orders
-    elsif current_user.is_carrier?
+    elsif current_user.is_carrier? or current_user.is_cpld?
       @orders = current_user.carrier_orders
     elsif current_user.is_doctor?
       @orders = current_user.origin_orders
@@ -58,8 +58,20 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
     @order.submitted_by_id = current_user.id
+    if current_user.is_carrier?
+      
+    end
     respond_to do |format|
       if @order.save
+        if @order.carrier
+          if @order.carrier.valid_cell?
+            if @order.urgency == "yes"
+              @order.send_sms(@order.carrier.cell_number)
+            else
+              @order.send_call(@order.carrier.cell_number)
+            end
+          end
+        end
         format.html { redirect_to orders_url, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else
@@ -93,6 +105,15 @@ class OrdersController < ApplicationController
     carrier = params["carrier#{order_id}".to_sym]
     @order.carrier_id = carrier
     @order.save
+    if @order.carrier
+      if @order.carrier.valid_cell?
+        if @order.urgency == "yes"
+          @order.send_sms(@order.carrier.cell_number)
+        else
+          @order.send_call(@order.carrier.cell_number)
+        end
+      end
+    end
     respond_to do |format|
      # if @order.save
         format.html { redirect_to orders_url, notice: 'Carrier Company was successfully updated.' }
@@ -101,6 +122,16 @@ class OrdersController < ApplicationController
      #   format.html { render action: "index" }
      #   format.json { render json: @order.errors, status: :unprocessable_entity }
      # end
+    end
+  end
+
+  # GET /orders/1
+  # GET /orders/1.json
+  def call
+    @order = Order.find(params[:id])
+    
+    respond_to do |format|
+      format.xml #{render :xml => verb.response}
     end
   end
 

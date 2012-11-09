@@ -7,8 +7,10 @@
 			<th>Origin</th>
 			<th>Order</th>
 			<th>Tracking #</th>
+			<% if current_user.is_carrier? %>
 			<th>Area</th>
 			<th>Carrier</th>
+			<% end %>
 			<th>Received By</th>
 			<th></th>
 			<th>Status</th>
@@ -22,7 +24,7 @@
 				<td align="center" valign="middle"><%= order.origin_user.name %></td>
 				<td align="center" valign="middle"><%= order.items.first.quantity %> - <%= order.items.first.sample_type.name %></td>
 				<td align="center" valign="middle"><%= order.id %></td>
-				<% if ((order.carrier_name == '' or order.carrier_name == nil) or (order.area == '' or order.carrier_name == nil)) %>
+				<% if ((order.carrier_name == '' or order.carrier_name == nil) or (order.area == '' or order.carrier_name == nil)) and current_user.is_carrier? %>
    						<td><%= text_field_tag "area#{order.id}" %></td>
    						<td><%= text_field_tag "carrier_name#{order.id}" %></td>
    						<td></td>
@@ -33,8 +35,10 @@
 							</button>
 						</td>
 				<% elsif order.picked_up_at == nil %>
+						<% if current_user.is_carrier? %>
 						<td align="center" valign="middle"><%= order.area %></td>
 						<td align="center" valign="middle"><%= order.carrier_name %></td>
+						<% end %>
 						<td align="center" valign="middle"></td>
 						<td align="center" valign="middle">
 							<button class="blue" type="submit" name="assign" value="<%= order.id %>">
@@ -42,8 +46,10 @@
 							</button>
 						</td>
 				<% elsif order.delivered_at == nil %>
+						<% if current_user.is_carrier? %>
 						<td align="center" valign="middle"><%= order.area %></td>
 						<td align="center" valign="middle"><%= order.carrier_name %></td>
+						<% end %>
    						<td><%= text_field_tag "picked_up_by#{order.id}" %></td>
 						<td align="center" valign="middle">
 							<button class="blue" type="submit" name="assign" value="<%= order.id %>">
@@ -51,8 +57,10 @@
 							</button>
 						</td>
 				<% else %>
+					<% if current_user.is_carrier? %>
 					<td align="center" valign="middle"><%= order.area %></td>
 					<td align="center" valign="middle"><%= order.carrier_name %></td>
+					<% end %>
 					<td align="center" valign="middle"><%= order.picked_up_by %></td>
 					<td></td>
 				<% end %>

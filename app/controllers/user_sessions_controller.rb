@@ -21,7 +21,7 @@ class UserSessionsController < ApplicationController
         elsif current_user.is_onsite?
           format.html { redirect_to orders_url, notice: 'Successfully logged in.' }
           format.json { render json: @user_session, status: :created, location: @user_session }
-        elsif current_user.is_carrier?
+        elsif current_user.is_carrier? or current_user.is_cpld?
           format.html { redirect_to orders_url, notice: 'Successfully logged in.' }
           format.json { render json: @user_session, status: :created, location: @user_session }
         elsif current_user.is_doctor?

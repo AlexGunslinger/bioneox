@@ -2,6 +2,7 @@
 	<a href="#" class="pjax"><img src="/assets/icons/small/grey/laptop.png"/><span class="display_none">Home</span></a>
 </li>
 
+<% if !mobile_device? %>
 <li>
 	<%= link_to orders_path do %><img src="/assets/icons/small/grey/mail.png"/><span>Orders</span><% end %>
 	<ul class="open_multiple">
@@ -16,3 +17,14 @@
 		<li><%= link_to new_user_path, :class => "pjax" do %><span>New User</span><% end %></a></li>
 	</ul>
 </li>
+<% else %>
+
+<li><%= link_to orders_path do %><img src="/assets/icons/small/grey/mail.png"/><span>Orders</span><% end %></li>
+
+<li><%= link_to new_order_path, :class => "pjax" do %><span>Make Order</span><% end %></li>				
+
+<li><%= link_to users_path do %><img src="/assets/icons/small/grey/users.png"/><span> View Users</span><% end %></li>
+
+<li><%= link_to new_user_path, :class => "pjax" do %><span>New User</span><% end %></a></li>
+
+<% end %>

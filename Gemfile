@@ -28,11 +28,13 @@ end
 gem 'jquery-rails'
 
 gem 'authlogic', '=3.1.3'
+gem 'twilio-ruby'
+#gem 'rqrcode-rails3'
+#gem 'mini_magick'
+#gem 'rqrcode'
 
-gem 'rqrcode-rails3'
-gem 'mini_magick'
-gem 'rqrcode'
-gem 'cocoon'
+#gem 'cocoon'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

@@ -40,8 +40,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }
-      format.svg { render :qrcode => request.url, :level => :h, :unit => 10 }
-  	  format.png { render :qrcode => request.url }
+      #format.svg { render :qrcode => request.url, :level => :h, :unit => 10 }
+  	  #format.png { render :qrcode => request.url }
     end
   end
 

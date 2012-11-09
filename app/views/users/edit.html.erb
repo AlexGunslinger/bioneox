@@ -2,17 +2,18 @@
 	<h2 class="box_head"><%= @title %></h2>
 	<div class="block">
 		<%= form_for(@user, :html => { :class => "validate_form"}) do |f| %>
-  			<% if @user.errors.any? %>
-    			<div id="error_explanation">
-      				<h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-					<ul>
-      					<% @user.errors.full_messages.each do |msg| %>
-        					<li><%= msg %></li>
-      					<% end %>
-      				</ul>
+			<% if @user.errors.any? %>
+				<div class="grid_16 box clearfix">
+				<div class="section">
+					<% @user.errors.messages.values.each do |msg| %>
+						<div class="alert dismissible alert_red">
+							<img width="24" height="24" src="/assets/icons/small/white/alarm_bell.png">
+							<%= msg[0] %>
+						</div>
+					<% end %>
     			</div>
-  			<% end %>
-
+				</div>
+			<% end %>
 			<div class="columns clearfix">
 				<div class="col_50">
 					<fieldset class="label_side label_small top">
@@ -46,6 +47,18 @@
 				</div>
 				<div class="col_50">
 					<fieldset class="label_side label_small right">
+						<label for="text_field_inline">Cell<span>Neccesary for CCC Users.</span></label>
+						<div>
+							<%= f.text_field :cell_number %>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+
+
+			<div class="columns clearfix">
+				<div class="col_50">
+					<fieldset class="label_side label_small">
 						<% if current_user.is_admin? %>
 							<label for="text_field_inline">Role</label>
 							<div>
@@ -55,23 +68,11 @@
 						<% end %>
 					</fieldset>
 				</div>
-			</div>
-
-
-			<div class="columns clearfix">
 				<div class="col_50">
-					<fieldset class="label_side label_small">
+					<fieldset class="label_side label_small right">
 						<label for="text_field_inline">Password</label>
 						<div>
 							<%= f.password_field :password %>
-						</div>
-					</fieldset>
-				</div>
-				<div class="col_50">
-					<fieldset class="label_side label_small right">
-						<label for="text_field_inline">Password Confirmation</label>
-						<div>
-							<%= f.password_field :password_confirmation %>
 						</div>
 					</fieldset>
 				</div>

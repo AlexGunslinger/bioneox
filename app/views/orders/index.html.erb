@@ -8,7 +8,7 @@
 		<% elsif current_user.is_onsite? %>
 			<div id="dtonsite" class="no_margin">
 			<%= render "table_onsite" %>
-		<% elsif current_user.is_carrier? %>
+		<% elsif current_user.is_carrier? or current_user.is_cpld? %>
 			<div id="dtcarrier" class="no_margin">
 			<%= render "table_carrier" %>
 		<% else %>

@@ -120,7 +120,21 @@
 					</div>
 				</div>
 
+			<% elsif current_user.is_cpld? %>
+
+				<%= f.hidden_field :carrier_id, :value => current_user.id %>
+
 			<% end %>
+
+			<fieldset class="bottom" id="form_urgent">
+				<label></label>
+				<div>
+					<div class="jqui_radios">	
+						<input type="radio" name="order[urgency]" id="no" value="no" checked="checked"/><label for="no">Routine</label>
+						<input type="radio" name="order[urgency]" id="yes" value="yes"/><label for="yes">Stat</label>
+					</div>
+				</div>
+			</fieldset>	
 
 			<fieldset>
 				<label>Additional Comments</label>

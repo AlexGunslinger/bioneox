@@ -53,7 +53,7 @@ if($.fn.dataTable){
 				"bInfo": true,
 				//"sScrollY": "101%",
 				"sScrollX": "101%",
-				"aoColumnDefs": [{ "bSortable": false, "aTargets": [4, 5, 6, 7 ] }],
+				"aoColumnDefs": [{ "bSortable": false, "aTargets": [4, 5, 6 ] }],
 				"bScrollCollapse": true,
 				"sPaginationType": "full_numbers",
 				"bRetrieve": true,

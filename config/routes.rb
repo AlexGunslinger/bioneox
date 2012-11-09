@@ -17,6 +17,7 @@ Samples::Application.routes.draw do
       post :add_cc
       post :add_area
       post :process_carrier
+      get  :call
     end
   end
 
