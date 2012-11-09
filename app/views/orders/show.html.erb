@@ -1,65 +1,104 @@
-<p id="notice"><%= notice %></p>
+<div class="box grid_16">
+  <h2 class="box_head"><%= @title %></h2>
+  <div class="block">
+        <fieldset>
+          <label>Origin</label>
+            <div>
+              <%= @order.origin_user.name if @order.origin_user %>
+            </div>
+        </fieldset>
 
-<p>
-  <b>User:</b>
-  <%= @order.user_id %>
-</p>
-
-<p>
-  <b>Order type:</b>
-  <%= @order.order_type_id %>
-</p>
-
-<p>
-  <b>Quantity:</b>
-  <%= @order.quantity %>
-</p>
-
-<p>
-  <b>Temperature:</b>
-  <%= @order.temperature %>
-</p>
-
-<p>
-  <b>Origin site:</b>
-  <%= @order.origin_site_id %>
-</p>
-
-<p>
-  <b>Delivery site:</b>
-  <%= @order.delivery_site_id %>
-</p>
-
-<p>
-  <b>Picked up at:</b>
-  <%= @order.picked_up_at %>
-</p>
-
-<p>
-  <b>Delivered at:</b>
-  <%= @order.delivered_at %>
-</p>
-
-<p>
-  <b>Tracking number:</b>
-  <%= @order.tracking_number %>
-</p>
-
-<p>
-  <b>Carrier:</b>
-  <%= @order.carrier_id %>
-</p>
-
-<p>
-  <b>Submitted by:</b>
-  <%= @order.submitted_by_id %>
-</p>
-
-<p>
-  <b>Picked up by:</b>
-  <%= @order.picked_up_by %>
-</p>
+        <fieldset>
+          <label>Type</label>
+          <div>
+              <%= @order.order_type.name if @order.order_type %>
+          </div>
+        </fieldset>
+      
+  </div>
+</div>
 
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<div class="box grid_16 clearfix" id="order_form">
+  <h2 class="box_head" id="form_title">Samples</h2>
+
+  <% for sample in @order.items %>
+  <h2 class="box_head" id="form_title"></h2>
+  <div class="block">
+
+    <fieldset>
+      <label>How Many?</label>
+      <div>
+        <%= sample.quantity%>
+      </div>
+    </fieldset>
+       
+    <fieldset>
+      <label>Temperature</label>
+      <div>
+        <%= sample.temperature %>
+      </div>
+    </fieldset>
+    
+    <fieldset>
+      <label>Type</label>
+      <div>
+        <%= sample.sample_type.name if sample.sample_type %>
+      </div>
+    </fieldset>
+  </div>
+  <% end %>
+</div>
+
+<div class="box grid_16 clearfix">
+  <h2 class="box_head" id="form_title">Additional Info</h2>
+  <div class="block">
+
+          <fieldset>
+            <label>Delivery Site</label>
+            <div>
+                <%= @order.delivery_user.name if @order.delivery_user %>
+            </div>
+          </fieldset>
+
+            <fieldset>
+              <label>Area</label>
+              <div>
+                <%= @order.area %>
+              </div>
+            </fieldset>
+
+        <fieldset>
+          <label>Carrier</label>
+          <div>
+            <%= @order.carrier_name %>
+          </div>
+        </fieldset>
+      
+            <fieldset>
+              <label>Carrier Company</label>
+              <div>
+                <%= @order.carrier.name if @order.carrier %>
+              </div>
+            </fieldset>
+
+      <fieldset>
+        <label></label>
+        <div>
+          <% if @order.urgency == "yes" %>
+            STAT
+          <% else %>
+            ROUTINE
+          <% end %>
+        </div>
+      </fieldset> 
+
+      <fieldset>
+        <label>Additional Comments</label>
+        <div class="clearfix">
+          <%= @order.comments %>
+        </div>
+      </fieldset>     
+      
+  </div>
+</div>
