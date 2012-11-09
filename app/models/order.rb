@@ -86,9 +86,9 @@ class Order < ActiveRecord::Base
 
 	def send_sms
 		number_to_send_to = self.carrier.cell_number
-        twilio_sid = "AC80d9cdfce15adb0b9b2f5f816448fa49"
-        twilio_token = "115e718f28d67ab6b103ecc92d061238"
-        twilio_phone_number = "4846528265"
+        twilio_sid = "AC5ba76291710e519fe5dfa6d5fb781e6e"
+        twilio_token = "025d3928ae3e941bf2539b387caf0945"
+        twilio_phone_number = "5125246907"
 
         @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
 
@@ -101,10 +101,10 @@ class Order < ActiveRecord::Base
 
 	def send_call
 		number_to_send_to = self.carrier.cell_number
-        twilio_sid = "AC80d9cdfce15adb0b9b2f5f816448fa49"
-        twilio_token = "115e718f28d67ab6b103ecc92d061238"
-        twilio_phone_number = "4846528265"
-
+        twilio_sid = "AC5ba76291710e519fe5dfa6d5fb781e6e"
+        twilio_token = "025d3928ae3e941bf2539b387caf0945"
+        twilio_phone_number = "5125246907"
+        
         @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
 
         @twilio_client.account.calls.create(
