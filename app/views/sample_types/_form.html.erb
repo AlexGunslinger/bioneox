@@ -1,0 +1,42 @@
+<div class="box grid_16">
+	<h2 class="box_head"><%= @title %></h2>
+	<div class="block">
+		<%= form_for(@sample_type, :html => { :class => "validate_form"}) do |f| %>
+			<% if @sample_type.errors.any? %>
+				<div class="grid_16 box clearfix">
+				<div class="section">
+					<% @sample_type.errors.messages.values.each do |msg| %>
+						<div class="alert dismissible alert_red">
+							<img width="24" height="24" src="/assets/icons/small/white/alarm_bell.png">
+							<%= msg[0] %>
+						</div>
+					<% end %>
+    			</div>
+				</div>
+			<% end %>
+			<div class="columns clearfix">
+				<div class="col_50">
+					<fieldset class="label_side label_small top">
+						<label for="text_field_inline">Name</label>
+						<div>
+							<%= f.text_field :name, :class => "required" %>
+							<div class="required_tag"></div>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+
+
+			<div class="button_bar clearfix">
+				<button class="blue" type="submit">
+					<span>Submit</span>
+				</button>
+				<button class="light send_right" type="reset">
+					<span>Reset</span>
+				</button>
+			</div>
+			
+	<% end %>
+	</div>
+</div>
+

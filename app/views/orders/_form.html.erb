@@ -40,7 +40,7 @@
 				<fieldset class="label_side label_small bottom left">
 					<label for="text_field_inline">Type</label>
 					<div>
-     					<%= f.select(:order_type_id, OrderType.where("name = 'Samples'").order("name").collect{ |s| [s.name.titleize, s.id]}, {:include_blank => false }, {:class => "uniform full_width"} ) %>
+     					<%= f.select(:order_type_id, OrderType.where("name = 'Samples' or name = 'Quick Order'").order("name DESC").collect{ |s| [s.name.titleize, s.id]}, {:include_blank => false }, {:class => "uniform full_width"} ) %>
 					</div>
 				</fieldset>
 			</div>
@@ -60,11 +60,25 @@
 	<div id="order_form2"></div>
 </div>
 
-<div class="grid_16 box clearfix">
-	<div class="indented_button_bar clearfix">
+<div class="grid_16 box clearfix" id="order_form2">
+	<div class="indented_button_bar clearfix" id="order_form3">
 		<p><%= link_to_add_fields "Add Samples", f, :items %></p>
 	</div>
 </div>
+
+
+<div class="box grid_16 clearfix" style="display:none;" id="quick_order">
+	<h2 class="box_head" id="form_title">Quick Order</h2>
+	<div class="block">
+			<fieldset>
+				<label>Description</label>
+				<div class="clearfix">
+					<%= f.text_area :description, :class => "autogrow", :rows => "3" %>
+				</div>
+			</fieldset>			
+	</div>
+</div>
+
 
 <div class="box grid_16 clearfix">
 	<h2 class="box_head" id="form_title">Additional Info</h2>

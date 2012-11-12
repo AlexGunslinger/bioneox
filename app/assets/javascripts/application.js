@@ -61,17 +61,18 @@ $(document).ready(function() {
     		$("#form_description").hide();
     		$("#form_temperature").hide();
     		$("#form_urgent").hide();
-			
     	};
     	if(order_type == "1") {
-    		$("#form_title").html("Sample");
-    		$("#description_title").html("");
+    		//$("#form_title").html("Sample");
+    		//$("#description_title").html("");
     		$("#order_form").show(200);
-    		$("#form_quantity").show();
-    		$("#form_description").hide();
-    		$("#form_temperature").show();
-    		$("#form_urgent").show();
-			
+            $("#order_form2").show(200);
+            $("#order_form3").show(200);
+            $("#quick_order").hide();
+    		//$("#form_quantity").show();
+    		//$("#form_description").hide();
+    		//$("#form_temperature").show();
+    		//$("#form_urgent").show();
     	};
     	if(order_type == "2") {
 			$("#form_title").html("Test");
@@ -89,7 +90,19 @@ $(document).ready(function() {
     		$("#form_quantity").hide();
     		$("#form_description").show();
     		$("#form_temperature").hide();
-    		$("#form_urgent").hide();    	
+    		$("#form_urgent").hide();
+        };
+        if(order_type == "4") {
+            //$("#form_title").html("Special Request");
+            //$("#description_title").html("Special Request");
+            $("#order_form").hide();
+            $("#order_form2").hide();
+            $("#order_form3").hide();
+            $("#quick_order").show(200);
+            //$("#form_quantity").hide();
+            //$("#form_description").show();
+            //$("#form_temperature").hide();
+            //$("#form_urgent").hide();       
 		};
    	});
 });

@@ -18,7 +18,7 @@
   </div>
 </div>
 
-
+<% if @order.order_type_id == 1 %>
 <div class="box grid_16 clearfix" id="order_form">
   <h2 class="box_head" id="form_title">Samples</h2>
 
@@ -49,6 +49,19 @@
   </div>
   <% end %>
 </div>
+<% elsif @order.order_type_id == 4 %>
+<div class="box grid_16 clearfix" id="quick_order">
+  <h2 class="box_head" id="form_title">Quick Order</h2>
+  <div class="block">
+      <fieldset>
+        <label>Description</label>
+        <div class="clearfix">
+          <%= @order.description %>
+        </div>
+      </fieldset>     
+  </div>
+</div>
+<% end %>
 
 <div class="box grid_16 clearfix">
   <h2 class="box_head" id="form_title">Additional Info</h2>

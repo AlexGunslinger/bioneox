@@ -14,9 +14,13 @@ class Order < ActiveRecord::Base
 	belongs_to :order_type
 	belongs_to :sample_type
 	has_many :items
-	validates_associated :items, :message => "Samples are invalid"
+	validates_associated :items, :message => "Samples are invalid", :if => "order_type_id == 1"
 	accepts_nested_attributes_for :items, allow_destroy: true
-	validates_presence_of :items, :message => "You have to add at least one set of samples."
+	validates_presence_of :items, :message => "You have to add at least one set of samples.", :if => "order_type_id == 1 or order_type_id == '1'"
+	validates_presence_of :description, :message => "A quick order must have a description", :if => "order_type_id == 4 or order_type_id == '4'"
+
+#validates_format_of :cell_number, :with => /^\d\d\d\d\d\d\d\d\d\d$/, :message => "Cell number must be of 10 digits.", :if => :need_cell?
+
 
 	scope :for_carriers, :conditions => ["picked_up_at is null or delivered_at is null"]
 	scope :sample_type, :conditions => ["order_type_id = 1"]

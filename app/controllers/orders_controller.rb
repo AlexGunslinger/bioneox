@@ -66,15 +66,16 @@ class OrdersController < ApplicationController
         if @order.carrier
           if @order.carrier.valid_cell?
             if @order.urgency == "yes"
-              @order.send_call
+              #@order.send_call
             else
-              @order.send_sms
+              #@order.send_sms
             end
           end
         end
         format.html { redirect_to orders_url, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else
+        @title = "New Order" 
         format.html { render action: "new" }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
@@ -108,9 +109,9 @@ class OrdersController < ApplicationController
     if @order.carrier
       if @order.carrier.valid_cell?
         if @order.urgency == "yes"
-          @order.send_call
+          #@order.send_call
         else
-          @order.send_sms
+          #@order.send_sms
         end
       end
     end

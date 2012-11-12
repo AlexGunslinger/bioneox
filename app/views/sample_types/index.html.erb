@@ -1,0 +1,28 @@
+<div class="flat_area grid_16">
+	<h2><%= @title %></h2>
+
+	<div class="box grid_16 single_datatable">
+		<div id="dt1" class="no_margin">
+			<table class=" datatable">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @sample_types.each do |sample_type| %>
+					<tr>
+    					<td><%= sample_type.name %></td>
+    					<td><%= link_to 'Edit', edit_sample_type_path(sample_type) %></td>
+  					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="flat_area grid_16">
+	<div class="align_right"><p><h2><%= link_to 'New Sample Type', new_sample_type_path %></h2></p></div>
+</div>

@@ -22,7 +22,11 @@
 			<tr>
 				<td align="center" valign="middle"><%= nice_date(order.created_at) %></td>
 				<td align="center" valign="middle"><%= order.origin_user.name %></td>
-				<td align="center" valign="middle"><%= link_to "#{order.items.first.quantity} - #{order.items.first.sample_type.name}", order_path(order) %></td>
+				<% if order.order_type_id == 1 %>
+					<td align="center" valign="middle"><%= link_to "#{order.items.first.quantity} - #{order.items.first.sample_type.name}", order_path(order) %></td>
+				<% elsif order.order_type_id == 4 %>
+					<td align="center" valign="middle"><%= link_to "#{order.description}", order_path(order) %></td>
+				<% end %>
 				<td align="center" valign="middle"><%= order.id %></td>
 				<% if ((order.carrier_name == '' or order.carrier_name == nil) or (order.area == '' or order.carrier_name == nil)) and current_user.is_carrier? %>
    						<td><%= text_field_tag "area#{order.id}" %></td>
