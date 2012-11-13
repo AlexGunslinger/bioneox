@@ -68,11 +68,37 @@
   <div class="block">
 
           <fieldset>
+            <label>Order Placed By</label>
+            <div>
+                <%= @order.submitted_by.name if @order.submitted_by %>
+            </div>
+          </fieldset>
+
+
+          <fieldset>
             <label>Delivery Site</label>
             <div>
                 <%= @order.delivery_user.name if @order.delivery_user %>
             </div>
           </fieldset>
+      
+          <% if @order.carrier %>
+
+          <% if @order.carrier.role == 3 %>
+
+            <fieldset>
+              <label>Carrier Company</label>
+              <div>
+                <%= @order.carrier.name if @order.carrier %>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <label>Driver</label>
+              <div>
+                <%= @order.carrier_name %>
+              </div>
+            </fieldset>
 
             <fieldset>
               <label>Area</label>
@@ -81,19 +107,19 @@
               </div>
             </fieldset>
 
-        <fieldset>
-          <label>Carrier</label>
-          <div>
-            <%= @order.carrier_name %>
-          </div>
-        </fieldset>
-      
+
+          <% elsif @order.carrier.role == 5 %>
+
             <fieldset>
-              <label>Carrier Company</label>
+              <label>CPL Driver</label>
               <div>
                 <%= @order.carrier.name if @order.carrier %>
               </div>
             </fieldset>
+
+          <% end %>
+            
+          <% end %>
 
       <fieldset>
         <label></label>
