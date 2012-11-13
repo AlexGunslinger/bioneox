@@ -121,6 +121,17 @@
 
           <% end %>
 
+          <% if @order.picked_up_by %>
+
+            <fieldset>
+              <label>Received By</label>
+              <div>
+                <%= @order.picked_up_by %>
+              </div>
+            </fieldset>
+
+          <% end %>
+          
       <fieldset>
         <label></label>
         <div>
