@@ -84,7 +84,7 @@
       
           <% if @order.carrier %>
 
-          <% if @order.carrier.role == 3 %>
+          <% if @order.carrier.role == "3" %>
 
             <fieldset>
               <label>Carrier Company</label>
@@ -108,7 +108,7 @@
             </fieldset>
 
 
-          <% elsif @order.carrier.role == 5 %>
+          <% elsif @order.carrier.role == "5" %>
 
             <fieldset>
               <label>CPL Driver</label>
@@ -118,7 +118,7 @@
             </fieldset>
 
           <% end %>
-            
+
           <% end %>
 
       <fieldset>
