@@ -50,7 +50,7 @@
 </div>
 
 
-<div class="box grid_16 clearfix" id="order_form">
+<div class="box grid_16 clearfix" style="display:none;" id="order_form">
 	<h2 class="box_head" id="form_title">Samples</h2>
 		<%= f.fields_for :items do |builder| %>
 
@@ -61,13 +61,13 @@
 </div>
 
 <div class="grid_16 box clearfix" id="order_form2">
-	<div class="indented_button_bar clearfix" id="order_form3">
+	<div class="indented_button_bar clearfix" style="display:none;" id="order_form3">
 		<p><%= link_to_add_fields "Add Samples", f, :items %></p>
 	</div>
 </div>
 
 
-<div class="box grid_16 clearfix" style="display:none;" id="quick_order">
+<div class="box grid_16 clearfix" id="quick_order">
 	<h2 class="box_head" id="form_title">Quick Order</h2>
 	<div class="block">
 			<fieldset>
