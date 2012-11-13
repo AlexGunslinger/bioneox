@@ -1,30 +1,16 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Username:</b>
-  <%= @user.username %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-
-<p>
-  <b>Password:</b>
-  <%= @user.password %>
-</p>
-
-<p>
-  <b>New:</b>
-  <%= @user.new %>
-</p>
-
-<p>
-  <b>Edit:</b>
-  <%= @user.edit %>
-</p>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="box grid_16">
+  <h2 class="box_head"><%= @title %></h2>
+  <div class="block">
+      <div class="columns clearfix">
+        <div class="col_50">
+          <fieldset class="label_side label_small top">
+            <label for="text_field_inline">Name</label>
+            <div>
+              <%= @sample_type.name %>
+              <div class="required_tag"></div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+  </div>
+</div>
