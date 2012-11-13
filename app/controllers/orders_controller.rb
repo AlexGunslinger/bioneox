@@ -66,9 +66,9 @@ class OrdersController < ApplicationController
         if @order.carrier
           if @order.carrier.valid_cell?
             if @order.urgency == "yes"
-              #@order.send_call
+              @order.send_call
             else
-              #@order.send_sms
+              @order.send_sms
             end
           end
         end
@@ -109,9 +109,9 @@ class OrdersController < ApplicationController
     if @order.carrier
       if @order.carrier.valid_cell?
         if @order.urgency == "yes"
-          #@order.send_call
+          @order.send_call
         else
-          #@order.send_sms
+          @order.send_sms
         end
       end
     end
