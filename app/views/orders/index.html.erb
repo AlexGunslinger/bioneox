@@ -19,6 +19,8 @@
 	</div>
 </div>
 
+<% if current_user.role != 5 %>
 <div class="flat_area grid_16">
 	<div class="align_right"><p><h2><%= link_to 'Add Order', new_order_path %></h2></p></div>
 </div>
+<% end %>
