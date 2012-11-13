@@ -40,7 +40,7 @@
 				<fieldset class="label_side label_small bottom left">
 					<label for="text_field_inline">Type</label>
 					<div>
-     					<%= f.select(:order_type_id, OrderType.where("name = 'Samples' or name = 'Quick Order'").order("name DESC").collect{ |s| [s.name.titleize, s.id]}, {:include_blank => false }, {:class => "uniform full_width"} ) %>
+     					<%= f.select(:order_type_id, OrderType.where("name = 'Samples' or name = 'Quick Order'").order("name ASC").collect{ |s| [s.name.titleize, s.id]}, {:include_blank => false }, {:class => "uniform full_width"} ) %>
 					</div>
 				</fieldset>
 			</div>
