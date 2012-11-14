@@ -96,7 +96,7 @@
             <fieldset>
               <label>Driver</label>
               <div>
-                <%= @order.carrier_name %>
+                <%= @order.driver.name if @order.driver %>
               </div>
             </fieldset>
 

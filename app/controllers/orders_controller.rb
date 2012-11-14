@@ -136,6 +136,7 @@ class OrdersController < ApplicationController
   end
 
   def process_carrier
+    band = 0
     order_id = params[:assign]
     area = params["area#{order_id}".to_sym]
     picked_up_by = params["picked_up_by#{order_id}".to_sym]
@@ -148,15 +149,23 @@ class OrdersController < ApplicationController
         #@order.picked_up_by = params[:delivered_to]
       end
     elsif @order.status == "Waiting for Carrier"
+      band = 1
       if params["is_assign#{order_id}".to_sym] == "yes"
         @order.area = area
-        @order.carrier_name = carrier_name
+        @order.picked_up_by_id = carrier_name
       else
         @order.picked_up_at = Time.now
       end
     end
     respond_to do |format|
       if @order.save
+        if band == 1
+          if @order.driver
+            if @order.driver.valid_cell?
+                @order.send_sms_to_driver
+            end
+          end
+        end
         format.html { redirect_to orders_url, notice: 'Order was successfully processed.' }
         format.json { render json: @order, status: :created, location: @order }
       else

@@ -117,6 +117,7 @@
 				<fieldset class="label_side">
 					<label>Driver</label>
 					<div>
+						<%= f.select(:picked_up_by_id, User.drivers.order("name").collect{ |s| [s.name.titleize, s.id]}, {}, {:class => "uniform full_width"}) %>
 						<%= f.text_field :carrier_name, :class => "required" %>
 					</div>
 				</fieldset>

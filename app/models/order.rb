@@ -6,7 +6,7 @@ class Order < ActiveRecord::Base
 	
 	belongs_to :carrier, :class_name => User, :foreign_key => :carrier_id
 	belongs_to :submitted_by, :class_name => User, :foreign_key => :submitted_by_id
-	belongs_to :picked_up_by_user, :class_name => User, :foreign_key => :picked_up_by_id
+	belongs_to :driver, :class_name => User, :foreign_key => :picked_up_by_id
 	
 	belongs_to :origin_user, :class_name => User, :foreign_key => :origin_user_id
 	belongs_to :delivery_user, :class_name => User, :foreign_key => :delivery_user_id
@@ -90,6 +90,21 @@ class Order < ActiveRecord::Base
 
 	def send_sms
 		number_to_send_to = self.carrier.cell_number
+        twilio_sid = "AC5ba76291710e519fe5dfa6d5fb781e6e"
+        twilio_token = "025d3928ae3e941bf2539b387caf0945"
+        twilio_phone_number = "5125246907"
+
+        @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+
+        @twilio_client.account.sms.messages.create(
+          :from => "+1#{twilio_phone_number}",
+          :to => "+1#{number_to_send_to}",
+          :body => "#{self.created_at.strftime("%H:%M")} New order from #{self.origin_user.name} to #{self.delivery_user.name} with TN #{self.id}."
+        )
+	end
+
+	def send_sms_to_driver
+		number_to_send_to = self.driver.cell_number
         twilio_sid = "AC5ba76291710e519fe5dfa6d5fb781e6e"
         twilio_token = "025d3928ae3e941bf2539b387caf0945"
         twilio_phone_number = "5125246907"

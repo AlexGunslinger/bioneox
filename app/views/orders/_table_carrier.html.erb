@@ -28,9 +28,13 @@
 					<td align="center" valign="middle"><%= link_to "#{order.description}", order_path(order) %></td>
 				<% end %>
 				<td align="center" valign="middle"><%= order.id %></td>
-				<% if ((order.carrier_name == '' or order.carrier_name == nil) or (order.area == '' or order.carrier_name == nil)) and current_user.is_carrier? %>
+				<% if ((order.picked_up_by_id == '' or order.picked_up_by_id == nil) or (order.area == '' or order.area == nil)) and current_user.is_carrier? %>
    						<td><%= text_field_tag "area#{order.id}" %></td>
-   						<td><%= text_field_tag "carrier_name#{order.id}" %></td>
+   						<td>
+					    	<select name="carrier_name<%= order.id %>" class="full_width" id="carrier_name<%= order.id %>">
+				            	<%= options_for_select(User.drivers.order("name").collect{ |s| [s.name.titleize, s.id]}) -%>
+   							</select>
+   						</td>
    						<td></td>
    						<%= hidden_field_tag "is_assign#{order.id}", "yes" %>
 						<td align="center" valign="middle">
@@ -41,7 +45,7 @@
 				<% elsif order.picked_up_at == nil %>
 						<% if current_user.is_carrier? %>
 						<td align="center" valign="middle"><%= order.area %></td>
-						<td align="center" valign="middle"><%= order.carrier_name %></td>
+						<td align="center" valign="middle"><%= order.driver.name if order.driver %></td>
 						<% end %>
 						<td align="center" valign="middle"></td>
 						<td align="center" valign="middle">
@@ -52,7 +56,7 @@
 				<% elsif order.delivered_at == nil %>
 						<% if current_user.is_carrier? %>
 						<td align="center" valign="middle"><%= order.area %></td>
-						<td align="center" valign="middle"><%= order.carrier_name %></td>
+						<td align="center" valign="middle"><%= order.driver.name if order.driver %></td>
 						<% end %>
    						<td><%= text_field_tag "picked_up_by#{order.id}" %></td>
 						<td align="center" valign="middle">
@@ -63,7 +67,7 @@
 				<% else %>
 					<% if current_user.is_carrier? %>
 					<td align="center" valign="middle"><%= order.area %></td>
-					<td align="center" valign="middle"><%= order.carrier_name %></td>
+					<td align="center" valign="middle"><%= order.driver.name if order.driver %></td>
 					<% end %>
 					<td align="center" valign="middle"><%= order.picked_up_by %></td>
 					<td></td>

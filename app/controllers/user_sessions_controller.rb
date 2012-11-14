@@ -27,6 +27,10 @@ class UserSessionsController < ApplicationController
         elsif current_user.is_doctor?
           format.html { redirect_to orders_url, notice: 'Successfully logged in.' }
           format.json { render json: @user_session, status: :created, location: @user_session }
+        elsif current_user.role == "6"
+          current_user_session.destroy      
+          format.html { redirect_to new_user_session_url, notice: 'Successfully logged out.' }
+          format.json { head :no_content }
         end
       else
         format.html { render action: "new" }

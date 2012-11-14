@@ -10,16 +10,18 @@ class User < ActiveRecord::Base
   has_many :origin_orders, :class_name => Order, :foreign_key => :origin_user_id
   has_many :delivery_orders, :class_name => Order, :foreign_key => :delivery_user_id
   has_many :carrier_orders, :class_name => Order, :foreign_key => :carrier_id
+  has_many :driver_orders, :class_name => Order, :foreign_key => :picked_up_by_id
 
 	has_many :orders_submitted, :class_name => Order, :foreign_key => :submitted_by_id
 
   scope :sites, where("role = '2'")
   scope :carrier_companies, where("role = '3' or role = '5'")
   scope :doctors, where("role = '4'")
-  
+  scope :drivers, where("role = '6'")
+
 #	ROLES = %w[admin onsite carrier]
 
-  ROLES = [["ADMIN", 1], ["CPLCC", 2], ["CCC", 3], ["DCPL", 4], ["CPLD", 5]]
+  ROLES = [["ADMIN", 1], ["CPLCC", 2], ["CCC", 3], ["DCPL", 4], ["CPLD", 5], ["SSD", 6]]
 
   def role_name
     if self.role == "1"
@@ -32,6 +34,8 @@ class User < ActiveRecord::Base
       "DCPL"
     elsif self.role == "5"
       "CPLD"
+    elsif self.role == "6"
+      "SSD"
     else
       ""
     end
@@ -78,7 +82,7 @@ class User < ActiveRecord::Base
   end
 
   def need_cell?
-    role == "3" or role == "5"
+    role == "3" or role == "5" or role == "6"
   end
 
   def valid_cell?
