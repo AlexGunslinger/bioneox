@@ -63,13 +63,18 @@ class OrdersController < ApplicationController
     end
     respond_to do |format|
       if @order.save
-        if @order.carrier
+        if @order.carrier and not current_user.is_carrier?
           if @order.carrier.valid_cell?
             if @order.urgency == "yes"
               @order.send_call
             else
               @order.send_sms
             end
+          end
+        end
+        if @order.driver
+          if @order.driver.valid_cell?
+              @order.send_sms_to_driver
           end
         end
         format.html { redirect_to orders_url, notice: 'Order was successfully created.' }
