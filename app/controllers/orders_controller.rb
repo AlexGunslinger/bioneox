@@ -154,8 +154,8 @@ class OrdersController < ApplicationController
         #@order.picked_up_by = params[:delivered_to]
       end
     elsif @order.status == "Waiting for Carrier"
-      band = 1
       if params["is_assign#{order_id}".to_sym] == "yes"
+        band = 1
         @order.area = area
         @order.picked_up_by_id = carrier_name
       else
