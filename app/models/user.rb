@@ -97,9 +97,11 @@ class User < ActiveRecord::Base
 
   def valid_cell?
     resu = false
+    if self.cell_number
       if self.cell_number.size == 10
         resu = true
       end
+    end
     resu
   end
 
