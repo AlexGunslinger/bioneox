@@ -29,6 +29,7 @@ gem 'jquery-rails'
 
 gem 'authlogic', '=3.1.3'
 gem 'twilio-ruby'
+gem 'tzdata', '~> 0.3.33'
 #gem 'rqrcode-rails3'
 #gem 'mini_magick'
 #gem 'rqrcode'
