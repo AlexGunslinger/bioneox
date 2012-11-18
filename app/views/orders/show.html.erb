@@ -9,6 +9,13 @@
         </fieldset>
 
         <fieldset>
+          <label>Address</label>
+            <div>
+              <%= @order.origin_user.address if @order.origin_user %>
+            </div>
+        </fieldset>
+
+        <fieldset>
           <label>Type</label>
           <div>
               <%= @order.order_type.name if @order.order_type %>

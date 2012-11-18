@@ -78,15 +78,37 @@
 			</div>
 			
 
-			<div class="button_bar clearfix">
-				<button class="blue" type="submit">
-					<span>Submit</span>
-				</button>
-				<button class="light send_right" type="reset">
-					<span>Reset</span>
-				</button>
-			</div>
-			
-	<% end %>
 	</div>
 </div>
+
+
+<div class="box grid_16 clearfix" id="user_address" style="display:none;">
+	<h2 class="box_head" id="form_title">User Address</h2>
+	<div class="block">
+		
+			<fieldset class="label_side label_small">
+			<label for="text_field_inline">Address</label>
+				<div>
+					<%= f.text_area :address, :class => "autogrow", :rows => "4" %>
+				</div>
+			</fieldset>
+			
+						
+	</div>
+</div>
+
+<div class="grid_16 box clearfix">
+	<div class="indented_button_bar clearfix">
+
+		<button class="blue" type="submit">
+			<span>Submit</span>
+		</button>
+
+		<button class="light send_right" type="reset">
+			<span>Reset</span>
+		</button>
+
+	</div>
+</div>
+
+<% end %>

@@ -7,7 +7,34 @@ class OrdersController < ApplicationController
   	@title = "Orders"
     @navinner = "2"
     if current_user.is_admin?
-      @orders = Order.all
+      where = ""
+      where2 = ""
+      where3 = ""
+      where4 = ""
+      where5 = ""
+
+      if ((params[:datefrom] != nil and params[:datefrom] != "") and (params[:datefrom] != nil and params[:datefrom] != ""))
+        where = where + "created_at between '#{params[:datefrom].to_date.to_s} 00:00:00' and '#{params[:dateto].to_date.to_s} 23:59:59'"
+      end
+
+      if (params[:origin] != nil and params[:origin] != "")
+        where2 = where2 + "origin_user_id = #{params[:origin]}"
+      end
+
+      if (params[:delivery_site] != nil and params[:delivery_site] != "")
+        where3 = where3 + "delivery_user_id = #{params[:delivery_site]}"
+      end
+
+      if (params[:ccc] != nil and params[:ccc] != "")
+        where4 = where4 + "carrier_id = #{params[:ccc]}"
+      end
+
+      if (params[:created_by] != nil and params[:created_by] != "")
+        where5 = where5 + "carrier_id = #{params[:created_by]}"
+      end
+
+      @orders = Order.where("#{where}").where("#{where2}").where("#{where3}").where("#{where4}").where("#{where5}")
+
     elsif current_user.is_onsite?
       @orders = current_user.delivery_orders
     elsif current_user.is_carrier? or current_user.is_cpld?
@@ -63,16 +90,21 @@ class OrdersController < ApplicationController
     end
     respond_to do |format|
       if @order.save
-        if @order.carrier and not current_user.is_carrier?
-          if @order.carrier.valid_cell?
-            if @order.urgency == "yes"
-              @order.send_call
-            else
-              @order.send_sms
-            end
+        if current_user.is_doctor?
+          if @order.delivery_user.valid_cell?
+            @order.send_call
           end
         end
-        if @order.driver
+        if @order.carrier and not current_user.is_carrier?
+          if @order.carrier.valid_cell?
+            #if @order.urgency == "yes"
+            #  @order.send_call
+            #else
+              @order.send_sms
+            #end
+          end
+        end
+        if @order.driver and not current_user.is_driver?
           if @order.driver.valid_cell?
               @order.send_sms_to_driver
           end
@@ -113,11 +145,11 @@ class OrdersController < ApplicationController
     @order.save
     if @order.carrier
       if @order.carrier.valid_cell?
-        if @order.urgency == "yes"
-          @order.send_call
-        else
+        #if @order.urgency == "yes"
+        #  @order.send_call
+        #else
           @order.send_sms
-        end
+        #end
       end
     end
     respond_to do |format|

@@ -118,3 +118,15 @@ $(document).ready(function() {
     	};
    	});
 });
+
+$(document).ready(function() {   
+    $("#user_role").change(function() {
+        var urole = $(this).val();
+        if(urole == "4") {
+            $("#user_address").show();         
+        }
+        else {
+            $("#user_address").hide();
+        };
+    });
+});

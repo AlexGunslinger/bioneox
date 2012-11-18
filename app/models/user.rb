@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
 
 	has_many :orders_submitted, :class_name => Order, :foreign_key => :submitted_by_id
 
+  belongs_to :state
+  belongs_to :city
   scope :sites, where("role = '2'")
   scope :carrier_companies, where("role = '3' or role = '5'")
   scope :doctors, where("role = '4'")
@@ -67,6 +69,14 @@ class User < ActiveRecord::Base
 
   def is_doctor?
     if self.role == "4"
+      true
+    else
+      false
+    end
+  end
+
+  def is_driver?
+    if self.role == "6"
       true
     else
       false

@@ -25,7 +25,7 @@
 					<% if order.status == 'Order Created' %>
 						<td>
 					    	<select name="carrier<%= order.id %>" class="full_width" id="carrier<%= order.id %>">
-				            	<%= options_for_select(User.carrier_companies.order("name").collect{ |s| [s.name.titleize, s.id]}) -%>
+				            	<%= options_for_select(User.carrier_companies.order("role ASC, name ASC").collect{ |s| [s.name.titleize + " (" + s.role_name + ")", s.id]}) -%>
    							</select>
    						</td>
    						<td align="center" valign="middle">
