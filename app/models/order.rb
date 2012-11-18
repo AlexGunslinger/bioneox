@@ -119,7 +119,7 @@ class Order < ActiveRecord::Base
 	end
 
 	def send_call
-		number_to_send_to = self.carrier.cell_number
+		number_to_send_to = self.delivery_user.cell_number
         twilio_sid = "AC5ba76291710e519fe5dfa6d5fb781e6e"
         twilio_token = "025d3928ae3e941bf2539b387caf0945"
         twilio_phone_number = "5125246907"
