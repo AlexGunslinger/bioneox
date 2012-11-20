@@ -117,7 +117,7 @@ class Order < ActiveRecord::Base
         	end
         end
 
-        message1 = storou + " " + hour1.to_s + " " + address + " " + details + self.id 
+        message1 = storou + " " + hour1 + " " + address + " " + details + self.id.to_s 
 
         @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
 
@@ -158,7 +158,7 @@ class Order < ActiveRecord::Base
         	end
         end
 
-        message1 = storou + " " + hour1.to_s + " " + address + " " + details + self.id 
+        message1 = storou + " " + hour1 + " " + address + " " + details + self.id.to_s 
 
         @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
 
