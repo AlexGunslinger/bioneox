@@ -33,6 +33,7 @@ if($.fn.dataTable){
 				"bInfo": true,
 				"sScrollX": "101%",
 				"bScrollCollapse": true,
+				"iDisplayLength": 100,
 				"sPaginationType": "full_numbers",
 				"bRetrieve": true,
 				"fnInitComplete": function () {
@@ -55,6 +56,7 @@ if($.fn.dataTable){
 				"sScrollX": "101%",
 				"aoColumnDefs": [{ "bSortable": false, "aTargets": [4, 5, 6 ] }],
 				"bScrollCollapse": true,
+				"iDisplayLength": 100,
 				"sPaginationType": "full_numbers",
 				"bRetrieve": true,
 				"fnInitComplete": function () {
@@ -78,6 +80,7 @@ if($.fn.dataTable){
 				"sScrollX": "101%",
 				"aoColumnDefs": [{ "bSortable": false, "aTargets": [4, 5, 6 ] }],
 				"bScrollCollapse": true,
+				"iDisplayLength": 100,
 				"sPaginationType": "full_numbers",
 				"bRetrieve": true,
 				"fnInitComplete": function () {
@@ -101,6 +104,7 @@ if($.fn.dataTable){
 				//"sScrollY": "101%",
 				"sScrollX": "101%",
 				"bScrollCollapse": true,
+				"iDisplayLength": 100,
 				"sPaginationType": "full_numbers",
 				"bRetrieve": true,
 				"fnInitComplete": function () {
