@@ -49,8 +49,11 @@ module Samples
     # in your app. As such, your models will need to explicitly whitelist or blacklist accessible
     # parameters by using an attr_accessible or attr_protected declaration.
     # config.active_record.whitelist_attributes = true
-    config.time_zone = 'Central Time (US & Canada)'
+
+    #config.time_zone = 'Central Time (US & Canada)'
+    config.time_zone = 'UTC'
     config.active_record.default_timezone = 'Central Time (US & Canada)'
+
     # Enable the asset pipeline
     config.assets.enabled = true
 

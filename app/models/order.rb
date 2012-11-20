@@ -103,7 +103,7 @@ class Order < ActiveRecord::Base
 
         if self.origin_user 
         	if self.origin_user.address
-        		address = self.origin_user.address
+        		address = self.origin_user.name + " " + self.origin_user.address
         	else
         		address = self.origin_user.name
         	end
@@ -144,7 +144,7 @@ class Order < ActiveRecord::Base
 
         if self.origin_user 
         	if self.origin_user.address
-        		address = self.origin_user.address
+        		address = self.origin_user.name + " " + self.origin_user.address
         	else
         		address = self.origin_user.name
         	end
