@@ -127,9 +127,9 @@
 				<div class="columns clearfix">
 					<div class="col_50">
 						<fieldset class="label_side label_small">
-							<label for="text_field_inline">Carrier Company</label>
+							<label for="text_field_inline">Carrier</label>
 							<div>
-     						<%= f.select(:carrier_id, User.carrier_companies.order("role ASC, name ASC").collect{ |s| [s.name.titleize + " (" + s.role_name + ")", s.id]}, {}, {:class => "uniform full_width"}) %>
+     						<%= f.select(:carrier_id, User.carrier_companies.order("name ASC").collect{ |s| [s.name.titleize, s.id]}, {}, {:class => "uniform full_width"}) %>
  							</div>
 						</fieldset>
 					</div>
