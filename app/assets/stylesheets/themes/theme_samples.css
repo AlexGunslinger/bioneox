@@ -7,11 +7,11 @@
  */
 
 a.logo, a#login_logo {
-    background: transparent url("/assets/interface/samples_logo-trans.png") no-repeat
+    background: transparent url("/assets/interface/bioneox.png") no-repeat
     }
 
 a#login_logo {
-    background-position: 0 -15px
+    background-position: 20 -15px
     }
 
 /* Coloured Header Gradients, eg. Sortable Boxes, Tab Boxes, Date-picker, etc. */

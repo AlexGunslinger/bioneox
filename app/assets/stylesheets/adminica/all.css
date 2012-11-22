@@ -680,10 +680,10 @@ a.logo span {
 a.logo {
   background: url(/assets/interface/adminica_logo_black-trans.png) no-repeat;
   display: block;
-  height: 87px;
+  height: 90px;
   width: 180px;
   z-index: 10;
-  margin-top: -22px;
+  margin-top: -22px;  
 }
 /*------User Box --------*/
 .dark_box {
@@ -2870,8 +2870,8 @@ a#login_logo {
   background: transparent url(/assets/interface/adminica_logo_black-trans.png) 0 -15px no-repeat;
   position: relative;
   display: block;
-  height: 67px;
-  width: 253px;
+  height:117px;
+  width: 303px;
   margin-top: 1px;
   float: left;
 }
