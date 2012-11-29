@@ -6,45 +6,62 @@ class OrdersController < ApplicationController
   def index
   	@title = "Orders"
     @navinner = "2"
+    where = ""
+    where2 = ""
+    where3 = ""
+    where4 = ""
+    where5 = ""
+    @datefrom = ""
+    @dateto = ""
+    @origin = ""
+    @delivery_site = ""
+    @ccc = ""
+    @created_by = ""
+
+    if ((params[:datefrom] != nil and params[:datefrom] != "") and (params[:dateto] != nil and params[:dateto] != ""))
+      where = where + "created_at between '#{params[:datefrom].to_date.to_s} 00:00:00' and '#{params[:dateto].to_date.to_s} 23:59:59'"
+      @datefrom = params[:datefrom]
+      @dateto = params[:dateto]
+    end
+
+    if (params[:origin] != nil and params[:origin] != "")
+      where2 = where2 + "origin_user_id = #{params[:origin]}"
+      @origin = params[:origin]
+    end
+
+    if (params[:delivery_site] != nil and params[:delivery_site] != "")
+      where3 = where3 + "delivery_user_id = #{params[:delivery_site]}"
+      @delivery_site = params[:delivery_site]
+    end
+
+    if (params[:ccc] != nil and params[:ccc] != "")
+      where4 = where4 + "carrier_id = #{params[:ccc]}"
+      @ccc = params[:ccc]
+    end
+
+    if (params[:created_by] != nil and params[:created_by] != "")
+      where5 = where5 + "carrier_id = #{params[:created_by]}"
+      @created_by = params[:created_by]
+    end
+
     if current_user.is_admin?
-      where = ""
-      where2 = ""
-      where3 = ""
-      where4 = ""
-      where5 = ""
-
-      if ((params[:datefrom] != nil and params[:datefrom] != "") and (params[:datefrom] != nil and params[:datefrom] != ""))
-        where = where + "created_at between '#{params[:datefrom].to_date.to_s} 00:00:00' and '#{params[:dateto].to_date.to_s} 23:59:59'"
-      end
-
-      if (params[:origin] != nil and params[:origin] != "")
-        where2 = where2 + "origin_user_id = #{params[:origin]}"
-      end
-
-      if (params[:delivery_site] != nil and params[:delivery_site] != "")
-        where3 = where3 + "delivery_user_id = #{params[:delivery_site]}"
-      end
-
-      if (params[:ccc] != nil and params[:ccc] != "")
-        where4 = where4 + "carrier_id = #{params[:ccc]}"
-      end
-
-      if (params[:created_by] != nil and params[:created_by] != "")
-        where5 = where5 + "carrier_id = #{params[:created_by]}"
-      end
 
       @orders = Order.where("#{where}").where("#{where2}").where("#{where3}").where("#{where4}").where("#{where5}")
 
     elsif current_user.is_onsite?
-      @orders = current_user.delivery_orders
+      @orders = current_user.delivery_orders.where("#{where}").where("#{where2}").where("#{where3}").where("#{where4}").where("#{where5}")
     elsif current_user.is_carrier? or current_user.is_cpld?
-      @orders = current_user.carrier_orders
+      @orders = current_user.carrier_orders.where("#{where}").where("#{where2}").where("#{where3}").where("#{where4}").where("#{where5}")
     elsif current_user.is_doctor?
       @orders = current_user.origin_orders
     end
 
     respond_to do |format|
       format.html # index.html.erb
+      format.pdf do
+        pdf = OrderPdf.new(@orders, view_context)
+        send_data pdf.render, filename: "orders_report.pdf", type: "application/pdf", disposition: "inline"
+      end
       format.json { render json: @orders }
     end
   end

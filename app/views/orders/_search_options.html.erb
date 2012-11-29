@@ -1,0 +1,84 @@
+	<%= form_tag orders_path(), :method => 'get' do %>
+	<div id="date_picker_anchor" class="box grid_16">
+		<div class="toggle_container">
+			<div class="block">
+				<h2 class="section">Filters</h2>
+				<div class="columns clearfix">					
+					<div class="col_50">
+						<fieldset class="label_side top">
+							<label>Date from</label>
+							<div class="clearfix">
+								<input type="text" class="datepicker" style="width:100px;" name="datefrom">
+							</div>
+						</fieldset>
+						<fieldset class="label_side">
+							<label>Date to</label>
+							<div class="clearfix time_picker_holder">
+								<input type="text" class="datepicker" style="width:100px;" name="dateto">
+							</div>
+						</fieldset>
+					</div>
+					<div class="col_50">
+						<fieldset class="label_side top right">
+							<label>Origin</label>
+							<div class="clearfix">
+							 	<select name="origin" class="uniform full_width">
+							 		<option value=""></option>
+				            		<%= options_for_select(User.doctors.order("name").collect{ |s| [s.name.titleize, s.id]}) -%>
+   								</select>
+
+							</div>
+						</fieldset>
+						<fieldset class="label_side">
+							<label>Delivery Site</label>
+							<div class="clearfix">
+								<% if not current_user.is_onsite? %> 
+					    			<select name="delivery_site" class="uniform full_width">
+					    				<option value=""></option>
+				            			<%= options_for_select(User.sites.order("name").collect{ |s| [s.name.titleize, s.id]}) -%>
+   									</select>
+   								<% else %>
+   									<%= current_user.name %>
+   								<% end %>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+				<div class="columns clearfix">
+					<div class="col_50">
+						<fieldset class="label_side">
+							<label>CCC or Driver</label>
+							<div class="clearfix">
+								<% if not current_user.is_carrier? %> 
+							 		<select name="ccc" class="uniform full_width">
+							 			<option value=""></option>
+				            			<%= options_for_select(User.carrier_companies.order("role ASC, name ASC").collect{ |s| [s.name.titleize + " (" + s.role_name + ")", s.id]}) -%>
+   									</select>
+   								<% else %>
+   									<%= current_user.name %>
+   								<% end %>
+
+							</div>
+						</fieldset>
+					</div>
+					<div class="col_50">
+						<fieldset class="label_side right">
+							<label>Created by</label>
+							<div class="clearfix">
+					    		<select name="created_by" class="uniform full_width">
+					    			<option value=""></option>
+				            		<%= options_for_select(User.where("").order("role ASC, name ASC").collect{ |s| [s.name.titleize + " (" + s.role_name + ")", s.id]}) -%>
+   								</select>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+				<div class="indented_button_bar clearfix">
+					<button class="blue" type="submit">
+						<span>Submit</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% end %>

@@ -13,6 +13,13 @@ if($.fn.dataTable){
 				"bInfo": true,
 				"sScrollX": "101%",
 				"bScrollCollapse": true,
+				"oLanguage": {
+         			"sLengthMenu": 'Display <select>'+
+           			'<option value="100">100</option>'+
+           			'<option value="200">200</option>'+
+           			'<option value="500">500</option>'+
+           			'</select> records'
+       			},
 				"iDisplayLength": 100,
 				"sPaginationType": "full_numbers",
 				"bRetrieve": true,

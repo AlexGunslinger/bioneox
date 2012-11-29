@@ -16,7 +16,7 @@
  * require themes/layout_fixed
  *= require themes/nav_top
  *= require themes/skin_light
- *= require themes/bg_noise
+ *= require themes/bg_silver
  *= require adminica/colours
 */
 
@@ -81,4 +81,8 @@
 
 select.half_width {
   width: 50%!important;
+}
+
+.ui-datatable .ui-sortable-column-icon {
+    display: none !important;
 }
