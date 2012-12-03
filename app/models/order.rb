@@ -93,7 +93,8 @@ class Order < ActiveRecord::Base
         twilio_sid = "AC5ba76291710e519fe5dfa6d5fb781e6e"
         twilio_token = "025d3928ae3e941bf2539b387caf0945"
         twilio_phone_number = "5125246907"
-        hour1 = self.created_at.strftime("%H:%M %z %Z")
+        hourr = self.created_at - 6.hours
+        hour1 = hourr.strftime("%H:%M %z %Z")
         
         if self.urgency == "yes"
         	storou = "Stat"
@@ -133,8 +134,8 @@ class Order < ActiveRecord::Base
         twilio_sid = "AC5ba76291710e519fe5dfa6d5fb781e6e"
         twilio_token = "025d3928ae3e941bf2539b387caf0945"
         twilio_phone_number = "5125246907"
-
-        hour1 = self.created_at.strftime("%H:%M")
+		hourr = self.created_at - 6.hours
+        hour1 = hourr.strftime("%H:%M")
         
         if self.urgency == "yes"
         	storou = "Stat"
