@@ -94,7 +94,7 @@ class Order < ActiveRecord::Base
         twilio_token = "025d3928ae3e941bf2539b387caf0945"
         twilio_phone_number = "5125246907"
         hourr = self.created_at - 6.hours
-        hour1 = hourr.strftime("%H:%M %z %Z")
+        hour1 = hourr.strftime("%H:%M")
         
         if self.urgency == "yes"
         	storou = "Stat"
