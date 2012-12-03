@@ -88,12 +88,12 @@ class Order < ActiveRecord::Base
 		self.save
 	end
 
-	def send_sms(hour1)
+	def send_sms()
 		number_to_send_to = self.carrier.cell_number
         twilio_sid = "AC5ba76291710e519fe5dfa6d5fb781e6e"
         twilio_token = "025d3928ae3e941bf2539b387caf0945"
         twilio_phone_number = "5125246907"
-        #hour1 = self.created_at.strftime("%H:%M")
+        hour1 = self.created_at.strftime("%H:%M %z %Z")
         
         if self.urgency == "yes"
         	storou = "Stat"
@@ -128,13 +128,13 @@ class Order < ActiveRecord::Base
         )
 	end
 
-	def send_sms_to_driver(hour1)
+	def send_sms_to_driver()
 		number_to_send_to = self.driver.cell_number
         twilio_sid = "AC5ba76291710e519fe5dfa6d5fb781e6e"
         twilio_token = "025d3928ae3e941bf2539b387caf0945"
         twilio_phone_number = "5125246907"
 
-        #hour1 = self.created_at.strftime("%H:%M")
+        hour1 = self.created_at.strftime("%H:%M")
         
         if self.urgency == "yes"
         	storou = "Stat"
