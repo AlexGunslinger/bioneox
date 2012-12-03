@@ -13,4 +13,8 @@ module ApplicationHelper
     return date.strftime("%B %d %Y %H:%M")
   end 
   
+  def nice_date2(date)
+    return "" if date.nil?
+    return date.strftime("%H:%M")
+  end
 end
