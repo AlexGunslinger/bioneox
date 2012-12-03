@@ -51,8 +51,8 @@ module Samples
     # config.active_record.whitelist_attributes = true
 
     #config.time_zone = 'Central Time (US & Canada)'
-    config.time_zone = 'UTC'
-    #config.active_record.default_timezone = 'Central Time (US & Canada)'
+    #config.time_zone = 'UTC'
+    config.active_record.default_timezone = 'Central Time (US & Canada)'
 
     # Enable the asset pipeline
     config.assets.enabled = true
