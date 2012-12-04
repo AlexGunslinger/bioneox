@@ -24,6 +24,6 @@
 <% if current_user.role != 5 %>
 <div class="flat_area grid_16">
 	<div class="align_right"><p><h2><%= link_to 'Add Order', new_order_path %></h2></p></div>
-	<div><p><h2><%= link_to "Printable List (PDF)", orders_path(format: "pdf", datefrom: @datefrom, dateto: @dateto, origin: @origin, delivery_site: @delivery_site, ccc: @ccc, created_by: @created_by) %></h2></p></div>
+	<div><p><h2><%= link_to "Printable List (PDF)", orders_path(format: "pdf", datefrom: @datefrom, dateto: @dateto, origin: @origin, delivery_site: @delivery_site, ccc: @ccc, created_by: @created_by, sstatus: @sstatus) %></h2></p></div>
 </div>
 <% end %>

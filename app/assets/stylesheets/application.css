@@ -79,6 +79,11 @@
     margin: -5px -5px 0 0;
 }
 
+.align_right2 {
+  float: right;
+    margin: 0px -5px 0 0;
+}
+
 select.half_width {
   width: 50%!important;
 }

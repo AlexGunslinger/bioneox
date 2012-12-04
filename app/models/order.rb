@@ -25,7 +25,14 @@ class Order < ActiveRecord::Base
 	scope :for_carriers, :conditions => ["picked_up_at is null or delivered_at is null"]
 	scope :sample_type, :conditions => ["order_type_id = 1"]
 
+	scope :status_delivered, where("delivered_at is not null")
+	scope :status_in_transit, where("delivered_at is null and picked_up_at is not null")
+	scope :status_waiting_for_carrier, where("(delivered_at is null) and (picked_up_at is null) and (carrier_id is not null) and (picked_up_by_id is not null or role = '5')").joins(:carrier)
+	scope :status_carrier_confirmation, where("role = '3' and delivered_at is null and picked_up_at is null and carrier_id is not null and picked_up_by_id is null and role = '3'").joins(:carrier)
+	scope :status_order_created, where("delivered_at is null and picked_up_at is null and carrier_id is null")
+
 	TEMPERATURES = %w[Refrigerated Room Frozen]
+	STATUSES = %w[Delivered InTransit WaitingForCarrier CarrierConfirmation OrderCreated]
 
 	def status
 		if self.delivered_at != nil
@@ -33,7 +40,11 @@ class Order < ActiveRecord::Base
 		elsif self.picked_up_at != nil
 			stat = "In Transit"
 		elsif self.carrier_id != nil
-			stat = "Waiting for Carrier"
+			if self.carrier.role == "5" or self.picked_up_by_id != nil
+				stat = "Waiting for Carrier"
+			else
+				stat = "Carrier Confirmation"
+			end
 		else
 			stat = "Order Created"
 		end

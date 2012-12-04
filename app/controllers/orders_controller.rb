@@ -6,17 +6,7 @@ class OrdersController < ApplicationController
   def index
   	@title = "Orders"
     @navinner = "2"
-    where = ""
-    where2 = ""
-    where3 = ""
-    where4 = ""
-    where5 = ""
-    @datefrom = ""
-    @dateto = ""
-    @origin = ""
-    @delivery_site = ""
-    @ccc = ""
-    @created_by = ""
+    where = where2 = where3 = where4 = where5 = where6 = @datefrom = @dateto = @origin = @delivery_site = @ccc = @created_by = @sstatus = ""
 
     if ((params[:datefrom] != nil and params[:datefrom] != "") and (params[:dateto] != nil and params[:dateto] != ""))
       where = where + "created_at between '#{params[:datefrom].to_date.to_s} 00:00:00' and '#{params[:dateto].to_date.to_s} 23:59:59'"
@@ -44,6 +34,8 @@ class OrdersController < ApplicationController
       @created_by = params[:created_by]
     end
 
+
+
     if current_user.is_admin?
 
       @orders = Order.where("#{where}").where("#{where2}").where("#{where3}").where("#{where4}").where("#{where5}")
@@ -54,6 +46,21 @@ class OrdersController < ApplicationController
       @orders = current_user.carrier_orders.where("#{where}").where("#{where2}").where("#{where3}").where("#{where4}").where("#{where5}")
     elsif current_user.is_doctor?
       @orders = current_user.origin_orders
+    end
+
+    if (params[:sstatus] != nil and params[:sstatus] != "")
+      if params[:sstatus] == "Delivered"
+        @orders = @orders.status_delivered
+      elsif params[:sstatus] == "InTransit"
+        @orders = @orders.status_in_transit
+      elsif params[:sstatus] == "WaitingForCarrier"
+        @orders = @orders.status_waiting_for_carrier
+      elsif params[:sstatus] == "CarrierConfirmation"
+        @orders = @orders.status_carrier_confirmation
+      elsif params[:sstatus] == "OrderCreated"
+        @orders = @orders.status_order_created
+      end
+      @sstatus = params[:sstatus]
     end
 
     respond_to do |format|
@@ -117,13 +124,13 @@ class OrdersController < ApplicationController
             #if @order.urgency == "yes"
             #  @order.send_call
             #else
-              @order.send_sms()
+              #@order.send_sms()
             #end
           end
         end
         if @order.driver and not current_user.is_driver?
           if @order.driver.valid_cell?
-              @order.send_sms_to_driver()
+              #@order.send_sms_to_driver()
           end
         end
         format.html { redirect_to orders_url, notice: 'Order was successfully created.' }
@@ -165,7 +172,7 @@ class OrdersController < ApplicationController
         #if @order.urgency == "yes"
         #  @order.send_call
         #else
-          @order.send_sms()
+          #@order.send_sms()
         #end
       end
     end
@@ -195,6 +202,31 @@ class OrdersController < ApplicationController
     area = params["area#{order_id}".to_sym]
     picked_up_by = params["picked_up_by#{order_id}".to_sym]
     carrier_name = params["carrier_name#{order_id}".to_sym]
+    if order_id == "CarrierConfirmation" or order_id == "InTransit" or order_id == "WaitingForCarrier"
+      if params[:edit]
+      params[:edit].each do |id|
+        order = Order.find(id[0])
+        if order_id == "InTransit"
+          if params[:picked_up_by] != "" and params[:picked_up_by] != nil
+            order.delivered_at = Time.now
+            order.picked_up_by = params[:picked_up_by]
+            #@order.picked_up_by = params[:delivered_to]
+          end
+        elsif order_id == "CarrierConfirmation"
+            order.area = params[:area]
+            order.picked_up_by_id = params[:carrier_name]
+        elsif order_id == "WaitingForCarrier"
+            order.picked_up_at = Time.now
+        end
+        order.save
+      end
+      end
+      respond_to do |format|
+        format.html { redirect_to orders_url, notice: 'Order was successfully processed.' }
+        format.json { render json: @order, status: :created, location: @order }
+      end
+    else
+
     @order = Order.find(order_id)
     if @order.status == "In Transit"
       if picked_up_by != "" and picked_up_by != nil
@@ -202,7 +234,7 @@ class OrdersController < ApplicationController
         @order.picked_up_by = picked_up_by
         #@order.picked_up_by = params[:delivered_to]
       end
-    elsif @order.status == "Waiting for Carrier"
+    elsif @order.status == "Waiting for Carrier" or @order.status == "Carrier Confirmation"
       if params["is_assign#{order_id}".to_sym] == "yes"
         band = 1
         @order.area = area
@@ -216,7 +248,7 @@ class OrdersController < ApplicationController
         if band == 1
           if @order.driver
             if @order.driver.valid_cell?
-                @order.send_sms_to_driver()
+                #@order.send_sms_to_driver()
             end
           end
         end
@@ -226,6 +258,8 @@ class OrdersController < ApplicationController
         format.html { render action: "index" }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
+    end
+
     end
   end
 

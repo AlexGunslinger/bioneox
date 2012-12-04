@@ -2,7 +2,6 @@
 	<div id="date_picker_anchor" class="box grid_16">
 		<div class="toggle_container">
 			<div class="block">
-				<h2 class="section">Filters</h2>
 				<div class="columns clearfix">					
 					<div class="col_50">
 						<fieldset class="label_side top">
@@ -62,7 +61,7 @@
 						</fieldset>
 					</div>
 					<div class="col_50">
-						<fieldset class="label_side right">
+						<fieldset class="label_side right bottom">
 							<label>Created by</label>
 							<div class="clearfix">
 					    		<select name="created_by" class="uniform full_width">
@@ -73,6 +72,21 @@
 						</fieldset>
 					</div>
 				</div>
+
+				<div class="columns clearfix">
+					<div class="col_50">
+						<fieldset class="label_side left">
+							<label>Status</label>
+							<div class="clearfix">
+							 	<select name="sstatus" class="uniform full_width">
+							 		<option value=""></option>
+				            		<%= options_for_select(Order::STATUSES) -%>
+   								</select>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+
 				<div class="indented_button_bar clearfix">
 					<button class="blue" type="submit">
 						<span>Submit</span>

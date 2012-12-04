@@ -14,6 +14,10 @@
 			<th>Received By</th>
 			<th></th>
 			<th>Status</th>
+			<% if @sstatus != "Delivered" and @sstatus != "" %>
+				<th></th>
+			<% end %>
+
 		</tr>
 	</thead>
 	<tbody>
@@ -73,11 +77,56 @@
 					<td></td>
 				<% end %>
 				<td align="center" valign="middle"><%= order.status %></td>
+
+				<% if @sstatus != "Delivered" and @sstatus != "OrderCreated" and @sstatus != "" %>
+					<td><%= check_box_tag("edit[#{order.id}]") %></td>
+				<% end %>
+
 			</tr>
 		<% end %>
 
 	</tbody>
 </table>
+<% if @sstatus != "Delivered" and @sstatus != "OrderCreated" and @sstatus != "" %>
+	<div class="box grid_8 tabs">
+	</div>
+	<div class="box grid_8 align_right2">
+		<div class="block compressed">
+			<form class="validate_form">
+			<% if @sstatus == "CarrierConfirmation" %>
+			<fieldset class="label_side top">
+				<label>Area</label>
+				<div>
+					<%= text_field_tag "area" %>
+				</div>
+			</fieldset>
+			<fieldset class="label_side">
+				<label>Driver</label>
+				<div>
+					<select name="carrier_name" class="full_width" id="carrier_name">
+				       	<%= options_for_select(User.drivers.order("name").collect{ |s| [s.name.titleize, s.id]}) -%>
+   					</select>
+				</div>
+			</fieldset>
+			<% elsif @sstatus == "InTransit" %>
+			<fieldset class="label_side top">
+				<label>Received By</label>
+				<div>
+					<%= text_field_tag "picked_up_by" %>
+				</div>
+			</fieldset>
+			<% elsif @sstatus == "WaitingForCarrier" %>
+
+			<% end %>
+			<div class="button_bar clearfix">
+				<button class="small dark send_right" type="submit" name="assign" value="<%= @sstatus %>">
+					<div class="ui-icon ui-icon-circle"></div>
+					<span>Submit</span>
+				</button>
+			</div>
+			</form>
+		</div>
+	</div>
 <% end %>
 
-
+<% end %>
