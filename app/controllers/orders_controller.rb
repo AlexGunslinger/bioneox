@@ -124,13 +124,13 @@ class OrdersController < ApplicationController
             #if @order.urgency == "yes"
             #  @order.send_call
             #else
-              #@order.send_sms()
+              @order.send_sms()
             #end
           end
         end
         if @order.driver and not current_user.is_driver?
           if @order.driver.valid_cell?
-              #@order.send_sms_to_driver()
+              @order.send_sms_to_driver()
           end
         end
         format.html { redirect_to orders_url, notice: 'Order was successfully created.' }
@@ -172,7 +172,7 @@ class OrdersController < ApplicationController
         #if @order.urgency == "yes"
         #  @order.send_call
         #else
-          #@order.send_sms()
+          @order.send_sms()
         #end
       end
     end
@@ -248,7 +248,7 @@ class OrdersController < ApplicationController
         if band == 1
           if @order.driver
             if @order.driver.valid_cell?
-                #@order.send_sms_to_driver()
+                @order.send_sms_to_driver()
             end
           end
         end
