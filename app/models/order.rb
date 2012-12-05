@@ -122,14 +122,14 @@ class Order < ActiveRecord::Base
         end
         details = ""
         if self.order_type_id == 4
-        	details = self.description + " "
+        	details = self.description
         elsif self.order_type_id == 1
         	for o in self.items
         		details = details + o.quantity.to_s + " " + o.sample_type.name + " "
         	end
         end
 
-        message1 = storou + " " + hour1 + " " + address + " " + details + self.id.to_s 
+        message1 = storou + " " + hour1 + " " + address + " " + details + " TN#" + self.id.to_s 
 
         @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
 
@@ -163,14 +163,14 @@ class Order < ActiveRecord::Base
         end
         details = ""
         if self.order_type_id == 4
-        	details = self.description + " "
+        	details = self.description
         elsif self.order_type_id == 1
         	for o in self.items
         		details = details + o.quantity.to_s + " " + o.sample_type.name + " "
         	end
         end
 
-        message1 = storou + " " + hour1 + " " + address + " " + details + self.id.to_s 
+        message1 = storou + " " + hour1 + " " + address + " " + details + " TN#" + self.id.to_s 
 
         @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
 
