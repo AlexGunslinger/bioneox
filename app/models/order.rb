@@ -101,6 +101,11 @@ class Order < ActiveRecord::Base
 
 	def send_sms()
 		number_to_send_to = self.carrier.cell_number
+		if number_to_send_to == "8112281333"
+			number_to_send_to = "+5218112281333"
+		else
+			number_to_send_to = "+1#{number_to_send_to}"
+		end
         twilio_sid = "AC5ba76291710e519fe5dfa6d5fb781e6e"
         twilio_token = "025d3928ae3e941bf2539b387caf0945"
         twilio_phone_number = "5125246907"
@@ -135,13 +140,18 @@ class Order < ActiveRecord::Base
 
         @twilio_client.account.sms.messages.create(
           :from => "+1#{twilio_phone_number}",
-          :to => "+1#{number_to_send_to}",
+          :to => "#{number_to_send_to}",
           :body => "#{message1}"
         )
 	end
 
 	def send_sms_to_driver()
 		number_to_send_to = self.driver.cell_number
+		if number_to_send_to == "8112281333"
+			number_to_send_to = "+5218112281333"
+		else
+			number_to_send_to = "+1#{number_to_send_to}"
+		end
         twilio_sid = "AC5ba76291710e519fe5dfa6d5fb781e6e"
         twilio_token = "025d3928ae3e941bf2539b387caf0945"
         twilio_phone_number = "5125246907"
@@ -176,7 +186,7 @@ class Order < ActiveRecord::Base
 
         @twilio_client.account.sms.messages.create(
           :from => "+1#{twilio_phone_number}",
-          :to => "+1#{number_to_send_to}",
+          :to => "#{number_to_send_to}",
           :body => "#{message1}"
         )
 	end
