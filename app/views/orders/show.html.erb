@@ -89,6 +89,17 @@
             </div>
           </fieldset>
       
+           <% if @order.picked_up_at %>
+
+            <fieldset>
+              <label>Pick Up Date</label>
+              <div>
+                <%= nice_date(@order.picked_up_at) %>
+              </div>
+            </fieldset>
+
+          <% end %>          
+
           <% if @order.carrier %>
 
           <% if @order.carrier.role == "3" %>
@@ -138,6 +149,17 @@
             </fieldset>
 
           <% end %>
+
+          <% if @order.delivered_at %>
+
+            <fieldset>
+              <label>Delivery Date</label>
+              <div>
+                <%= nice_date(@order.delivered_at) %>
+              </div>
+            </fieldset>
+
+          <% end %>          
           
       <fieldset>
         <label></label>
