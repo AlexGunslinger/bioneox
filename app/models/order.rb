@@ -145,7 +145,7 @@ class Order < ActiveRecord::Base
         twilio_sid = "AC5ba76291710e519fe5dfa6d5fb781e6e"
         twilio_token = "025d3928ae3e941bf2539b387caf0945"
         twilio_phone_number = "5125246907"
-		hourr = self.created_at - 6.hours
+		hourr = self.created_at
         hour1 = hourr.strftime("%H:%M")
         
         if self.urgency == "yes"
