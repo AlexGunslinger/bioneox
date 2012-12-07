@@ -38,14 +38,14 @@ class OrdersController < ApplicationController
 
     if current_user.is_admin?
 
-      @orders = Order.where("#{where}").where("#{where2}").where("#{where3}").where("#{where4}").where("#{where5}")
+      @orders = Order.where("#{where}").where("#{where2}").where("#{where3}").where("#{where4}").where("#{where5}").order("created_at ASC")
 
     elsif current_user.is_onsite?
-      @orders = current_user.delivery_orders.where("#{where}").where("#{where2}").where("#{where3}").where("#{where4}").where("#{where5}")
+      @orders = current_user.delivery_orders.where("#{where}").where("#{where2}").where("#{where3}").where("#{where4}").where("#{where5}").order("created_at DESC")
     elsif current_user.is_carrier? or current_user.is_cpld?
-      @orders = current_user.carrier_orders.where("#{where}").where("#{where2}").where("#{where3}").where("#{where4}").where("#{where5}")
+      @orders = current_user.carrier_orders.where("#{where}").where("#{where2}").where("#{where3}").where("#{where4}").where("#{where5}").order("created_at DESC")
     elsif current_user.is_doctor?
-      @orders = current_user.origin_orders
+      @orders = current_user.origin_orders.order("created_at DESC")
     end
 
     if (params[:sstatus] != nil and params[:sstatus] != "")
