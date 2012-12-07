@@ -39,7 +39,7 @@ class Order < ActiveRecord::Base
 			stat = "Delivered"
 		elsif self.picked_up_at != nil
 			stat = "In Transit"
-		elsif self.carrier_id != nil
+		elsif self.carrier
 			if self.carrier.role == "5" or self.picked_up_by_id != nil
 				stat = "Waiting for Carrier"
 			else
