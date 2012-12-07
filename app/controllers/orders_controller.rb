@@ -130,7 +130,7 @@ class OrdersController < ApplicationController
         end
         if @order.driver and not current_user.is_driver?
           if @order.driver.valid_cell?
-              @order.send_sms_to_driver()
+              @order.send_sms_to_driver("si")
           end
         end
         format.html { redirect_to orders_url, notice: 'Order was successfully created.' }
@@ -248,7 +248,7 @@ class OrdersController < ApplicationController
         if band == 1
           if @order.driver
             if @order.driver.valid_cell?
-                @order.send_sms_to_driver()
+                @order.send_sms_to_driver("no")
             end
           end
         end

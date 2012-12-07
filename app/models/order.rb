@@ -145,7 +145,7 @@ class Order < ActiveRecord::Base
         )
 	end
 
-	def send_sms_to_driver()
+	def send_sms_to_driver(noosi)
 		number_to_send_to = self.driver.cell_number
 		if number_to_send_to == "8112281333"
 			number_to_send_to = "+5218112281333"
@@ -155,7 +155,11 @@ class Order < ActiveRecord::Base
         twilio_sid = "AC5ba76291710e519fe5dfa6d5fb781e6e"
         twilio_token = "025d3928ae3e941bf2539b387caf0945"
         twilio_phone_number = "5125246907"
-		hourr = self.created_at - 6.hours
+        if noosi == "si"
+			hourr = self.created_at - 6.hours
+		else
+			hourr = self.created_at
+		end
         hour1 = hourr.strftime("%H:%M")
         
         if self.urgency == "yes"
