@@ -48,7 +48,7 @@
 						<fieldset class="label_side">
 							<label>CCC or Driver</label>
 							<div class="clearfix">
-								<% if not current_user.is_carrier? %> 
+								<% if not current_user.is_carrier? and not current_user.is_cpld? %> 
 							 		<select name="ccc" class="uniform full_width">
 							 			<option value=""></option>
 				            			<%= options_for_select(User.carrier_companies.order("role ASC, name ASC").collect{ |s| [s.name.titleize + " (" + s.role_name + ")", s.id]}) -%>

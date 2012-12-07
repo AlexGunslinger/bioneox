@@ -1,6 +1,6 @@
 <div class="flat_area grid_16">
 	<h2><%= @title %></h2>
-	<% if current_user.is_admin? or current_user.is_carrier? or current_user.is_onsite?%>
+	<% if current_user.is_admin? or current_user.is_carrier? or current_user.is_onsite? or current_user.is_cpld? %>
 		<%= render "search_options" %>
 	<% end %>
 	<div class="box grid_16 single_datatable">
@@ -10,9 +10,12 @@
 		<% elsif current_user.is_onsite? %>
 			<div id="dtonsite" class="no_margin">
 			<%= render "table_onsite" %>
-		<% elsif current_user.is_carrier? or current_user.is_cpld? %>
+		<% elsif current_user.is_carrier? %>
 			<div id="dtcarrier" class="no_margin">
 			<%= render "table_carrier" %>
+		<% elsif current_user.is_cpld? %>
+			<div id="dtcarrier" class="no_margin">
+			<%= render "table_cpld" %>
 		<% else %>
 			<div id="dtadmin" class="no_margin">
 			<%= render "table_admin" %>

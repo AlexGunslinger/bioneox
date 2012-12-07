@@ -8,11 +8,18 @@ if($.fn.dataTable){
 				"bJQueryUI": true,
 				"sScrollX": "",
 				"bSortClasses": false,
-				"aaSorting": [[0,'asc']],
+				"aaSorting": [[0,'desc']],
 				"bAutoWidth": true,
 				"bInfo": true,
 				"sScrollX": "101%",
 				"bScrollCollapse": true,
+				"oLanguage": {
+         			"sLengthMenu": 'Display <select>'+
+           			'<option value="100">100</option>'+
+           			'<option value="200">200</option>'+
+           			'<option value="500">500</option>'+
+           			'</select> records'
+       			},
 				"sPaginationType": "full_numbers",
 				"bRetrieve": true,
 				"fnInitComplete": function () {
@@ -28,11 +35,18 @@ if($.fn.dataTable){
 				"bJQueryUI": true,
 				"sScrollX": "",
 				"bSortClasses": false,
-				"aaSorting": [[0,'asc']],
+				"aaSorting": [[0,'desc']],
 				"bAutoWidth": true,
 				"bInfo": true,
 				"sScrollX": "101%",
 				"bScrollCollapse": true,
+				"oLanguage": {
+         			"sLengthMenu": 'Display <select>'+
+           			'<option value="100">100</option>'+
+           			'<option value="200">200</option>'+
+           			'<option value="500">500</option>'+
+           			'</select> records'
+       			},
 				"sPaginationType": "full_numbers",
 				"bRetrieve": true,
 				"fnInitComplete": function () {
@@ -48,13 +62,20 @@ if($.fn.dataTable){
 				"bJQueryUI": true,
 				"sScrollX": "",
 				"bSortClasses": false,
-				"aaSorting": [[0,'asc']],
+				"aaSorting": [[0,'desc']],
 				"bAutoWidth": true,
 				"bInfo": true,
 				"sScrollY": "101%",
 				"sScrollX": "101%",
-				"aoColumnDefs": [{ "bSortable": false, "aTargets": [4, 5, 6, 7 ] }],
+				"aoColumnDefs": [{ "bSortable": false, "aTargets": [4, 5, 6 ] }],
 				"bScrollCollapse": true,
+				"oLanguage": {
+         			"sLengthMenu": 'Display <select>'+
+           			'<option value="100">100</option>'+
+           			'<option value="200">200</option>'+
+           			'<option value="500">500</option>'+
+           			'</select> records'
+       			},
 				"sPaginationType": "full_numbers",
 				"bRetrieve": true,
 				"fnInitComplete": function () {
@@ -71,13 +92,20 @@ if($.fn.dataTable){
 				"bJQueryUI": true,
 				"sScrollX": "",
 				"bSortClasses": false,
-				"aaSorting": [[0,'asc']],
+				"aaSorting": [[0,'desc']],
 				"bAutoWidth": true,
 				"bInfo": true,
 				"sScrollY": "101%",
 				"sScrollX": "101%",
 				"aoColumnDefs": [{ "bSortable": false, "aTargets": [4, 5, 6 ] }],
 				"bScrollCollapse": true,
+				"oLanguage": {
+         			"sLengthMenu": 'Display <select>'+
+           			'<option value="100">100</option>'+
+           			'<option value="200">200</option>'+
+           			'<option value="500">500</option>'+
+           			'</select> records'
+       			},
 				"sPaginationType": "full_numbers",
 				"bRetrieve": true,
 				"fnInitComplete": function () {
@@ -95,12 +123,19 @@ if($.fn.dataTable){
 				"bPaginate": false,
 				"sScrollX": "",
 				"bSortClasses": false,
-				"aaSorting": [[0,'asc']],
+				"aaSorting": [[0,'desc']],
 				"bAutoWidth": true,
 				"bInfo": true,
 				"sScrollY": "101%",
 				"sScrollX": "101%",
 				"bScrollCollapse": true,
+				"oLanguage": {
+         			"sLengthMenu": 'Display <select>'+
+           			'<option value="100">100</option>'+
+           			'<option value="200">200</option>'+
+           			'<option value="500">500</option>'+
+           			'</select> records'
+       			},
 				"sPaginationType": "full_numbers",
 				"bRetrieve": true,
 				"fnInitComplete": function () {
