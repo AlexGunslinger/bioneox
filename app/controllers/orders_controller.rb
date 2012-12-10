@@ -178,7 +178,7 @@ class OrdersController < ApplicationController
                 #if @order.urgency == "yes"
                 #  @order.send_call
                 #else
-                @order.send_sms("no")
+                order.send_sms("no")
                 #end
               end
             end
