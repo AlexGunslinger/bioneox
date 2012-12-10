@@ -172,18 +172,19 @@ class OrdersController < ApplicationController
           if id[1] != ""
             order.carrier_id = id[1]
             order.save
+            
+            if order.carrier
+              if order.carrier.valid_cell?
+                #if @order.urgency == "yes"
+                #  @order.send_call
+                #else
+                @order.send_sms("no")
+                #end
+              end
+            end
+
           end
         end
-
-        #if order.carrier
-        #  if order.carrier.valid_cell?
-        #    #if @order.urgency == "yes"
-        #    #  @order.send_call
-        #    #else
-        #      @order.send_sms_multiple("no", n)
-        #    #end
-        #  end
-        #end
 
       end
 
