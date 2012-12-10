@@ -109,9 +109,6 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
     @order.submitted_by_id = current_user.id
-    if current_user.is_carrier?
-      
-    end
     respond_to do |format|
       if @order.save
         if current_user.is_doctor?
@@ -163,27 +160,64 @@ class OrdersController < ApplicationController
     #@order = Order.find(params[:id])
     #@order.carrier_id = params[:carrier_id]
     order_id = params[:assign]
-    @order = Order.find(order_id)
-    carrier = params["carrier#{order_id}".to_sym]
-    @order.carrier_id = carrier
-    @order.save
-    if @order.carrier
-      if @order.carrier.valid_cell?
-        #if @order.urgency == "yes"
-        #  @order.send_call
-        #else
-          @order.send_sms("no")
+    if order_id == "OrderCreated"
+
+      if params[:carrier]
+        #n = 0
+        params[:carrier].each do |id|
+          #n += 1
+          order = Order.find(id[0])
+          #carrier = params[:carrier]
+          #order.carrier_id = carrier
+          if id[1] != ""
+            order.carrier_id = id[1]
+            order.save
+          end
+        end
+
+        #if order.carrier
+        #  if order.carrier.valid_cell?
+        #    #if @order.urgency == "yes"
+        #    #  @order.send_call
+        #    #else
+        #      @order.send_sms_multiple("no", n)
+        #    #end
+        #  end
         #end
+
       end
-    end
-    respond_to do |format|
-     # if @order.save
-        format.html { redirect_to orders_url, notice: 'Carrier Company was successfully updated.' }
-        format.json { head :no_content }
-     # else
-     #   format.html { render action: "index" }
-     #   format.json { render json: @order.errors, status: :unprocessable_entity }
-     # end
+
+      respond_to do |format|
+        format.html { redirect_to orders_url(:sstatus => "OrderCreated"), notice: 'Orders was successfully processed.' }
+        format.json { render json: @order, status: :created, location: @order }
+      end
+
+    else
+
+      @order = Order.find(order_id)
+      #carrier = params["carrier#{order_id}".to_sym]
+      #params[:carrier].index(@order.id)
+      carrier = params[:carrier][order_id]
+      @order.carrier_id = carrier
+      @order.save
+      if @order.carrier
+        if @order.carrier.valid_cell?
+          #if @order.urgency == "yes"
+          #  @order.send_call
+          #else
+            @order.send_sms("no")
+          #end
+        end
+      end
+      respond_to do |format|
+      # if @order.save
+          format.html { redirect_to orders_url, notice: 'Carrier Company was successfully updated.' }
+          format.json { head :no_content }
+      # else
+      #   format.html { render action: "index" }
+      #   format.json { render json: @order.errors, status: :unprocessable_entity }
+      # end
+      end
     end
   end
 

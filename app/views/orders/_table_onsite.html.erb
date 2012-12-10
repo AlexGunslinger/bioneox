@@ -24,9 +24,12 @@
 					<td align="center" valign="middle"><%= order.id %></td>
 					<% if order.status == 'Order Created' %>
 						<td>
-					    	<select name="carrier<%= order.id %>" class="full_width" id="carrier<%= order.id %>">
+						
+					    	<select name="carrier[<%= order.id %>]" class="full_width" id="carrier[<%= order.id %>]">
+					    		<option value=""></option>
 				            	<%= options_for_select(User.carrier_companies.order("name ASC").collect{ |s| [s.name.titleize, s.id]}) -%>
    							</select>
+
    						</td>
    						<td align="center" valign="middle">
    							<button class="blue" type="submit" name="assign" id="assign" value="<%= order.id %>">
@@ -38,8 +41,27 @@
    						<td></td>
    					<% end %>
 					<td align="center" valign="middle"><%= order.status %></td>
+					
 				</tr>
 			<% end %>
 		</tbody>
 	</table>
+
+<% if @sstatus == "OrderCreated" %>
+	<div class="box grid_8 tabs">
+	</div>
+	<div class="box grid_8 align_right2">
+		<div class="block compressed">
+			<form class="validate_form">
+			<div class="button_bar clearfix">
+				<button class="small dark send_right" type="submit" name="assign" value="<%= @sstatus %>">
+					<div class="ui-icon ui-icon-circle"></div>
+					<span>Submit</span>
+				</button>
+			</div>
+			</form>
+		</div>
+	</div>
+<% end %>
+
 <% end %>
