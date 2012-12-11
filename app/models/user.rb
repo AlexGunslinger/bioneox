@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   belongs_to :dcpl
   validates_format_of :cell_number, :with => /^\d\d\d\d\d\d\d\d\d\d$/, :message => "Cell number must be of 10 digits.", :if => :need_cell?
 
-  validates_presence_of :dcpl_id, :message => "A Dcpl user must be assigned to a Dcpl.", :if => :need_dcpl?
+  #validates_presence_of :dcpl_id, :message => "A Dcpl user must be assigned to a Dcpl.", :if => :need_dcpl?
 
 	has_one :manage, :class_name => Site, :foreign_key => :user_id
 
@@ -113,7 +113,7 @@ class User < ActiveRecord::Base
   end
 
   def layout_name
-    if self.role == "4" and self.dcpl
+    if self.role == "20" and self.dcpl
       self.name + " (" + self.dcpl.name + ")"
     else
       self.name

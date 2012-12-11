@@ -122,11 +122,11 @@ class Order < ActiveRecord::Base
         	storou = "Routine"
         end
 
-        if self.dcpl 
-        	if self.dcpl.address
-        		address = self.dcpl.name + " " + self.dcpl.address
+        if self.origin_user 
+        	if self.origin_user.address
+        		address = self.origin_user.name + " " + self.origin_user.address
         	else
-        		address = self.dcpl.name
+        		address = self.origin_user.name
         	end
         end
         details = ""
@@ -172,11 +172,11 @@ class Order < ActiveRecord::Base
         	storou = "Routine"
         end
 
-        if self.dcpl
-        	if self.dcpl.address
-        		address = self.dcpl.name + " " + self.dcpl.address
+        if self.origin_user
+        	if self.origin_user.address
+        		address = self.origin_user.name + " " + self.origin_user.address
         	else
-        		address = self.dcpl.name
+        		address = self.origin_user.name
         	end
         end
         details = ""

@@ -4,14 +4,14 @@
         <fieldset>
           <label>Origin</label>
             <div>
-              <%= @order.dcpl.name if @order.dcpl %>
+              <%= @order.origin_user.name if @order.origin_user %>
             </div>
         </fieldset>
 
         <fieldset>
           <label>Address</label>
             <div>
-              <%= @order.dcpl.address if @order.dcpl %>
+              <%= @order.origin_user.address if @order.origin_user %>
             </div>
         </fieldset>
 

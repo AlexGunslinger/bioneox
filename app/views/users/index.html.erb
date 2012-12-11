@@ -10,7 +10,6 @@
 						<th>Username</th>
 						<th>Email</th>
 						<th>Type</th>
-						<th>Dcpl</th>	
 						<th></th>
 						<th></th>
 					</tr>
@@ -22,7 +21,6 @@
     					<td><%= user.username %></td>
     					<td><%= user.email %></td>
     					<td><%= user.role_name %></td>
-    					<td><%= user.dcpl.name if user.dcpl %></td>
     					<td><%= link_to 'Edit', edit_user_path(user) %></td>
     					<td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
   					</tr>
