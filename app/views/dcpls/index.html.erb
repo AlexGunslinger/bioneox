@@ -1,0 +1,30 @@
+<div class="flat_area grid_16">
+	<h2><%= @title %></h2>
+
+	<div class="box grid_16 single_datatable">
+		<div id="dt1" class="no_margin">
+			<table class=" datatable">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Address</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @dcpls.each do |dcpl| %>
+					<tr>
+    					<td><%= dcpl.name %></td>
+    					<td><%= dcpl.address %></td>
+    					<td><%= link_to 'Edit', edit_dcpl_path(dcpl) %></td>
+  					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="flat_area grid_16">
+	<div class="align_right"><p><h2><%= link_to 'New Dcpl', new_dcpl_path %></h2></p></div>
+</div>

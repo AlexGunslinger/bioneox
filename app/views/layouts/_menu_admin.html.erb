@@ -25,6 +25,13 @@
 	</ul>
 </li>
 
+<li><%= link_to dcpls_path do %><img src="/assets/icons/small/grey/clipboard.png"/><span>Dcpls</span><% end %>
+	<ul>
+		<li><%= link_to dcpls_path, :class => "pjax" do %><span>View All</span><% end %></li>
+		<li><%= link_to new_dcpl_path, :class => "pjax" do %><span>New Dcpl</span><% end %></a></li>
+	</ul>
+</li>
+
 <% else %>
 
 <li><%= link_to orders_path do %><img src="/assets/icons/small/grey/mail.png"/><span>Orders</span><% end %></li>
@@ -38,5 +45,9 @@
 <li><%= link_to sample_types_path do %><img src="/assets/icons/small/grey/clipboard.png"/><span>Sample Types</span><% end %></li>
 
 <li><%= link_to new_sample_type_path, :class => "pjax" do %><span>New Sample Type</span><% end %></a></li>
+
+<li><%= link_to dcpls_path do %><img src="/assets/icons/small/grey/users.png"/><span>Dcpls</span><% end %></li>
+
+<li><%= link_to new_dcpl_path, :class => "pjax" do %><span>New Dcpl</span><% end %></a></li>
 
 <% end %>

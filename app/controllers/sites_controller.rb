@@ -1,4 +1,4 @@
-class SitesController < ApplicationController
+class DcplsController < ApplicationController
   before_filter :require_user
   before_filter :set_nav_top
   layout "samples", :except => [:update_city_select]
@@ -99,7 +99,7 @@ class SitesController < ApplicationController
   private
   
   def set_nav_top
-  	@navtop = "3"
+  	@navtop = "5"
   end
   
 end

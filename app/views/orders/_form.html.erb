@@ -23,13 +23,15 @@
 					<label for="text_field_inline">Origin</label>
 					<div>
 						<% 
-							if current_user.is_doctor?
-								doctorss = User.doctors.where("id = ?", current_user.id)
+							if current_user.is_doctor? %>
+								<%= f.hidden_field :origin_user_id, :value => current_user.id %>
+								<%
+								doctorss = Dcpl.where("id = ?", current_user.dcpl.id)
 							else
-								doctorss = User.doctors
+								doctorss = Dcpl.order("name ASC")
 							end
 						%>
-     					<%= f.select(:origin_user_id, doctorss.order("name").collect{ |s| [s.name.titleize, s.id]}, {}, {:class => "uniform full_width"}) %>
+     					<%= f.select(:dcpl_id, doctorss.order("name").collect{ |s| [s.name.titleize, s.id]}, {}, {:class => "uniform full_width"}) %>
 					</div>
 				</fieldset>
 			</div>

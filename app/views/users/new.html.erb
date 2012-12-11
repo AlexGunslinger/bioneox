@@ -83,17 +83,18 @@
 
 
 <div class="box grid_16 clearfix" id="user_address" style="display:none;">
-	<h2 class="box_head" id="form_title">User Address</h2>
+	<h2 class="box_head" id="form_title">DCPL</h2>
 	<div class="block">
-		
-			<fieldset class="label_side label_small">
-			<label for="text_field_inline">Address</label>
-				<div>
-					<%= f.text_area :address, :class => "autogrow", :rows => "4" %>
-				</div>
-			</fieldset>
-			
-						
+		<div class="columns clearfix">
+			<div class="col_50">
+				<fieldset class="label_side label_small">
+					<label for="text_field_inline">Dcpl</label>
+					<div>
+     					<%= f.select(:dcpl_id, Dcpl.order("name").collect{ |s| [s.name.titleize, s.id]}, {}, {:class => "full_width"}) %>
+					</div>
+				</fieldset>			
+			</div>
+		</div>	
 	</div>
 </div>
 

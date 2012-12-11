@@ -4,14 +4,14 @@
         <fieldset>
           <label>Origin</label>
             <div>
-              <%= @order.origin_user.name if @order.origin_user %>
+              <%= @order.dcpl.name if @order.dcpl %>
             </div>
         </fieldset>
 
         <fieldset>
           <label>Address</label>
             <div>
-              <%= @order.origin_user.address if @order.origin_user %>
+              <%= @order.dcpl.address if @order.dcpl %>
             </div>
         </fieldset>
 
@@ -77,7 +77,7 @@
           <fieldset>
             <label>Order Placed By</label>
             <div>
-                <%= @order.submitted_by.name if @order.submitted_by %>
+                <%= @order.submitted_by.layout_name if @order.submitted_by %>
             </div>
           </fieldset>
 

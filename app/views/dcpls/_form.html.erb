@@ -1,0 +1,43 @@
+<div class="box grid_16">
+	<h2 class="box_head"><%= @title %></h2>
+	<div class="block">
+		<%= form_for(@dcpl, :html => { :class => "validate_form"}) do |f| %>
+  			<% if @dcpl.errors.any? %>
+    			<div id="error_explanation">
+      				<h2><%= pluralize(@dcpl.errors.count, "error") %> prohibited this dcpl from being saved:</h2>
+					<ul>
+      					<% @dcpl.errors.full_messages.each do |msg| %>
+        					<li><%= msg %></li>
+      					<% end %>
+      				</ul>
+    			</div>
+  			<% end %>
+
+					<fieldset class="label_side label_small">
+						<label for="text_field_inline">Name</label>
+						<div>
+							<%= f.text_field :name, :class => "required" %>
+						</div>
+					</fieldset>
+
+
+			<fieldset class="label_side label_small">
+			<label for="text_field_inline">Address</label>
+				<div>
+					<%= f.text_area :address, :class => "required autogrow", :rows => "4" %>
+				</div>
+			</fieldset>
+			
+
+			<div class="button_bar clearfix">
+				<button class="blue" type="submit">
+					<span>Submit</span>
+				</button>
+				<button class="light send_right" type="reset">
+					<span>Reset</span>
+				</button>
+			</div>
+			
+	<% end %>
+	</div>
+</div>

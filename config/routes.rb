@@ -1,6 +1,7 @@
 Samples::Application.routes.draw do
   resources :order_types
   resources :sample_types
+  resources :dcpls
 
   root :to => 'user_sessions#new', :as => :home
 

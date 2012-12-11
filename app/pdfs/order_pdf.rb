@@ -38,7 +38,7 @@ class OrderPdf < Prawn::Document
       elsif order.order_type_id == 4
         order_desc = "#{order.description}"
       end
-      order.origin_user ? origin_name = order.origin_user.name : origin_name = ""
+      order.dcpl ? origin_name = order.dcpl.name : origin_name = ""
       order.delivery_user ? delivery_name = order.delivery_user.name : delivery_name = ""
       [nice_date(order.created_at), origin_name, order_desc, order.id, delivery_name, order.status]
     end

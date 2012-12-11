@@ -10,7 +10,7 @@ class Order < ActiveRecord::Base
 	
 	belongs_to :origin_user, :class_name => User, :foreign_key => :origin_user_id
 	belongs_to :delivery_user, :class_name => User, :foreign_key => :delivery_user_id
-
+	belongs_to :dcpl
 	belongs_to :order_type
 	belongs_to :sample_type
 	has_many :items
@@ -122,11 +122,11 @@ class Order < ActiveRecord::Base
         	storou = "Routine"
         end
 
-        if self.origin_user 
-        	if self.origin_user.address
-        		address = self.origin_user.name + " " + self.origin_user.address
+        if self.dcpl 
+        	if self.dcpl.address
+        		address = self.dcpl.name + " " + self.dcpl.address
         	else
-        		address = self.origin_user.name
+        		address = self.dcpl.name
         	end
         end
         details = ""
@@ -172,11 +172,11 @@ class Order < ActiveRecord::Base
         	storou = "Routine"
         end
 
-        if self.origin_user 
-        	if self.origin_user.address
-        		address = self.origin_user.name + " " + self.origin_user.address
+        if self.dcpl
+        	if self.dcpl.address
+        		address = self.dcpl.name + " " + self.dcpl.address
         	else
-        		address = self.origin_user.name
+        		address = self.dcpl.name
         	end
         end
         details = ""

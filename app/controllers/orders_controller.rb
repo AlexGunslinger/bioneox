@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
     end
 
     if (params[:origin] != nil and params[:origin] != "")
-      where2 = where2 + "origin_user_id = #{params[:origin]}"
+      where2 = where2 + "dcpl_id = #{params[:origin]}"
       @origin = params[:origin]
     end
 
@@ -45,7 +45,7 @@ class OrdersController < ApplicationController
     elsif current_user.is_carrier? or current_user.is_cpld?
       @orders = current_user.carrier_orders.where("#{where}").where("#{where2}").where("#{where3}").where("#{where4}").where("#{where5}").order("created_at DESC")
     elsif current_user.is_doctor?
-      @orders = current_user.origin_orders.order("created_at DESC")
+      @orders = current_user.dcpl.orders.order("created_at DESC")
     end
 
     if (params[:sstatus] != nil and params[:sstatus] != "")

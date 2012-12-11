@@ -1,0 +1,3 @@
+		<%= stylesheet_link_tag "adminica/reset" %>
+
+<%= select(:site, :city_id, @cities.collect{ |c| [c.name.titleize, c.id]}, {}, {:class => "uniform full_width"}) %>

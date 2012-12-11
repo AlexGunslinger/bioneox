@@ -11,12 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121118054957) do
+ActiveRecord::Schema.define(:version => 20121210022830) do
 
   create_table "cities", :force => true do |t|
     t.string   "name"
     t.string   "short_name"
     t.integer  "state_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "dcpls", :force => true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.text     "address"
+    t.integer  "city_id"
+    t.integer  "state_id"
+    t.string   "zip_code"
+    t.string   "phone"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -117,8 +130,8 @@ ActiveRecord::Schema.define(:version => 20121118054957) do
     t.string   "role"
     t.string   "cell_number"
     t.text     "address"
-    t.integer  "state_id"
-    t.integer  "city_id"
+    t.integer  "add_state_id"
+    t.integer  "add_city_id"
     t.integer  "zip_code"
   end
 
