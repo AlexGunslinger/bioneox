@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 
 #	ROLES = %w[admin onsite carrier]
 
-  ROLES = [["ADMIN", 1], ["CPLCC", 2], ["CCC", 3], ["DCPL", 4], ["CPLD", 5], ["SSD", 6]]
+  ROLES = [["ADMIN", 1], ["CPLCC", 2], ["Contract Carrier Company", 3], ["Origin", 4], ["CPL Driver", 5], ["Sigma Express Driver", 6]]
 
   def role_name
     if self.role == "1"
@@ -34,13 +34,13 @@ class User < ActiveRecord::Base
     elsif self.role == "2"
       "CPLCC"
     elsif self.role == "3"
-      "CCC"
+      "Contract Carrier Company"
     elsif self.role == "4"
-      "DCPL"
+      "Origin"
     elsif self.role == "5"
-      "CPLD"
+      "CPL Driver"
     elsif self.role == "6"
-      "SSD"
+      "Sigma Express Driver"
     else
       ""
     end
