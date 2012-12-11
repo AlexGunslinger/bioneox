@@ -1,4 +1,4 @@
-class DcplsController < ApplicationController
+class SitesController < ApplicationController
   before_filter :require_user
   before_filter :set_nav_top
   layout "samples", :except => [:update_city_select]
