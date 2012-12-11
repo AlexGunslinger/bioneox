@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
-  before_filter :require_user, :except => [:call]
+  before_filter :require_user, :except => [:call, :receive_sms]
   before_filter :set_nav_top
-  layout "samples", :except => [:update_order_type]
+  layout "samples", :except => [:update_order_type, :receive_sms]
    
   def index
   	@title = "Orders"
@@ -329,6 +329,138 @@ class OrdersController < ApplicationController
   def update_order_type
 	@order_type = OrderType.find(params[:id])
   end
+
+  def receive_sms
+    from = params[:From]
+    body = params[:Body]
+    error = 0
+    @errorm = ""
+    if !body.blank?
+      elements = body.split
+      if elements.size > 1
+        act = elements.pop
+        if act == "d" or act == "p"
+          if act == "p"
+
+            elements.each do |e|
+              if e.first(2) != "tn" and e.first(2) != "Tn" and e.first(2) != "TN" and e.first(2) != "tN"
+                error = 2 
+                @errorm = "Invalid Element"
+              end
+            end
+
+            if error == 0
+              elements.each do |e|
+                
+                begin
+                  o = Order.find(e.last(-2))
+                rescue Exception
+                  error = 3 
+                  @errorm = "Invalid Order"
+                end
+
+                if error == 0
+                  if o.status != "Waiting for Carrier"
+                    error = 4 
+                    @errorm = "order in other status"
+                  else
+                    if o.carrier.is_ccc?
+                      if o.driver.cell_number != from.last(10)
+                        error = 5 
+                        @errorm = "Order dont correspond to driver"
+                      end
+                    else
+                      if o.carrier.cell_number != from.last(10)
+                        error = 5 
+                        @errorm = "Order dont correspond to driver"
+                      end
+                    end
+                  end
+                end
+
+              end
+            end
+
+            if error == 0
+              elements.each do |e|
+                o = Order.find(e.last(-2))
+                o.picked_up_at = Time.now
+                o.save
+              end
+            end 
+
+          elsif act == "d"
+            
+            dt = elements.pop
+
+            if dt.first(2).downcase == "tn"
+              error = 6 
+              @errorm = "No delivered to name"
+            end
+
+            if error == 0
+              elements.each do |e|
+                if e.first(2).downcase != "tn"
+                  error = 2 
+                  @errorm = "Invalid Element"
+                end
+              end
+            end
+
+            if error == 0
+              elements.each do |e|
+                
+                begin
+                  o = Order.find(e.last(-2))
+                rescue Exception
+                  error = 3 
+                  @errorm = "Invalid Order"
+                end
+
+                if error == 0
+                  if o.status != "In Transit"
+                    error = 4 
+                    @errorm = "order in other status"
+                  else
+                    if o.carrier.is_ccc?
+                      if o.driver.cell_number != from.last(10)
+                        error = 5 
+                        @errorm = "Order dont correspond to driver"
+                      end
+                    else
+                      if o.carrier.cell_number != from.last(10)
+                        error = 5 
+                        @errorm = "Order dont correspond to driver"
+                      end
+                    end
+                  end
+                end
+              end
+            end
+
+            if error == 0
+              elements.each do |e|
+                o = Order.find(e.last(-2))
+                o.delivered_at = Time.now
+                o.picked_up_by = dt
+                o.save
+              end
+            end 
+
+          end
+
+        else
+          error = 1 
+          @errorm = "Invalid Action"
+        end
+      else
+        error = 7 
+        @errorm = "Not enough elements"
+      end
+    end
+  end
+
+
   
     private
   

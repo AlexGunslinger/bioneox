@@ -214,12 +214,4 @@ class Order < ActiveRecord::Base
         )
 	end
 
-	def receive_sms
-		#from = params[:From]
-		#body = params[:Body]
-		#if !body.blank?
-		#	for x in body.split "TN#29 TN#80 p d"
-
-	end
-
 end

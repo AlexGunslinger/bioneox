@@ -20,6 +20,7 @@ Samples::Application.routes.draw do
       post :add_area
       post :process_carrier
       post  :call
+      get :receive_sms
     end
   end
 
