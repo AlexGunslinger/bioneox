@@ -75,8 +75,13 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to users_url, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
+        if current_user.is_admin?
+          format.html { redirect_to users_url, notice: 'User was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to orders_url, notice: 'User was successfully updated.' }
+          format.json { head :no_content }
+        end
       else
         format.html { render action: "edit" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
