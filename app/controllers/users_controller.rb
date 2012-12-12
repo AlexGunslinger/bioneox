@@ -73,7 +73,7 @@ class UsersController < ApplicationController
         format.json { render json: @user, status: :created, location: @user }
       else
         if params[:is_site] == "yes"
-          format.html { render action: "new", controller: "site" }
+          format.html { redirect_to orders_url, notive: 'Site was successfully created.' }
         else
           format.html { render action: "new" }
         end
