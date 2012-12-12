@@ -30,10 +30,16 @@ class SitesController < ApplicationController
   # GET /sites/new
   # GET /sites/new.json
   def new
-  	@title = "New Site"
-    @navinner = "2"
-    @site = Site.new
-
+    @act = params[:act]
+    if @act == "or"
+      @title = "New Origin"
+      @site = User.new
+      @navinner = "1"
+    elsif @act == "de"
+      @title = "New Delivery Site"
+      @site = User.new
+      @navinner = "2"
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @site }
@@ -51,11 +57,13 @@ class SitesController < ApplicationController
   # POST /sites
   # POST /sites.json
   def create
-    @site = Site.new(params[:site])
-
+    @site = User.new(params[:site])
+    @site.username = @site.name
+    @site.cell_number = "5555555555"
+    @site.email = "origin@bioneox.com"
     respond_to do |format|
       if @site.save
-        format.html { redirect_to sites_url, notice: 'Site was successfully created.' }
+        format.html { redirect_to orders_url, notice: 'Site was successfully created.' }
         format.json { render json: @site, status: :created, location: @site }
       else
         format.html { render action: "new" }

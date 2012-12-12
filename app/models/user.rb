@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 
 #	ROLES = %w[admin onsite carrier]
 
-  ROLES = [["ADMIN", 1], ["CPLCC", 2], ["Contract Carrier Company", 3], ["Origin", 4], ["CPL Driver", 5], ["Sigma Express Driver", 6]]
+  ROLES = [["ADMIN", 1], ["CPL", 2], ["Contract Carrier Company", 3], ["Origin", 4], ["CPL Driver", 5], ["Sigma Express Driver", 6]]
 
   def role_name
     if self.role == "1"
@@ -119,4 +119,29 @@ class User < ActiveRecord::Base
       self.name
     end
   end
+
+  def can_add_sites?
+    if self.name == "Six Sigma"
+      true
+    else
+      false
+    end
+  end
+
+  def can_add_origin?
+    if self.name == "Six Sigma"
+      true
+    else
+      false
+    end
+  end
+
+  def can_add_destination?
+    if self.name == "Six Sigma"
+      true
+    else
+      false
+    end
+  end
+  
 end

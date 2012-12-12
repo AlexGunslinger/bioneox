@@ -22,63 +22,24 @@
 						</div>
 					</fieldset>
 				</div>
-				<div class="col_50">
-					<fieldset class="label_side label_small">
-						<label for="text_field_inline">Code</label>
-						<div>
-							<%= f.text_field :code, :class => "required" %>
-						</div>
-					</fieldset>
-				</div>
 			</div>
 
 
 			<fieldset class="label_side label_small">
 			<label for="text_field_inline">Address</label>
 				<div>
-					<%= f.text_field :address, :class => "required" %>
+					<%= f.text_area :address, :class => "autogrow required", :rows => "4" %>
 				</div>
 			</fieldset>
-			
-			<div class="columns clearfix">
-				<div class="col_50">
-					<fieldset class="label_side label_small top">
-						<label for="text_field_inline">State</label>
-						<div>
-         					<%= f.select(:state_id, State.order("name").collect{ |s| [s.name.titleize, s.id]}, {}, {:class => "uniform full_width"}) %>
-						</div>
-					</fieldset>
-				</div>
-				<div class="col_50">
-					<fieldset class="label_side label_small top right">
-						<label for="text_field_inline">City</label>
-						<div>
-						<div id="change_state_city">
-							<%= select(:site, :city_id, State.order("name").first.cities.collect{ |c| [c.name.titleize, c.id]}, {}, {:class => "uniform full_width"}) %>
-						</div>
-						</div>
-					</fieldset>
-				</div>
-			</div>
 
-			<div class="columns clearfix">
-				<div class="col_50">
-					<fieldset class="label_side label_small">
-						<label for="text_field_inline">Zip</label>
-						<div>
-							<%= f.text_field :zip_code %>
-						</div>
-					</fieldset>
-				</div>
-				<div class="col_50">
-					<fieldset class="label_side label_small right">
-						<label for="text_field_inline">Phone</label>
-						<div>
-							<%= f.text_field :phone %>
-						</div>
-					</fieldset>
-				</div>
-			</div>			
+			<%= hidden_field_tag "is_site", "yes" %>	
+			<% if @act == "or" %>
+				<%= f.hidden_field :password, :value => "qawsedrf" %>	
+				<%= f.hidden_field :role, :value => "4" %>		
+			<% else %>
+				<%= f.hidden_field :password, :value => "qawsedrf" %>	
+				<%= f.hidden_field :role, :value => "2" %>	
+			<% end %>
 
 			<div class="button_bar clearfix">
 				<button class="blue" type="submit">

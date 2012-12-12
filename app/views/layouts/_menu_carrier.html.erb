@@ -14,11 +14,25 @@
 	</ul>
 </li>
 
+<% if current_user.can_add_sites? %>
+<li>
+	<%= link_to orders_path do %><img src="/assets/icons/small/grey/apartment_building.png"/><span>Sites</span><% end %>
+	<ul>
+		<% if current_user.can_add_origin? %><li><%= link_to new_site_path(:act => "or" ), :class => "pjax" do %><span>New Origin</span><% end %></a></li><% end %>
+		<% if current_user.can_add_destination? %><li><%= link_to new_site_path(:act => "de" ), :class => "pjax" do %><span>New Delivery Site</span><% end %></a></li><% end %>
+	</ul>
+</li>
+<% end %>
+
 <% else %>
 
 <li><%= link_to orders_path do %><img src="/assets/icons/small/grey/mail.png"/><span>Orders</span><% end %></li>
 <% if current_user.role != 5 %>
 	<li><%= link_to new_order_path, :class => "pjax" do %><span>Make Order</span><% end %></li>
 <% end %>
+
+<% if current_user.can_add_origin? %><li><%= link_to new_site_path(:act => "or" ), :class => "pjax" do %><span>New Origin</span><% end %></a></li><% end %>
+<% if current_user.can_add_destination? %><li><%= link_to new_site_path(:act => "de" ), :class => "pjax" do %><span>New Delivery Site</span><% end %></a></li><% end %>
+
 
 <% end %>

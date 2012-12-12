@@ -55,14 +55,28 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(params[:user])
-
+    if params[:is_site] == "yes"
+      @user = User.new(params[:user])
+      @user.username = @user.name
+      @user.cell_number = "5555555555"
+      @user.email = (0...8).map{65.+(rand(26)).chr}.join + "@bioneox.com"
+    else
+      @user = User.new(params[:user])
+    end
     respond_to do |format|
       if @user.save
-        format.html { redirect_to users_url, notive: 'User was successfully created.' }
+        if params[:is_site] == "yes"
+          format.html { redirect_to orders_url, notive: 'Site was successfully created.' }
+        else
+          format.html { redirect_to users_url, notive: 'User was successfully created.' }
+        end
         format.json { render json: @user, status: :created, location: @user }
       else
-        format.html { render action: "new" }
+        if params[:is_site] == "yes"
+          format.html { render action: "new", controller: "site" }
+        else
+          format.html { render action: "new" }
+        end
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
