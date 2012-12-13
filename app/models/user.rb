@@ -121,7 +121,7 @@ class User < ActiveRecord::Base
   end
 
   def can_add_sites?
-    if self.name == "Six Sigma"
+    if self.id == 41
       true
     else
       false
@@ -129,7 +129,7 @@ class User < ActiveRecord::Base
   end
 
   def can_add_origin?
-    if self.name == "Six Sigma"
+    if self.id == 41
       true
     else
       false
@@ -137,7 +137,7 @@ class User < ActiveRecord::Base
   end
 
   def can_add_destination?
-    if self.name == "Six Sigma"
+    if self.id == 41
       true
     else
       false
